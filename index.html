@@ -1,7 +1,6 @@
 <html>
 
 <head>
-
 </head>
 
 <body>
@@ -28,14 +27,11 @@
         var spacing = container.clientWidth / (points * 1.825);
         line.setAttributeNS(null, 'x1', 20 + (spacing * i));
         line.setAttributeNS(null, 'x2', 20 + (spacing * i));
-        line.setAttributeNS(null, 'y1', 50 + (spacing * i));
-        line.setAttributeNS(null, 'y2', 50 + (spacing * i));
-        // line.setAttributeNS(null, 'style', 'stroke: #000; stroke-width: 10px;');
+        // line.setAttributeNS(null, 'y1', 50 + (spacing * i));
+        // line.setAttributeNS(null, 'y2', 50 + (spacing * i));
         container.appendChild(line);
     }
-</script>
-<script>
-    var osc_freq = 0.25;
+
     var norm = 1;
     var mouseX;
 
@@ -46,7 +42,7 @@
     // get mouse coordinates
     document.addEventListener("mousemove", (e) => {
         mouseX = mapper(e.clientX / window.innerWidth, 0, 1, 0, 5).toFixed(2);
-        console.log(mouseX);
+        // console.log(mouseX);
     })
 
     // animate the SVG
@@ -54,21 +50,19 @@
         document.querySelectorAll('svg line').forEach((c, i) => {
             var amp = 1 - i / points;
             var freq = 1 / 350;
-            norm = mouseX;
+            var osc_freq = 0.25;
             var phase = osc_freq * i;
             var t = performance.now();
+            norm = mouseX;
 
-            var maths = (amp * norm * i) * Math.sin(freq * t + phase);
+            var maths = 50 + (amp * norm * i) * Math.sin(freq * t + phase);
 
-            c.setAttribute('y1', 50 + maths);
-            c.setAttribute('y2', 50 + maths);
-
+            c.setAttribute('y1', maths);
+            c.setAttribute('y2', maths);
         })
         requestAnimationFrame(anim);
     }
     requestAnimationFrame(anim);
-
-
 </script>
 
 </html>
