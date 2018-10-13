@@ -54,7 +54,7 @@
         document.querySelectorAll('svg line').forEach((c, i) => {
             var amp = 1 - i / points;
             var freq = 1 / 350;
-            norm = 1;
+            norm = mouseX;
             var phase = osc_freq * i;
             var t = performance.now();
 
