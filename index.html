@@ -1,8 +1,74 @@
 <html>
-    <head>
 
-    </head>
-    <body>
-        <h1>Hello, world!</h1>
-    </body>
+<head>
+
+</head>
+
+<body>
+    <svg id="wave" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        x="0px" y="0px" viewBox="0 -10 440 120" xml:space="preserve">
+        <style type="text/css">
+            line {
+                fill: none;
+                stroke: #f00;
+                stroke-width: 4;
+                stroke-miterlimit: 10;
+                stroke-linecap: round;
+            }
+        </style>
+    </svg>
+</body>
+
+<script>
+    var svgns = "http://www.w3.org/2000/svg",
+        container = document.getElementById('wave');
+    var points = 50;
+    for (var i = 0; i <= points; i++) {
+        var line = document.createElementNS(svgns, 'line');
+        var spacing = container.clientWidth / (points * 1.825);
+        line.setAttributeNS(null, 'x1', 20 + (spacing * i));
+        line.setAttributeNS(null, 'x2', 20 + (spacing * i));
+        line.setAttributeNS(null, 'y1', 50 + (spacing * i));
+        line.setAttributeNS(null, 'y2', 50 + (spacing * i));
+        // line.setAttributeNS(null, 'style', 'stroke: #000; stroke-width: 10px;');
+        container.appendChild(line);
+    }
+</script>
+<script>
+    var osc_freq = 0.25;
+    var norm = 1;
+    var mouseX;
+
+    function mapper(num, in_min, in_max, out_min, out_max) {
+        return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+    }
+
+    // get mouse coordinates
+    document.addEventListener("mousemove", (e) => {
+        mouseX = mapper(e.clientX / window.innerWidth, 0, 1, 0, 5).toFixed(2);
+        console.log(mouseX);
+    })
+
+    // animate the SVG
+    function anim() {
+        document.querySelectorAll('svg line').forEach((c, i) => {
+            var amp = 1 - i / points;
+            var freq = 1 / 350;
+            norm = 1;
+            var phase = osc_freq * i;
+            var t = performance.now();
+
+            var maths = (amp * norm * i) * Math.sin(freq * t + phase);
+
+            c.setAttribute('y1', 50 + maths);
+            c.setAttribute('y2', 50 + maths);
+
+        })
+        requestAnimationFrame(anim);
+    }
+    requestAnimationFrame(anim);
+
+
+</script>
+
 </html>
