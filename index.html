@@ -4,7 +4,7 @@
 </head>
 
 <body>
-    <svg id="wave" class="hide" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    <svg id="wave" onclick="volumeFadeIn('mp3', 1, 25)" class="hide" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px" y="0px" viewBox="0 -10 480 120" xml:space="preserve">
         <style type="text/css">
             :root {
@@ -30,26 +30,10 @@
             }
         </style>
     </svg>
-    <!-- <audio id="mp3" src="src/audiello.mp3" type="audio/mpeg"></audio> -->
+    <audio id="mp3" src="src/audiello.mp3" type="audio/mpeg" volume="0"></audio>
     <script>
-        // var mp3 = document.getElementById('mp3');
-        // mp3.play();
-
         var points = 150;
         var delay = 500;
-        setTimeout(function () {
-            var svgns = "http://www.w3.org/2000/svg",
-                container = document.getElementById('wave');
-            for (var i = 0; i <= points; i++) {
-                var line = document.createElementNS(svgns, 'line');
-                var spacing = container.clientWidth / (points * 1.825);
-                line.setAttributeNS(null, 'x1', 20 + (spacing * i));
-                line.setAttributeNS(null, 'x2', 20 + (spacing * i));
-                // line.setAttributeNS(null, 'y1', 50 + (spacing * i));
-                // line.setAttributeNS(null, 'y2', 50 + (spacing * i));
-                container.appendChild(line);
-            }
-        }, delay);
 
         var mouseX, mouseY;
 
@@ -65,6 +49,18 @@
         })
 
         setTimeout(function () {
+            var svgNS = "http://www.w3.org/2000/svg",
+                container = document.getElementById('wave');
+            for (var i = 0; i <= points; i++) {
+                var line = document.createElementNS(svgNS, 'line');
+                var spacing = container.clientWidth / (points * 1.825);
+                line.setAttributeNS(null, 'x1', 20 + (spacing * i));
+                line.setAttributeNS(null, 'x2', 20 + (spacing * i));
+                // line.setAttributeNS(null, 'y1', 50 + (spacing * i));
+                // line.setAttributeNS(null, 'y2', 50 + (spacing * i));
+                container.appendChild(line);
+            }
+
             // animate the SVG
             var el = document.getElementsByClassName('hide')[0]
             el.classList.remove('hide');
@@ -89,11 +85,67 @@
             requestAnimationFrame(anim);
         }, delay);
 
-        // function decreaseVolume() {
-        //     var el = document.getElementById('mp3');
-        //     el.volume -= 0.1;
-        //     console.log(el.volume);
-        // }
+        // to call function 'callback' once by listening to 'type' event, targeting the 'node'
+        function oneTime(node, type, callback) {
+
+            var node = document.getElementById(node);
+            // create event
+            node.addEventListener(type, function (e) {
+                // remove event
+                e.target.removeEventListener(e.type, arguments.callee);
+                // call handler
+                return callback(e);
+            });
+
+        }
+
+        // oneTime('wave', 'click', function() {
+        //     volumeFadeIn(25, 'mp3', 1);
+        // });
+
+        var mp3 = document.getElementById('mp3');
+        mp3.volume = 0;
+
+        function volumeFadeIn(which, targetVolume, ms) {
+            var fired;
+            var firedComplete;
+            var which = document.getElementById(which);
+
+            if (fired == true && firedComplete != true) {
+                console.log('already fired!');
+            } else if (firedComplete != false) {
+
+                which.play();
+
+                setInterval(function () {
+                    which.volume = which.volume.toFixed(3);
+
+                    if (which.volume == targetVolume) {
+                        // volume fade has completed
+                        firedComplete = true;
+                        // rearm volume fade function
+                        fired = false;
+                        clearInterval(volumeFadeIn);
+                        return;
+                    } else {
+                        fired = true;
+                        firedComplete = false;
+                        console.log(which.volume);
+                        // Math.min doesn't let sound.volume's value go above one
+                        which.volume = Math.min((which.volume + 0.02), 1);
+                    }
+                }, ms)
+
+            }
+        };
+
+        // for testing purposes
+        // window.onload = function () {
+        //     setTimeout(function () {
+        //         volumeFade(50);
+        //         // setInterval(volumeFadeOut, 50);
+        //     }, 1000)
+        // };
 
 
     </script>
