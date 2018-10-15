@@ -111,7 +111,7 @@
         //     volumeFade('mp3', 0, updateInterval, true);
         // });
 
-        document.getElementById('wave').addEventListener("mouseover", function () {
+        document.getElementById('wave').addEventListener("mouseenter", function () {
             volumeFade('mp3', 1, updateInterval, false);
         });
         document.getElementById('wave').addEventListener("mouseout", function () {
@@ -144,14 +144,14 @@
                         // controlla se mettendo firedComplete cambia qualcosa (altrimenti il volume viene alzato e aumentato all'infinito ad ogni ciclo)
                         // update 15-10-2018_09:03: mettendo firedComplete != true funziona
                         // D A J E .
-                    } else if (which.volume > targetVolume && descending == true && firedComplete != true) {
+                    } else if (which.volume > targetVolume && descending == true && fired != true && firedComplete != true) {
                         fired = true;
                         firedComplete = false;
                         console.log(which.volume + "--");
                         // Math.max doesn't let sound.volume's value go below zero
                         which.volume = Math.max((which.volume - increment), 0);
 
-                    } else if (which.volume < targetVolume && descending == false && firedComplete != true) {
+                    } else if (which.volume < targetVolume && descending == false && fired != true && firedComplete != true) {
                         which.play();
                         fired = true;
                         firedComplete = false;
