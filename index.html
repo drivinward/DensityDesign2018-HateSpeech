@@ -25,7 +25,11 @@
                     on social networks in Europe.</span></h1>
         </div>
     </div>
-    <div class="text-section">
+
+    <!--    /////////    -->
+    <!--    SECTION 1    -->
+    <!--    /////////    -->
+    <div class="text-section" id="section-1">
         <div class="flex-container">
             <div class="flex-text">
                 <div class="flex-child">
@@ -38,10 +42,9 @@
                 </p>
             </div>
             <div class="graph-container">
-                <!-- <img src="src/graphs/graph_1-map.svg" style="display: block; margin: 0 auto; width: 90%; max-width: 960px;"> -->
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                     xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="887.4px" height="522.3px"
-                    viewBox="0 0 890 550" style="display: block; margin: 0 auto; width: 90%; max-width: 960px;"
+                    viewBox="0 0 890 550" style="display: block; margin: 0 auto; width: 90%; max-height: 500px;"
                     xml:space="preserve" preserveAspectRation="xMinYMin">
                     <style type="text/css">
                         .graph1-map {
@@ -2412,16 +2415,37 @@
                     }
                     updatePercentage();
                 </script>
+                <span id="map-percentage">0%</span>
             </div>
-            <span id="map-percentage">0</span>
-            <div id="waveform"></div>
+        </div>
+        <div id="main-question">
+            <div id="waveform" class="undefined-graph"></div>
+            <p id="main-question-paragraph" style="text-align: center; padding-bottom: var(--spacing)">
+                Where should we draw the line<br>
+                between free speech and hate speech?
+            </p>
         </div>
     </div>
-    <div class="interaction-section" id="question-scene" style="height: 100vh;">
-        <p id="main-question">
-            Where should we draw the line<br>
-            between free speech and hate speech?
-        </p>
+
+    <!--    /////////    -->
+    <!--    SECTION 1    -->
+    <!--    /////////    -->
+    <div class="text-section" id="section-2">
+        <div class="flex-container">
+            <div class="flex-text">
+                <div class="flex-child">
+                    <h1>EU Steps for&nbsp;fighting online&nbsp;hate&nbsp;speech</h1>
+                </div>
+                <p class="flex-child">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta alias tempora atque officiis
+                    explicabo delectus sunt exercitationem nulla! Quia dolore harum veritatis laudantium labore vel
+                    voluptatum nisi cupiditate repellat eveniet.
+                </p>
+            </div>
+            <div class="graph-container">
+                <div class="undefined-graph" style="height: 750px;"></div>
+            </div>
+        </div>
     </div>
 </body>
 
@@ -2431,12 +2455,27 @@
 
     // create a scene
     var scene = new ScrollMagic.Scene({
-        triggerElement: "#waveform",
+        triggerElement: "#map-percentage",
         triggerHook: 0.35,
         duration: 2000
     })
-        .setPin("#waveform")           // pins the element for the the scene's duration
-        .addTo(waveformController);     // assign the scene to the controller
+        .setPin("#main-question")           // pins the element for the the scene's duration
+        .addTo(waveformController)     // assign the scene to the controller
+
+    scene.on("enter", function (event) {
+        console.log("Scene started.");
+        document.getElementById('section-1').classList.add("bg", "dark");
+        document.getElementById('main-question-paragraph').classList.add("dark");
+    });
+    scene.on("leave", function (event) {
+        console.log("Scene left.");
+        document.getElementById('section-1').classList.remove("bg", "dark");
+        document.getElementById('main-question-paragraph').classList.remove("dark");
+        document.getElementById('main-question-paragraph').style.marginBottom = '0';
+    });
+    scene.on("end", function (event) {
+        console.log("Scene ended.");
+    });
 </script>
 
 </html>
