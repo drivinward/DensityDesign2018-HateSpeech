@@ -42,30 +42,42 @@
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                     xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="887.4px" height="522.3px"
                     viewBox="0 0 890 550" style="display: block; margin: 0 auto; width: 90%; max-width: 960px;"
-                    xml:space="preserve">
+                    xml:space="preserve" preserveAspectRation="xMinYMin">
                     <style type="text/css">
                         .graph1-map {
                             fill-rule: evenodd;
                             clip-rule: evenodd;
                             fill: #B5B5B5;
                         }
-                        .graph1-oval {
-                            fill: rgba(0, 0, 0, 0);
-                            stroke: #757575;
-                            stroke-width: 0.5;
-                        }
+
                         .graph1-area {
                             transform: scale(1.0);
-                            transform-origin: 25% 25%;
                         }
-                        .graph1-area:hover {
-                            transform: scale(1.2);
+
+                        .graph1-oval {
+                            fill: rgba(0, 0, 0, 0);
+                            stroke: var(--c-2);
+                            stroke-width: 0.5px;
+                            transition: opacity calc(var(--a-transition)/1.5) ease-out, fill calc(var(--a-transition)/1.5) ease-out, stroke-width calc(var(--a-transition)/1.5) ease-out, stroke calc(var(--a-transition)/1.5) ease-out;
                         }
+
+                        .graph1-area:hover .graph1-oval {
+                            stroke: var(--c-3);
+                            fill: var(--c-3);
+                            opacity: 0.5;
+                            transition: opacity var(--a-transition) ease-out, fill var(--a-transition) ease-out, stroke-width var(--a-transition) ease-out, stroke var(--a-transition) ease-out;
+                        }
+
                         .graph1-label {
                             fill: var(--c-2);
                             font-family: 'IBM Plex';
                             text-align: center;
                             enable-background: new;
+                        }
+
+                        #map-percentage {
+                            opacity: 0;
+                            transition: opacity var(--a-transition) ease-out;
                         }
                     </style>
                     <g>
@@ -2317,44 +2329,114 @@
                         <path class="graph1-map" d="M462,166.7l-0.1,0.1c0,0,0,0,0,0.1c0,0,0,0,0.1,0L462,166.7z" />
                         <path class="graph1-map" d="M469,165.6l0.2-0.2c0,0,0,0-0.1-0.1c0,0,0,0,0,0L469,165.6z" />
                     </g>
-                    <g class="graph1-area"viewbox="0 0 200 200">
-                        <text transform="matrix(1 0 0 1 458 345)" class="graph1-label">Africa</text>
+                    <g class="graph1-area" data-percentage="12">
                         <circle id="O-Africa_1_" class="graph1-oval" cx="478.9" cy="339.6" r="32.5" />
+                        <text transform="matrix(1 0 0 1 458 345)" class="graph1-label">Africa</text>
                     </g>
-                    <g class="graph1-area">
-                        <text transform="matrix(1 0 0 1 662 174)" class="graph1-label">Asia</text>
+                    <g class="graph1-area" data-percentage="48">
                         <circle id="O-Asia_1_" class="graph1-oval" cx="677.9" cy="168.6" r="46.5" />
+                        <text transform="matrix(1 0 0 1 662 174)" class="graph1-label">Asia</text>
                     </g>
-                    <g class="graph1-area">
-                        <text transform="matrix(1 0 0 1 503 269)" class="graph1-label">Middle East</text>
+                    <g class="graph1-area" data-percentage="81">
                         <circle id="O-MiddleEast_1_" class="graph1-oval" cx="542.4" cy="263.1" r="21" />
+                        <text transform="matrix(1 0 0 1 503 269)" class="graph1-label">Middle East</text>
                     </g>
-                    <g class="graph1-area">
-                        <text transform="matrix(1 0 0 1 132 225)" class="graph1-label">United States</text>
+                    <g class="graph1-area" data-percentage="25">
                         <circle id="O-US_1_" class="graph1-oval" cx="180.9" cy="215.6" r="97.5" />
+                        <text transform="matrix(1 0 0 1 132 225)" class="graph1-label">United States</text>
                     </g>
-                    <g class="graph1-area">
+                    <g class="graph1-area" id="eu" data-percentage="50">
                         <circle id="O-Europe_1_" class="graph1-oval" cx="436.4" cy="204.1" r="63" />
                         <text transform="matrix(1 0 0 1 412 209)" class="graph1-label">Europe</text>
                     </g>
-                    <g class="graph1-area">
-                        <text transform="matrix(1 0 0 1 212 410)" class="graph1-label">Latin America</text>
+                    <g class="graph1-area" data-percentage="36">
                         <circle id="O-LatinAmerica_1_" class="graph1-oval" cx="257.4" cy="404.1" r="83" />
+                        <text transform="matrix(1 0 0 1 212 410)" class="graph1-label">Latin America</text>
                     </g>
-
                 </svg>
+                <script>
+                    var mouseX, mouseY;
+                    var toc = document.getElementsByClassName('toc')[0];
+                    document.addEventListener("mousemove", (e) => {
+                        mouseX = e.clientX / window.innerWidth;
+                        // mouseY = e.clientY / window.innerHeight;
+                        // console.log(mouseX);
+                        if (mouseX > 0.85) {
+                            toc.classList.add('summon');
+                        } else toc.classList.remove('summon');
+                    })
+
+                    function animateValue(id, start, end, duration, append) {
+                        if (start == undefined) { start = 0 };
+                        var range = end - start;
+                        var current = start;
+                        var increment = end > start ? 1 : -1;
+                        var stepTime = Math.abs(Math.floor(duration / range));
+                        var obj = document.getElementById(id);
+                        var timer = setInterval(function () {
+                            current += increment;
+                            obj.innerHTML = current + append;
+                            if (current == end) {
+                                clearInterval(timer);
+                            }
+                        }, stepTime);
+                    }
+
+                    function updatePercentage() {
+                        var els = document.getElementsByClassName('graph1-area');
+                        // console.log(els);
+                        var oldp, newp, pct;
+                        for (i = 0; i < els.length; i++) {
+                            els[i].onmouseenter = function () {
+                                newp = this.getAttribute("data-percentage");
+                                pct = document.getElementById('map-percentage');
+
+                                pct.style.opacity = "1";
+                                animateValue('map-percentage', 0, newp, 2000, '%');
+                                // oldp = newp;
+                                // pct.innerHTML = p + "%";
+                                console.log('new: ' + newp + ' – old: ' + oldp);
+                            }
+                        }
+                        for (i = 0; i < els.length; i++) {
+                            els[i].onmouseleave = function () {
+                                // var pct = document.getElementById('map-percentage');
+                                oldp = newp;
+                                console.log(oldp);
+
+                                // setTimeout(function () {
+                                //     pct.style.opacity = "0";
+                                // }, 2000);
+                            }
+                        }
+                    }
+                    updatePercentage();
+                </script>
             </div>
-            <span id="map-percentage">71%</span>
+            <span id="map-percentage">0</span>
+            <div id="waveform"></div>
         </div>
     </div>
-    <div class="interaction-section" style="height: 200vh;">
-        <div class="flex-container">
-            <p id="main-question">
-                Where should we draw the line<br>
-                between free speech and hate speech?
-            </p>
-        </div>
+    <div class="interaction-section" id="question-scene" style="height: 100vh;">
+        <p id="main-question">
+            Where should we draw the line<br>
+            between free speech and hate speech?
+        </p>
     </div>
 </body>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/ScrollMagic.min.js"></script>
+<script>
+    var waveformController = new ScrollMagic.Controller();
+
+    // create a scene
+    var scene = new ScrollMagic.Scene({
+        triggerElement: "#waveform",
+        triggerHook: 0.35,
+        duration: 2000
+    })
+        .setPin("#waveform")           // pins the element for the the scene's duration
+        .addTo(waveformController);     // assign the scene to the controller
+</script>
 
 </html>

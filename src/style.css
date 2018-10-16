@@ -3,8 +3,8 @@
   --c-2: #2b2b2b;
   --c-3: #e05363;
   --spacing: 32px;
-  --a-transition: .25s;
-  --bezier: cubic-bezier(0.0, -1.00, 0.0, 1.00);;
+  --a-transition: 0.25s;
+  --bezier: cubic-bezier(0, -1, 0, 1);
 
   font-family: "IBM Plex Light", Helvetica, sans-serif;
   font-size: 16px;
@@ -31,7 +31,7 @@ a {
   text-decoration: none;
   color: var(--c-1);
 }
-a::after {
+/* a::after {
   position: relative;
   display: block;
   content: "";
@@ -58,7 +58,7 @@ a:hover:after {
   -moz-transition: var(--a-transition) var(--bezier);
   -webkit-transition: var(--a-transition) var(--bezier);
   transition: var(--a-transition) var(--bezier);
-}
+} */
 
 .toc {
   position: fixed;
@@ -68,10 +68,15 @@ a:hover:after {
   z-index: 10;
   mix-blend-mode: difference;
   text-align: right;
+  transition: all calc(var(--a-transition)/1) ease-out;
+
 }
 .toc li {
   list-style-type: none;
   line-height: 1.75;
+}
+.toc a {
+  display: block;
 }
 .toc > ul > li.current {
   transform: translate(-50%, 0%);
@@ -155,8 +160,23 @@ span.highlighted {
   margin: 0 auto;
 }
 
+#waveform {
+  height: 250px;
+  width: 100%;
+  border: solid 1px var(--c-3);
+  margin: 0 auto var(--spacing) auto;
+}
+
 #main-question {
   position: relative;
-  margin-top: 50%;
   text-align: center;
+}
+
+@media (max-width: 960px) {
+  .toc {
+    right: -300px;
+  }
+  .toc.summon {
+    right: calc(var(--spacing) * 0);
+  }
 }
