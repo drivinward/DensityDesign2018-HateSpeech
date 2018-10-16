@@ -1,0 +1,243 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="src/style.css">
+    <link rel="stylesheet" type="text/css" href="src/font.css">
+</head>
+
+<body>
+
+    <style type="text/css">
+        :root {
+            --dot-size: 50px;
+        }
+
+        .dot {
+            height: var(--dot-size);
+            width: var(--dot-size);
+            background-color: #e05363;
+            opacity: .5;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 60px 40px;
+
+            cursor: pointer;
+
+            transition: opacity calc(var(--a-transition)/1.5) ease-out,
+                transform calc(var(--a-transition)/1.5) ease-out;
+        }
+
+        .dot:hover {
+            transform: scale(2);
+            opacity: 1;
+            transition: opacity calc(var(--a-transition)/1.5) ease-out,
+                transform calc(var(--a-transition)/1.5) ease-out;
+        }
+
+        .dot.on {
+            opacity: 1;
+            transform: scale(1.5);
+        }
+
+        #tooltip {
+            opacity: 0;
+            margin-left: 28px;
+            padding: 10px;
+            position: fixed;
+            z-index: 1000;
+            width: auto;
+            height: auto;
+            color: var(--c-2);
+            background: var(--c-1);
+
+            transition: opacity calc(var(--a-transition)/4) linear;
+        }
+
+        #tooltip.summon {
+            opacity: 1;
+
+            transition: opacity calc(var(--a-transition)/2) ease-out;
+        }
+
+        .dotMatrix-line {
+            margin: auto;
+            display: inline-block;
+        }
+
+        #hate-words {
+            display: inline-block;
+            margin: auto;
+            margin-left: 50%;
+            transform: translate(-50%, 0%);
+        }
+    </style>
+
+
+
+    <div class="graph-container">
+
+        <span id="tooltip">
+            Prova di testo
+        </span>
+
+        <div id="hate-words" class="">
+            <div>
+                <span class="dot" data-name="Nicnonesiste" data-description="Ciaone Nic" data-category="1,2"></span>
+                <span class="dot" data-category="2,8"></span>
+                <span class="dot" data-category="4,7"></span>
+                <span class="dot" data-category="10, 14"></span>
+                <span class="dot" data-category="3"></span>
+            </div>
+            <div>
+                <span class="dot" data-category="9"></span>
+                <span class="dot" data-category="10"></span>
+                <span class="dot" data-category="3"></span>
+                <span class="dot" data-category="6"></span>
+                <span class="dot" data-category="3"></span>
+            </div>
+            <div>
+                <span class="dot" data-category="4"></span>
+                <span class="dot" data-category="4"></span>
+                <span class="dot" data-category="7"></span>
+                <span class="dot" data-category="7"></span>
+                <span class="dot" data-category="1"></span>
+            </div>
+            <div>
+                <span class="dot" data-category="3"></span>
+                <span class="dot" data-category="3,4"></span>
+                <span class="dot" data-category="9, 7"></span>
+                <span class="dot" data-category="3,6"></span>
+                <span class="dot" data-category="2,4,6"></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var tooltip = document.getElementById('tooltip');
+        var dotsArray = document.querySelectorAll('.dot');
+
+        for (i = 0; i < dotsArray.length; i++) {
+            dotsArray[i].addEventListener('mouseover', sameCategoriesOn, false);
+            //usare nuova funzione per reverse + nascondere tooltip
+            dotsArray[i].addEventListener('mouseout', sameCategoriesOff, false);
+        }
+
+        function showTooltip(e) {
+            tooltip.style.left = e.pageX + 'px';
+            tooltip.style.top = e.pageY + 'px';
+        }
+        document.addEventListener('mousemove', showTooltip, false);
+        document.addEventListener('mouseout', (e) => {
+            tooltip.classList.remove("summon");
+        }, false);
+
+        function sameCategoriesOn() {
+            var dots = document.querySelectorAll('.dot');
+
+            // controlla se tutti gli altri dots hanno la categoria del dot sul quale si trova il mouse
+            for (t = 0; t < dots.length; t++) {
+                if (typeof thisCategory != null) {
+                    var thisCategory = dots[t];
+                    var sourceCategory = thisCategory.getAttribute('data-category').split(",");
+                    var targetCategory = this.getAttribute('data-category').split(",");
+                    // v conta le categorie che trova in un elemento
+                    for (v = 0; v < sourceCategory.length; v++) {
+                        for (w = 0; w < targetCategory.length; w++) {
+                            if (sourceCategory[v] == targetCategory[w]) {
+                                // console.log('MATCH!');
+                                dots[t].classList.add("on");
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            tooltip.innerHTML = 'Name: ' +
+                                this.getAttribute('data-name') +
+                                '<br>' +
+                                this.getAttribute('data-description') +
+                                '<br>' +
+                                this.getAttribute('data-category');
+
+            tooltip.classList.add("summon");
+
+            // tooltip.classList.remove("summon");
+            // for (t = 0; t < dots.length; t++) {
+            //     if (typeof thisCategory != null) {
+            //         var thisCategory = dots[t];
+            //         var sourceCategory = thisCategory.getAttribute('data-category').split(",");
+            //         var targetCategory = this.getAttribute('data-category').split(",");
+            //         for (v = 0; v < sourceCategory.length; v++) {
+            //             for (w = 0; w < targetCategory.length; w++) {
+            //                 if (sourceCategory[v] == targetCategory[w]) {
+            //                     dots[t].classList.remove("on");
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
+        }
+
+        function sameCategoriesOff() {
+            var dots = document.querySelectorAll('.dot');
+            for (i = 0; i < dots.length; i++) {
+                dots[i].classList.remove('on');
+            }
+        }
+
+        // function showTooltip(e) {
+        //     var dots = document.querySelectorAll('.dot');
+        //     for (var i = 0; i < dots.length; i++) {
+        //         var currentDot = dots[i];
+        //         var thisDot = i;
+        //         dots[i].onmouseover = function () {
+        //             console.log(thisDot);
+        //             for (t = 0; t < dots.length; t++) {
+        //                 if (typeof thisCategory != null && thisDot != t) {
+        //                     console.log(thisDot + "--" + t);
+        //                     var thisCategory = dots[t];
+        //                     var sourceCategory = thisCategory.getAttribute('data-category').split(",");
+        //                     var targetCategory = currentDot.getAttribute('data-category').split(",");
+        //                     for (v = 0; v < sourceCategory.length; v++) {
+        //                         for (w = 0; w < targetCategory.length; w++) {
+        //                             if (sourceCategory[v] == targetCategory[w]) {
+        //                                 dots[t].classList.add("on");
+        //                             }
+        //                         }
+        //                     }
+        //                 }
+        //             }
+
+        //             tooltip.innerHTML = 'Name: ' + this.getAttribute('data-name') + '<br>' + this.getAttribute(
+        //                 'data-description');
+        //             tooltip.classList.add("summon");
+        //         }
+
+
+        //         dots[i].onmouseout = function () {
+        //             tooltip.classList.remove("summon");
+        //             for (t = 0; t < dots.length; t++) {
+        //                 if (typeof thisCategory != null) {
+        //                     var thisCategory = dots[t];
+        //                     var sourceCategory = thisCategory.getAttribute('data-category').split(",");
+        //                     var targetCategory = currentDot.getAttribute('data-category').split(",");
+        //                     for (v = 0; v < sourceCategory.length; v++) {
+        //                         for (w = 0; w < targetCategory.length; w++) {
+        //                             if (sourceCategory[v] == targetCategory[w]) {
+        //                                 dots[t].classList.remove("on");
+        //                             }
+        //                         }
+        //                     }
+        //                 }
+        //             }
+
+        //         }
+        //     }
+        //     tooltip.style.left = e.pageX + 'px';
+        //     tooltip.style.top = e.pageY + 'px';
+        // }
+    </script>
+</body>
+
+</html>
