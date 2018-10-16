@@ -8,15 +8,51 @@
 </head>
 
 <body>
+    <span id="current-line"></span>
     <div class="toc">
         <ul>
-            <span class="current-line"></span>
             <li class="current"><a href="#">Intro</a></li>
             <li class=""><a href="#">Section 1</a></li>
             <li class=""><a href="#">Section 2</a></li>
             <li class=""><a href="#">Section 3</a></li>
             <li class=""><a href="#">Section 4</a></li>
         </ul>
+        <script>
+            // scrivi funzione che prenda tutti i titoli delle sezioni h1 e h2 
+            // e li inserisca come tag <li> nell'indice dei contenuti
+            window.onload = function tocTitles() {
+
+            }
+
+            document.addEventListener("scroll", function updateIndicator() {
+                var indicator = document.getElementById("current-line");
+                var currentSection = document.getElementsByClassName("current")[0];
+                var currentSectionHeight = currentSection.getBoundingClientRect();
+                // console.log(currentSectionHeight.top);
+                indicator.style.top = currentSectionHeight.top;
+            })
+
+            var sectionHeights = [];
+            window.onload = function calcHeights() {
+                var sections = document.getElementsByClassName("text-section");
+                for (i = 0; i < sections.length; i++) {
+                    var height = sections[i].offsetTop;
+                    sectionHeights.push(height);
+                    // console.log(height);
+                }
+                console.log(sectionHeights);
+            }
+            document.addEventListener("scroll", function updateSection(e) {
+                var doc = document.documentElement;
+                var top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
+                for (i = 0; i < sectionHeights.length; i++) {
+                    if (top == sectionHeights[i]) {
+                        console.log('ciao');
+                        document.querySelectorAll("li.current")
+                    }
+                }
+            })
+        </script>
     </div>
     <div class="hero">
         <div class="hero-caption">
@@ -2357,64 +2393,6 @@
                         <text transform="matrix(1 0 0 1 212 410)" class="graph1-label">Latin America</text>
                     </g>
                 </svg>
-                <script>
-                    var mouseX, mouseY;
-                    var toc = document.getElementsByClassName('toc')[0];
-                    document.addEventListener("mousemove", (e) => {
-                        mouseX = e.clientX / window.innerWidth;
-                        // mouseY = e.clientY / window.innerHeight;
-                        // console.log(mouseX);
-                        if (mouseX > 0.85) {
-                            toc.classList.add('summon');
-                        } else toc.classList.remove('summon');
-                    })
-
-                    function animateValue(id, start, end, duration, append) {
-                        if (start == undefined) { start = 0 };
-                        var range = end - start;
-                        var current = start;
-                        var increment = end > start ? 1 : -1;
-                        var stepTime = Math.abs(Math.floor(duration / range));
-                        var obj = document.getElementById(id);
-                        var timer = setInterval(function () {
-                            current += increment;
-                            obj.innerHTML = current + append;
-                            if (current == end) {
-                                clearInterval(timer);
-                            }
-                        }, stepTime);
-                    }
-
-                    function updatePercentage() {
-                        var els = document.getElementsByClassName('graph1-area');
-                        // console.log(els);
-                        var oldp, newp, pct;
-                        for (i = 0; i < els.length; i++) {
-                            els[i].onmouseenter = function () {
-                                newp = this.getAttribute("data-percentage");
-                                pct = document.getElementById('map-percentage');
-
-                                pct.style.opacity = "1";
-                                animateValue('map-percentage', 0, newp, 2000, '%');
-                                // oldp = newp;
-                                // pct.innerHTML = p + "%";
-                                console.log('new: ' + newp + ' – old: ' + oldp);
-                            }
-                        }
-                        for (i = 0; i < els.length; i++) {
-                            els[i].onmouseleave = function () {
-                                // var pct = document.getElementById('map-percentage');
-                                oldp = newp;
-                                console.log(oldp);
-
-                                // setTimeout(function () {
-                                //     pct.style.opacity = "0";
-                                // }, 2000);
-                            }
-                        }
-                    }
-                    updatePercentage();
-                </script>
                 <span id="map-percentage">0%</span>
             </div>
         </div>
@@ -2505,8 +2483,119 @@
         </div>
     </div>
 
+    <!--    /////////    -->
+    <!--    SECTION 5    -->
+    <!--    /////////    -->
+    <div class="text-section" id="section-3">
+        <div class="flex-container">
+            <div class="flex-text">
+                <div class="flex-child">
+                    <h1>The journey of a&nbsp;reported&nbsp;content</h1>
+                </div>
+                <p class="flex-child">
+                    The Code of Conduct is a voluntary commitment made by some IT companies like Facebook, Twitter,
+                    YouTube.<br>Its aim is to make sure that requests to remove content are dealt with speedily and it
+                    is
+                    applied on the policy di filtraggio già esistenti dei vari social network.
+                </p>
+            </div>
+            <div class="graph-container">
+                <!-- TIMELINE GOES DOWN HERE -->
+                <div class="undefined-graph" style="height: 500px;"></div>
+                <!-- TIMELINE GOES UPPP HERE -->
+            </div>
+        </div>
+    </div>
+
+    <!--    /////////    -->
+    <!--    SECTION 6    -->
+    <!--    /////////    -->
+    <div class="text-section dark" id="section-3">
+        <div class="flex-container">
+            <div class="flex-text">
+                <div class="flex-child">
+                    <h2>Reported to deleted ratio</h2>
+                </div>
+                <p class="flex-child">
+                    The Code of Conduct is a voluntary commitment made by some IT companies like Facebook, Twitter,
+                    YouTube.<br>Its aim is to make sure that requests to remove content are dealt with speedily and it
+                    is
+                    applied on the policy di filtraggio già esistenti dei vari social network.
+                </p>
+            </div>
+            <div class="graph-container">
+                <!-- TIMELINE GOES DOWN HERE -->
+                <div class="undefined-graph" style="height: 500px;"></div>
+                <!-- TIMELINE GOES UPPP HERE -->
+            </div>
+        </div>
+    </div>
 
 </body>
+
+<script>
+    var mouseX, mouseY;
+    var toc = document.getElementsByClassName('toc')[0];
+    var line = document.getElementById('current-line');
+    document.addEventListener("mousemove", (e) => {
+        mouseX = e.clientX / window.innerWidth;
+        // mouseY = e.clientY / window.innerHeight;
+        // console.log(mouseX);
+        if (mouseX > 0.85) {
+            toc.classList.add('summon');
+            line.classList.add('active');
+        } else {
+            toc.classList.remove('summon');
+            line.classList.remove('active');
+        }
+    })
+
+    function animateValue(id, start, end, duration, append) {
+        if (start == undefined) { start = 0 };
+        var range = end - start;
+        var current = start;
+        var increment = end > start ? 1 : -1;
+        var stepTime = Math.abs(Math.floor(duration / range));
+        var obj = document.getElementById(id);
+        var timer = setInterval(function () {
+            current += increment;
+            obj.innerHTML = current + append;
+            if (current == end) {
+                clearInterval(timer);
+            }
+        }, stepTime);
+    }
+
+    function updatePercentage() {
+        var els = document.getElementsByClassName('graph1-area');
+        // console.log(els);
+        var oldp, newp, pct;
+        for (i = 0; i < els.length; i++) {
+            els[i].onmouseenter = function () {
+                newp = this.getAttribute("data-percentage");
+                pct = document.getElementById('map-percentage');
+
+                pct.style.opacity = "1";
+                animateValue('map-percentage', 0, newp, 2000, '%');
+                // oldp = newp;
+                // pct.innerHTML = p + "%";
+                console.log('new: ' + newp + ' – old: ' + oldp);
+            }
+        }
+        for (i = 0; i < els.length; i++) {
+            els[i].onmouseleave = function () {
+                // var pct = document.getElementById('map-percentage');
+                oldp = newp;
+                console.log(oldp);
+
+                // setTimeout(function () {
+                //     pct.style.opacity = "0";
+                // }, 2000);
+            }
+        }
+    }
+    updatePercentage();
+</script>
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/ScrollMagic.min.js"></script>
 <script>
@@ -2516,24 +2605,24 @@
     var scene = new ScrollMagic.Scene({
         triggerElement: "#map-percentage",
         triggerHook: 0.35,
-        duration: 2000
+        duration: "200%"
     })
         .setPin("#main-question")           // pins the element for the the scene's duration
         .addTo(waveformController)     // assign the scene to the controller
 
     scene.on("enter", function (event) {
-        console.log("Scene started.");
+        // console.log("Scene started.");
         document.getElementById('section-1').classList.add("bg", "dark");
         document.getElementById('main-question-paragraph').classList.add("dark");
     });
     scene.on("leave", function (event) {
-        console.log("Scene left.");
+        // console.log("Scene left.");
         document.getElementById('section-1').classList.remove("bg", "dark");
         document.getElementById('main-question-paragraph').classList.remove("dark");
         document.getElementById('main-question-paragraph').style.marginBottom = '0';
     });
     scene.on("end", function (event) {
-        console.log("Scene ended.");
+        // console.log("Scene ended.");
     });
 </script>
 

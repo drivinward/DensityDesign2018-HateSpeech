@@ -32,44 +32,23 @@ a {
   text-decoration: none;
   color: var(--c-1);
 }
-/* a::after {
-  position: relative;
-  display: block;
-  content: "";
-  height: 1px;
-  bottom: 0px;
-
-  margin: 0 auto;
-  right: 0;
-  width: 0%;
-  background: var(--c-1);
-
-  -o-transition: var(--a-transition) var(--bezier);
-  -ms-transition: var(--a-transition) var(--bezier);
-  -moz-transition: var(--a-transition) var(--bezier);
-  -webkit-transition: var(--a-transition) var(--bezier);
-  transition: var(--a-transition) var(--bezier);
-}
-a:hover:after {
-  width: 120%;
-  right: 10%;
-
-  -o-transition: var(--a-transition) var(--bezier);
-  -ms-transition: var(--a-transition) var(--bezier);
-  -moz-transition: var(--a-transition) var(--bezier);
-  -webkit-transition: var(--a-transition) var(--bezier);
-  transition: var(--a-transition) var(--bezier);
-} */
 
 .toc {
   position: fixed;
-  right: calc(var(--spacing) * 2);
+  right: calc(var(--spacing) * 1);
   top: 50%;
+  right: -300px;
+  /* background-color: var(--c-2); */
   transform: translate(-50%, -50%);
   z-index: 10;
   mix-blend-mode: difference;
   text-align: right;
   transition: all calc(var(--a-transition) / 1) ease-out;
+}
+.toc.summon {
+  right: calc(var(--spacing) * 0);
+  padding: calc(var(--spacing) / 1.5);
+  /* padding-right: calc(var(--spacing)*2); */
 }
 .toc li {
   list-style-type: none;
@@ -79,18 +58,28 @@ a:hover:after {
   display: block;
 }
 .toc > ul > li.current {
-  transform: translate(-50%, 0%);
+  /* transform: translate(-50%, 0%); */
 }
-.toc > ul > span.current-line {
-  width: 16px;
-  height: 2px;
+span#current-line {
+  width: 24px;
+  height: 3px;
   margin-top: 14px;
-  right: 0;
-  position: absolute;
-  content: "";
+  top: 50%;
+  right: calc(var(--spacing) / 2);
+  position: fixed;
+  /* content: ""; */
   background-color: var(--c-3);
   mix-blend-mode: normal;
+  transform: rotateZ(90deg);
+  transition: transform var(--a-transition) ease-out,
+              top var(--a-transition) ease-out;
 }
+span#current-line.active {
+  transform: rotateZ(0deg) translate(-100%, -0%);
+  transition: transform var(--a-transition) ease-out,
+              top var(--a-transition) ease-out;
+}
+
 h1.title {
   font-size: 5rem;
   line-height: 1;
@@ -105,7 +94,7 @@ span.highlighted {
   padding: 0px 3px;
 }
 p .highlighted {
-  font-family: 'IBM Plex';
+  font-family: "IBM Plex";
 }
 
 .hero {
@@ -126,7 +115,7 @@ p .highlighted {
 }
 
 .text-section.dark {
-  background-color: var(--c-2)
+  background-color: var(--c-2);
 }
 .text-section.dark .flex-text {
   color: var(--c-1);
@@ -165,6 +154,7 @@ p .highlighted {
 
 .flex-child {
   width: 100%;
+  margin-right: calc(var(--spacing) / 1.5);
 }
 
 .graph-container {
