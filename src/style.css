@@ -102,6 +102,10 @@ p {
 
 span.highlighted {
   background-color: var(--c-3);
+  padding: 0px 3px;
+}
+p .highlighted {
+  font-family: 'IBM Plex';
 }
 
 .hero {
@@ -119,6 +123,20 @@ span.highlighted {
   width: 100%;
   background-color: var(--c-1);
   margin: 0;
+}
+
+.text-section.dark {
+  background-color: var(--c-2)
+}
+.text-section.dark .flex-text {
+  color: var(--c-1);
+}
+
+.bg.dark {
+  background-color: var(--c-2);
+}
+.dark {
+  color: var(--c-1);
 }
 
 .flex-container {
@@ -181,17 +199,10 @@ span.highlighted {
   box-sizing: border-box;
 }
 
-.bg.dark {
-  background-color: var(--c-2);
-}
-.dark {
-  color: var(--c-1);
-}
-
 .undefined-graph {
   display: block;
   margin: 0 auto;
-  max-width: 720px;
+  max-width: 960px;
   background-image: url("graphs/graph_1-map_texture.png");
   background-repeat: repeat;
   background-size: 10px;
