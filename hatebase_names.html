@@ -8,6 +8,10 @@
 <body>
 
     <style type="text/css">
+        /* * {
+            cursor: url('src/assets/cursor.png'), auto;
+        } */
+
         body {
             background-color: var(--c-1);
         }
@@ -23,24 +27,30 @@
             opacity: .45;
             border-radius: 50%;
             display: inline-block;
-            margin: 60px 40px;
+            margin: 50px 40px;
+            
+            /* cursor: pointer; */
+            z-index: 1;
 
-            cursor: pointer;
-
-            transition: opacity calc(var(--a-transition)/1.5) ease-out,
-                transform calc(var(--a-transition)/1.5) ease-out;
+            transition: opacity calc(var(--a-transition)/1.5) cubic-bezier(.65,0,.15,1),
+                        transform calc(var(--a-transition)/1.5) cubic-bezier(.65,0,.15,1);
+            transition-duration: .35s;
         }
 
         .dot:hover {
-            /* transform: scale(2); */
+            /* transform: scale(1); */
             opacity: .9;
-            transition: opacity calc(var(--a-transition)/1.5) ease-out,
-                transform calc(var(--a-transition)/1.5) ease-out;
+            z-index: 10;
+
+            transition: opacity calc(var(--a-transition)/1.5) cubic-bezier(.65,0,.15,1),
+                        transform calc(var(--a-transition)/1.5) cubic-bezier(.65,0,.15,1);
+            transition-duration: .35s;
         }
 
         .dot.on {
-            opacity: 1;
+            opacity: .9;
             transform: scale(1.2);
+            z-index: 10;
         }
 
         #tooltip {
@@ -57,13 +67,15 @@
             background: var(--c-2);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            transition: opacity calc(var(--a-transition)/4) linear;
+            transition: opacity calc(var(--a-transition)/2) linear;
+            transition-duration: .1s
+            
         }
 
         #tooltip.summon {
             opacity: .90;
-
-            transition: opacity calc(var(--a-transition)/2) ease-out;
+            transition: opacity calc(var(--a-transition)/2) ease-in-out;
+            transition-duration: .4s
         }
 
         .dotMatrix-line {
@@ -87,7 +99,7 @@
             Prova di testo
         </span>
 
-        <div id="hate-words" class="">
+        <div id="hate-words" class="" style="max-width: 700px; min-width: 550px;">
             <div>
                 <span class="dot" data-name="Diaper Head" data-category="Ethnicity" data-offensiveness=17
                     data-description="An Arab, Indian Sikh or other individual of Middle Eastern or South Asian descent wearing traditional headdress such as turbans or keffiyehs. Sometimes used generically for all Islamic nations."></span>
@@ -95,8 +107,6 @@
                 <span class="dot" data-name="Yokel" data-category="Ethnicity" data-offensiveness=9 data-description="A rural person."></span>
                 <span class="dot" data-name="Zebra" data-category="Ethnicity" data-offensiveness=24 data-description="A person of mixed Caucasian and black parentage"></span>
                 <span class="dot" data-name="Pussy" data-category="Gender" data-offensiveness=14 data-description="[1] Pejorative word for female. <br> [2] Pejorative word for male, meaning meek or cowardly."></span>
-            </div>
-            <div>
                 <span class="dot" data-name="Anchor Baby" data-category="Ethnicity" data-offensiveness=40
                     data-description="A child of illegal immigrants, particularly in the United States, from the notion of dropping an anchor for other family members to acquire citizenship"></span>
                 <span class="dot" data-name="Jewbacca" data-category="Ethnicity" data-offensiveness=33 data-description="A disabled person"></span>
@@ -104,8 +114,6 @@
                 <span class="dot" data-name="Zionazi" data-category="Nationality, Religion" data-offensiveness=47
                     data-description="A Jew living in Israel"></span>
                 <span class="dot" data-name="Pinto" data-category="Ethnicity" data-offensiveness=37 data-description="One who has both a Caucasian parent and a Native American parent"></span>
-            </div>
-            <div>
                 <span class="dot" data-name="Kraut" data-category="Nationality" data-offensiveness=65 data-description="A German, most specifically during World War II. From Sauerkrau"></span>
                 <span class="dot" data-name="Tranny" data-category="Gender, Sexual Orientation" data-offensiveness=50
                     data-description="Pejorative term which is shortened from either transgendered, transsexual or transvestite. May be used to refer to these individuals, or others, in a derogatory or offensive manner"></span>
@@ -115,8 +123,6 @@
                     data-description="A person of Scottish or Welsh descent, from an alleged predilection for having sex with sheep due to the scarcity of people in these regions"></span>
                 <span class="dot" data-name="Fag" data-category="Sexual Orientation" data-offensiveness=53
                     data-description="A homosexual"></span>
-            </div>
-            <div>
                 <span class="dot" data-name="Half Breed" data-category="Ethnicity" data-offensiveness=79
                     data-description="One who is of mixed race"></span>
                 <span class="dot" data-name="Wigga" data-category="Ethnicity, Nationality" data-offensiveness=82
@@ -134,8 +140,10 @@
         var dotsArray = document.querySelectorAll('.dot');
 
         function showTooltip(e) {
-            tooltip.style.left = e.pageX + 'px';
-            tooltip.style.top = e.pageY + 'px';
+            var x = window.innerWidth;
+            var y = window.innerHeight;
+            tooltip.style.left = e.x + 'px';
+            tooltip.style.top = e.y + 'px';
         }
 
         document.addEventListener('mousemove', showTooltip, false);
@@ -150,27 +158,29 @@
             dotsArray[i].addEventListener('mouseout', sameCategoriesOff, false);
         }
 
-            var dotToIgnore;
-            var targetDotScale;
+        var dotToIgnore;
+        var targetDotScale;
 
         function sameCategoriesOn() {
             var dots = document.querySelectorAll('.dot');
 
-            // controlla se tutti gli altri dots hanno la categoria del dot sul quale si trova il mouse
+            //------controlla se tutti gli altri dots hanno la categoria del dot sul quale si trova il mouse
             for (t = 0; t < dots.length; t++) {
 
-                // controlla su quale pallino è hover
-                if (dots[t].matches('.dot:hover')){
+                //------controlla su quale pallino è hover
+                if (dots[t].matches('.dot:hover')) {
+                    prevDot = dotToIgnore;
                     dotToIgnore = t;
                     targetDotScale = this.getAttribute('data-offensiveness');
-                    this.style.transform = "scale(" + (targetDotScale*0.1) + ")";
+                    // dots[t].classList.add("hovered");
+                    this.style.transform = "scale(" + (targetDotScale * 0.1) + ")";
                 }
 
                 if (typeof thisCategory != null && t != dotToIgnore) {
                     var thisCategory = dots[t];
                     var sourceCategory = thisCategory.getAttribute('data-category').split(", ");
                     var targetCategory = this.getAttribute('data-category').split(", ");
-                    // v conta le categorie che trova in un elemento
+                    //------v conta le categorie che trova in un elemento
                     for (v = 0; v < sourceCategory.length; v++) {
                         for (w = 0; w < targetCategory.length; w++) {
                             if (sourceCategory[v] == targetCategory[w]) {
@@ -182,16 +192,7 @@
                 }
             }
 
-
-            // tooltip.innerHTML = '<span class="highlighted" style="padding: 3px 6px; color: var(--c-1);  font-family:"IBM Plex" >' +
-            //                     this.getAttribute('data-name') +
-            //                     '</span><br>' +
-            //                     '<span>Category: </span>' +
-            //                     this.getAttribute('data-category') +
-            //                     '<br>' +
-            //                     this.getAttribute('data-description');
-            
-            //Cosa scrive nel tooltip
+            //------Cosa scrive nel tooltip
             tooltip.innerHTML =
                 `<span class="highlighted" style="padding: 3px 6px; color: var(--c-1); line-height: 1.6; font-family:"IBM Plex Light" ";>
                                     ${this.getAttribute('data-name')}
@@ -221,8 +222,7 @@
             for (i = 0; i < dots.length; i++) {
                 dots[i].classList.remove('on');
                 if (i == dotToIgnore) {
-                    dots[i].style.transform = "scale(1)";
-                    dots[i].style.removeProperty = "scale";
+                    this.style.transform = "";
                 }
             }
         }
