@@ -37,22 +37,25 @@ a {
   position: fixed;
   right: calc(var(--spacing) * 1);
   top: 50%;
-  right: -300px;
+  right: -20vw;
   /* background-color: var(--c-2); */
-  transform: translate(-50%, -50%);
+  transform: translate(-0%, -50%);
   z-index: 10;
   mix-blend-mode: difference;
   text-align: right;
   transition: all calc(var(--a-transition) / 1) ease-out;
+  max-width: 250px;
 }
 .toc.summon {
-  right: calc(var(--spacing) * 0);
+  right: calc(var(--spacing) * 2);
   padding: calc(var(--spacing) / 1.5);
   /* padding-right: calc(var(--spacing)*2); */
 }
 .toc li {
   list-style-type: none;
   line-height: 1.75;
+  margin-bottom: 10px;
+  line-height: 1.2;
 }
 .toc a {
   display: block;
@@ -63,7 +66,7 @@ a {
 span#current-line {
   width: 24px;
   height: 3px;
-  margin-top: 14px;
+  margin-top: 10px;
   top: 50%;
   right: calc(var(--spacing) / 2);
   position: fixed;
@@ -130,7 +133,7 @@ p .highlighted {
 
 .flex-container {
   width: 100%;
-  /* max-width: 960px; */
+  max-width: 960px;
   position: relative;
   margin: 0 auto;
   box-sizing: border-box;
@@ -200,9 +203,9 @@ p .highlighted {
 
 @media (max-width: 960px) {
   .toc {
-    right: -300px;
+    right: -400px;
   }
   .toc.summon {
-    right: calc(var(--spacing) * 0);
+    right: calc(var(--spacing) * 2);
   }
 }
