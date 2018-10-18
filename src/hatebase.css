@@ -2,6 +2,11 @@
     cursor: url('src/assets/cursor.png'), auto;
 } */
 
+:root {
+    --dot-size: 50px;
+    font-family: "IBM Plex", Helvetica, sans-serif;
+}
+
 html {
     background-color: var(--c-1);
     /* overflow: hidden; */
@@ -11,15 +16,22 @@ body {
     background-color: var(--c-1);
 }
 
-:root {
-    --dot-size: 50px;
+h1.title {
+    font-family:"IBM Plex";
+    font-size: 30px;
+    letter-spacing: .5px;
+    color: blue;
+    border: 3px solid blue;
+    padding: 5px 20px;
+    /* padding: 0px 35px; */
+    line-height: 1.4;
 }
 
 .dot {
     height: var(--dot-size);
     width: var(--dot-size);
     /* background-color: #e05363; */
-    border: 2.5px solid blue;
+    border: 1.5px solid blue;
     opacity: .45;
     border-radius: 50%;
     display: inline-block;
@@ -73,7 +85,7 @@ body {
 }
 
 /* Necessario per il tooltip */
-/* #tooltip {
+#tooltip {
     opacity: 0;
     margin-top: 20px;
     margin-left: 20px;
@@ -83,28 +95,31 @@ body {
     width: auto;
     height: auto;
     max-width: 300px;
-    color: var(--c-1);
-    background: var(--c-2);
+
+    border: 3px solid blue;
+
+    color: var(--c-2);
+    background: var(--c-1);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+
     transition: opacity calc(var(--a-transition)/2) linear;
     transition-duration: .1s
 }
 
-#tooltip.appear {
+#tooltip.summon {
     opacity: .90;
     transition: opacity calc(var(--a-transition)/2) ease-in-out;
     transition-duration: .4s
-} */
+}
 
 #hate-word-description {
     opacity: 0;
-    display: inline;
-    z-index: 1000;
+    display: inline-block;
+    text-align: center;
     max-width: 600px;
     height: auto;
     color: var(--c-2);
-    background: ;
 
     transition: opacity calc(var(--a-transition)/2) linear;
     transition-duration: .1s
@@ -116,22 +131,28 @@ body {
     transition-duration: .4s
 }
 
-#description-container {
-    max-width: 800px;
-    display: inline;
-    margin-top: 70px;
-}
 
 #hate-words {
     display: inline-block;
     margin: auto;
     margin-left: 50%;
-    margin-top: 70px;
     transform: translate(-50%, 0%);
     
 }
 
-#graph-container {
-    display: inline;
+#description-container {
+    display: block;
+    margin: auto;
     width: auto;
+    height: 70px;
+    text-align: center;
+    padding: 20px;
+    
+}
+
+#graph-container {
+    top: 50%;
+    display: block;
+    margin: auto;
+    width: 65%;
 }

@@ -3,17 +3,17 @@ var hateWord = document.getElementById('hate-word-description');
 var dotsArray = document.querySelectorAll('.dot');
 
 //------PER IL TOOLTIP
-// function showTooltip(e) {
-//     var x = window.innerWidth;
-//     var y = window.innerHeight;
-//     tooltip.style.left = e.x + 'px';
-//     tooltip.style.top = e.y + 'px';
-// }
+function showTooltip(e) {
+    var x = window.innerWidth;
+    var y = window.innerHeight;
+    tooltip.style.left = e.x + 'px';
+    tooltip.style.top = e.y + 'px';
+}
 
-// document.addEventListener('mousemove', showTooltip, false);
-// document.addEventListener('mouseout', (e) => {
-//     tooltip.classList.remove("appear");
-// }, false);
+document.addEventListener('mousemove', showTooltip, false);
+document.addEventListener('mouseout', (e) => {
+    tooltip.classList.remove("summon");
+}, false);
 
 document.addEventListener('mouseout', (e) => {
     hateWord.classList.remove("appear");
@@ -47,7 +47,7 @@ function sameCategoriesOn() {
             // dots[t].classList.add("hovered");
             this.style.transform = "scale(" + (scaleDotToIgnore * 0.12) + ")";
             dots[t].classList.add("onn");
-            console.log('Aggiungo onn al punto ' + t);
+            // console.log('Aggiungo onn al punto ' + t);
         }
 
         // console.log(dotToIgnore);
@@ -67,7 +67,7 @@ function sameCategoriesOn() {
                         var valMap = mapper(scaleTargetDot, 1, 100, .3, 3);
                         dots[t].style.transform = "scale(" + (valMap) + ")";
                         dots[t].classList.add("on");
-                        console.log('aggiungo scala a ' + t);
+                        // console.log('aggiungo scala a ' + t);
                     }
                 }
             }
@@ -77,52 +77,45 @@ function sameCategoriesOn() {
     }
 
     //------Cosa scrive nell'hate-word-container
-    hateWord.innerHTML =
-        `<span class="highlighted" style="padding: 3px 6px; color: var(--c-1); line-height: 1.6; font-family:"IBM Plex Light" ";>
-                                    ${this.getAttribute('data-name')}
-                                </span>
-                                <br>
-                                <span style="line-height: 1.6">
-                                    Category: 
-                                    ${this.getAttribute('data-category')}
-                                </span>
-                                <br>
-                                <span style="line-height: 1.6">
-                                    Offensiveness: 
-                                    ${this.getAttribute('data-offensiveness')}
-                                </span>
-                                <br>
-                                <br>
-                                <span>
-                                    ${this.getAttribute('data-description')}
-                                </span>
-                                `
+    hateWord.innerHTML = 
+                        `<h1 class="title">
+                         ${this.getAttribute('data-name')}
+                        </h1>`
+                                // <br>
+                                // <span style="line-height: 1.6">
+                                //     Category: 
+                                //     ${this.getAttribute('data-category')}
+                                // </span>
+                                // <br>
+                                // <span style="line-height: 1.6">
+                                //     Offensiveness: 
+                                //     ${this.getAttribute('data-offensiveness')}
+                                // </span>
+                                // <br>
+                                // <br>
+                                // <span>
+                                //     ${this.getAttribute('data-description')}
+                                // </span>
 
     hateWord.classList.add("appear");
 
     //------Cosa scrive nel tooltip
-    // tooltip.innerHTML =
-    //     `<span class="highlighted" style="padding: 3px 6px; color: var(--c-1); line-height: 1.6; font-family:"IBM Plex Light" ";>
-    //                         ${this.getAttribute('data-name')}
-    //                     </span>
-    //                     <br>
-    //                     <span style="line-height: 1.6">
-    //                         Category: 
-    //                         ${this.getAttribute('data-category')}
-    //                     </span>
-    //                     <br>
-    //                     <span style="line-height: 1.6">
-    //                         Offensiveness: 
-    //                         ${this.getAttribute('data-offensiveness')}
-    //                     </span>
-    //                     <br>
-    //                     <br>
-    //                     <span>
-    //                         ${this.getAttribute('data-description')}
-    //                     </span>
-    //                     `
+    tooltip.innerHTML =`
+                        <span>
+                            Category:  ${this.getAttribute('data-category')}
+                        </span>
+                        <br>
+                        <span style="line-height: 1.6">
+                            Offensiveness: ${this.getAttribute('data-offensiveness')}
+                        </span>
+                        <br>
+                        <br>
+                        <span>
+                            ${this.getAttribute('data-description')}
+                        </span>
+                        `
 
-    // tooltip.classList.add("appear");
+    tooltip.classList.add("summon");
 }
 
 function sameCategoriesOff() {
