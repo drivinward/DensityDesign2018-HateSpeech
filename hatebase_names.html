@@ -3,131 +3,26 @@
 <head>
     <link rel="stylesheet" type="text/css" href="src/style.css">
     <link rel="stylesheet" type="text/css" href="src/font.css">
+    <link rel="stylesheet" type="text/css" href="src/hatebase.css">
 </head>
 
 <body>
+    <div>
+        <div id="description-container">
+            <!-- Parola -->
+            <span id="hate-word-description">
 
-    <style type="text/css">
-        /* * {
-            cursor: url('src/assets/cursor.png'), auto;
-        } */
+            </span>
+        </div>
 
-        html {
-            background-color: var(--c-1);
-            overflow: hidden;
-        }
-        body {
-            background-color: var(--c-1);
-        }
-
-        :root {
-            --dot-size: 50px;
-        }
-
-        .dot {
-            height: var(--dot-size);
-            width: var(--dot-size);
-            /* background-color: #e05363; */
-            border: 2.5px solid  blue;
-            opacity: .45;
-            border-radius: 50%;
-            display: inline-block;
-            margin: 50px 40px;
-            
-            /* cursor: pointer; */
-            z-index: 1;
-
-            transition: opacity calc(var(--a-transition)/1.5) cubic-bezier(.65,0,.15,1),
-                        transform calc(var(--a-transition)/1.5) cubic-bezier(.65,0,.15,1),
-                        background-color calc(var(--a-transition)/1.5) cubic-bezier(.65,0,.15,1),
-                        border calc(var(--a-transition)/1.5) cubic-bezier(.65,0,.15,1)
-                        ;
-            transition-duration: .35s;
-        }
-
-        .dot:hover {
-            /* transform: scale(1); */
-            opacity: .7;
-            z-index: 10;
-            border: 2px solid blue;
-            /* #e05363; */
-
-            transition: opacity calc(var(--a-transition)/1.5) cubic-bezier(.65,0,.15,1),
-                        transform calc(var(--a-transition)/1.5) cubic-bezier(.65,0,.15,1);
-            transition-duration: .35s;
-        }
-
-        .dot.on {
-            transition: background-color calc(var(--a-transition)/1.5) cubic-bezier(.65,0,.15,1),
-                       transform calc(var(--a-transition)/1.5) cubic-bezier(.65,0,.15,1);
-            transition-duration: .35s;
-
-            background-color: blue;
-             /* #e05363; */
-            opacity: .9;
-            transform: scale(1.2);
-            z-index: 10;
-        }
-        .dot.onn {
-            transition: background-color calc(var(--a-transition)/1.5) cubic-bezier(.65,0,.15,1),
-                       transform calc(var(--a-transition)/1.5) cubic-bezier(.65,0,.15,1);
-            transition-duration: .35s;
-            /* border: 1px solid #e05363; */
-            /* background-color: rgba(224, 83, 99, .8); */
-            background-color: blue;
-            opacity: .9;
-            z-index: 10;
-        }
-
-        #tooltip {
-            opacity: 0;
-            margin-top: 20px;
-            margin-left: 20px;
-            padding: 15px;
-            position: fixed;
-            z-index: 1000;
-            width: auto;
-            height: auto;
-            max-width: 300px;
-            color: var(--c-1);
-            background: var(--c-2);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            transition: opacity calc(var(--a-transition)/2) linear;
-            transition-duration: .1s
-            
-        }
-
-        #tooltip.summon {
-            opacity: .90;
-            transition: opacity calc(var(--a-transition)/2) ease-in-out;
-            transition-duration: .4s
-        }
-
-        .dotMatrix-line {
-            margin: auto;
-            display: inline-block;
-        }
-
-        #hate-words {
-            display: inline-block;
-            margin: auto;
-            margin-left: 50%;
-            margin-top: 70px;
-            transform: translate(-50%, 0%);
-            
-        }
-    </style>
+        <div id="graph-container">
+            <!-- <span id="tooltip">
+                Prova di testo
+            </span> -->
 
 
+            <div id="hate-words" class="" style="max-width: 1000px; min-width: 550px;">
 
-    <div class="graph-container">
-        <span id="tooltip">
-            Prova di testo
-        </span>
-
-        <div id="hate-words" class="" style="max-width: 700px; min-width: 550px;">
-            <div>
                 <span class="dot" data-name="Diaper Head" data-category="Ethnicity" data-offensiveness=17
                     data-description="An Arab, Indian Sikh or other individual of Middle Eastern or South Asian descent wearing traditional headdress such as turbans or keffiyehs. Sometimes used generically for all Islamic nations."></span>
                 <span class="dot" data-name="Frog" data-category="Ethnicity" data-offensiveness=7 data-description="A French person. Prior to 19th century, referred to the Dutch (as they were stereotyped as being marsh-dwellers). When France became Britain's main enemy, replacing the Dutch, the epithet transferred to them, due to the French recipe for eating frogs' legs (see comparable French term Rosbif). Also used in Canada to refer to both the French and French Canadians"></span>
@@ -155,108 +50,18 @@
                 <span class="dot" data-name="Wigga" data-category="Ethnicity, Nationality" data-offensiveness=82
                     data-description="[1] Used in 19th-century United States to refer to the Irish <br> [2] Sometimes used today in reference to white people in a manner similar to white trash or redneck <br> [3] Also refers to white youth that imitate urban black youth by means of clothing style, mannerisms, and slang speech. The 'w' at the start of wigger refers to the white person and the 'igger' refers to nigger, which is a racial slur for black people."></span>
                 <span class="dot" data-name="Slope" data-category="Ethnicity" data-offensiveness=82 data-description="A person of Asian descent, particularly Vietnamese or Chinese"></span>
-                <span class="dot" data-name="Niglet" data-category="Ethnicity" data-offensiveness=85 data-description="A black child"></span>
+                <!-- <span class="dot" data-name="Niglet" data-category="Ethnicity" data-offensiveness=85 data-description="A black child"></span>
                 <span class="dot" data-name="Ginzo" data-category="Ethnicity, Nationality" data-offensiveness=96
-                    data-description="A person of Italian birth or descent. Most likely derived from 'Guinea Negro,' implying that Italians are dark or swarthy-skinned like the natives of Guinea. The diminutive 'Ginzo' probably dates back to World War II and is derived from Australian slang"></span>
+                    data-description="A person of Italian birth or descent. Most likely derived from 'Guinea Negro,' implying that Italians are dark or swarthy-skinned like the natives of Guinea. The diminutive 'Ginzo' probably dates back to World War II and is derived from Australian slang"></span> -->
+
             </div>
+
         </div>
     </div>
 
-    <script>
-        var tooltip = document.getElementById('tooltip');
-        var dotsArray = document.querySelectorAll('.dot');
 
-        function showTooltip(e) {
-            var x = window.innerWidth;
-            var y = window.innerHeight;
-            tooltip.style.left = e.x + 'px';
-            tooltip.style.top = e.y + 'px';
-        }
-
-        document.addEventListener('mousemove', showTooltip, false);
-        document.addEventListener('mouseout', (e) => {
-            tooltip.classList.remove("summon");
-        }, false);
-
-
-        for (i = 0; i < dotsArray.length; i++) {
-            dotsArray[i].addEventListener('mouseover', sameCategoriesOn, false);
-            //usare nuova funzione per reverse + nascondere tooltip
-            dotsArray[i].addEventListener('mouseout', sameCategoriesOff, false);
-        }
-
-        var dotToIgnore;
-        var targetDotScale;
-
-        function sameCategoriesOn() {
-            var dots = document.querySelectorAll('.dot');
-
-            //------controlla se tutti gli altri dots hanno la categoria del dot sul quale si trova il mouse
-            for (t = 0; t < dots.length; t++) {
-
-                //------controlla su quale pallino è hover
-                if (dots[t].matches('.dot:hover')) {
-                    prevDot = dotToIgnore;
-                    dotToIgnore = t;
-                    targetDotScale = this.getAttribute('data-offensiveness');
-                    // dots[t].classList.add("hovered");
-                    this.style.transform = "scale(" + (targetDotScale * 0.1) + ")";
-                    dots[t].classList.add("onn");
-                    console.log('Aggiungo onn al punto ' + t);
-                }
-
-                if (typeof thisCategory != null && t != dotToIgnore) {
-                    var thisCategory = dots[t];
-                    var sourceCategory = thisCategory.getAttribute('data-category').split(", ");
-                    var targetCategory = this.getAttribute('data-category').split(", ");
-                    //------v conta le categorie che trova in un elemento
-                    for (v = 0; v < sourceCategory.length; v++) {
-                        for (w = 0; w < targetCategory.length; w++) {
-                            if (sourceCategory[v] == targetCategory[w]) {
-                                // console.log('MATCH!');
-                                dots[t].classList.add("on");
-                            }
-                        }
-                    }
-                }
-            }
-
-            //------Cosa scrive nel tooltip
-            tooltip.innerHTML =
-                `<span class="highlighted" style="padding: 3px 6px; color: var(--c-1); line-height: 1.6; font-family:"IBM Plex Light" ";>
-                                    ${this.getAttribute('data-name')}
-                                </span>
-                                <br>
-                                <span style="line-height: 1.6">
-                                    Category: 
-                                    ${this.getAttribute('data-category')}
-                                </span>
-                                <br>
-                                <span style="line-height: 1.6">
-                                    Offensiveness: 
-                                    ${this.getAttribute('data-offensiveness')}
-                                </span>
-                                <br>
-                                <br>
-                                <span>
-                                    ${this.getAttribute('data-description')}
-                                </span>
-                                `
-
-            tooltip.classList.add("summon");
-        }
-
-        function sameCategoriesOff() {
-            var dots = document.querySelectorAll('.dot');
-            for (i = 0; i < dots.length; i++) {
-                dots[i].classList.remove('on');
-                if (i == dotToIgnore) {
-                    dots[i].classList.remove("onn");
-                    this.style.transform = "";
-                }
-            }
-        }
-    </script>
 </body>
+
+<script type="text/javascript" src="src/hatebase.js" onload="console.log(this.src)"></script>
 
 </html>
