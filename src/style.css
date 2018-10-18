@@ -135,7 +135,7 @@ p .highlighted {
   color: var(--c-1);
 }
 
-.flex-container {
+.container {
   width: 100%;
   max-width: 960px;
   position: relative;
@@ -208,9 +208,8 @@ p .highlighted {
 }
 
 #waveform {
-  height: 100px;
+  height: 150px;
   width: 350px;
-  border: solid 0.5px var(--c-3);
   margin: 0 auto var(--spacing) auto;
   display: block;
   box-sizing: border-box;
@@ -225,11 +224,72 @@ p .highlighted {
   background-size: 10px;
 }
 
-@media (max-width: 960px) {
+/*                              */
+/*      NEW LAYOUT CLASSES      */
+/*                              */
+
+.section-wrapper {
+  width: 100%;
+  background-color: var(--c-1);
+}
+.section-container {
+  display: grid;
+  grid-gap: 80px;
+  max-width: 1280px;
+  height: 100vh;
+  color: var(--c-2);
+  margin: auto auto;
+  padding: var(--spacing);
+}
+.section-container.col-1-2 {
+  grid-template-columns: 1fr 2fr;
+}
+.section-container.col-2-1 {
+  grid-template-columns: 2fr 1fr;
+}
+.section-container.col-1 {
+  grid-template-columns: 1fr;
+}
+
+.section-text {
+  display: inline;
+  position: relative;
+  max-width: 860px;
+  margin: auto auto;
+}
+
+.section-graph {
+  position: relative;
+  margin: auto auto;
+}
+
+.graph {
+  display: inline;
+  position: relative;
+  margin: 0 auto;
+  /* transform: translate(0, -50%); */
+}
+
+@media (max-width: 1024px) {
   .toc {
     right: -400px;
   }
   .toc.summon {
     right: calc(var(--spacing) * 2);
+  }
+  .section-container {
+    grid-template-columns: 1fr;
+  }
+  .section-container.col-1-2 {
+    display: block;
+  }
+  .section-text {
+    display: block;
+    margin: 20 20;
+    max-width: 500px;
+    text-align: left;
+  }
+  .section-graph {
+    display: block;
   }
 }

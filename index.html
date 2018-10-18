@@ -5,6 +5,8 @@
     <link rel="stylesheet" type="text/css" href="src/font.css">
 
     <title>404 Hate not found</title>
+
+    <script src="src/countUp.js"></script>
 </head>
 
 <body>
@@ -23,7 +25,7 @@
     <!--    SECTION 1    -->
     <!--    /////////    -->
     <div class="text-section" id="section-1">
-        <div class="flex-container">
+        <div class="container">
             <div class="flex-text">
                 <div class="flex-child section-title">
                     <h1>The&nbsp;dark&nbsp;side of free&nbsp;speech</h1>
@@ -2355,13 +2357,115 @@
                     </g>
                 </svg>
                 <div style="display: block; margin: -40px auto 0 auto; text-align: center;">
-                    <span id="map-percentage">0%</span><br>
+                    <span id="map-percentage"></span><br>
                     <span style="color: var(--c-2)"> of people feel they can express their opinion</span>
                 </div>
             </div>
         </div>
         <div id="main-question">
-            <div id="waveform" class="undefined-graph"></div>
+            <div id="waveform" class="">
+                <svg id="wave" class="hide" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    x="0px" y="0px" viewBox="-5 5 200 200" xml:space="preserve">
+                    <style type="text/css">
+                        :root {
+                            --anim: 1s cubic-bezier(0.39, 0.575, 0.565, 1);
+                        }
+                        #wave.focus {
+                            transform: scaleX(2);
+                            transition: transform var(--anim);
+                        }
+                        line {
+                            fill: none;
+                            stroke: var(--c-3);
+                            stroke-width: 1.5;
+                            stroke-miterlimit: 10;
+                            stroke-linecap: round;
+                        }
+
+                        .hide {
+                            opacity: 0;
+                            transition: var(--anim);
+                        }
+
+                        .show {
+                            opacity: 1;
+                            transition: var(--anim);
+                        }
+                    </style>
+                </svg>
+                <audio id="mp3" src="src/audiello.mp3" type="audio/mpeg" volume="1"></audio>
+                <script>
+                    var mouseX = 0;
+                    var mouseY = 0;
+
+                    var delay = 500;
+                    // var updateInterval = 25;
+
+                    var mp3 = document.getElementById('mp3');
+                    mp3.volume = 1;
+
+                    // function to map some range of values to another range of values
+                    function mapper(num, in_min, in_max, out_min, out_max) {
+                        return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+                    }
+
+                    // get mouse coordinates
+                    document.addEventListener("mousemove", (e) => {
+                        mouseX = mapper(e.clientX / window.innerWidth, 0, 1, 0, 1.5);
+                        mouseY = mapper(e.clientY / window.innerHeight, 0, 1, 0, .35);
+                    })
+
+                    var points = 100;
+                    // generate wave dots
+                    window.onload = generateDots();
+                    function generateDots() {
+                        var svgNS = "http://www.w3.org/2000/svg",
+                            container = document.getElementById('wave');
+                        for (var i = 0; i <= points; i++) {
+                            var svgLine = document.createElementNS(svgNS, 'line');
+                            var spacing = container.clientWidth / (points * 1.825);
+                            svgLine.setAttributeNS(null, 'x1', 0 + (spacing * i));
+                            svgLine.setAttributeNS(null, 'x2', 0 + (spacing * i));
+                            svgLine.setAttributeNS(null, 'y1', 0 + (spacing * i));
+                            svgLine.setAttributeNS(null, 'y2', 0 + (spacing * i));
+                            svgLine.classList.add('wave-line');
+                            container.appendChild(svgLine);
+                            // console.log(points[i]);
+                        }
+                    }
+                    // var waveHeight = new CountUp("wave", 0, 0, 0, 3);
+
+                    // animate the wave dots
+                    setTimeout(function () {
+                        var el = document.getElementsByClassName('hide')[0];
+                        el.classList.remove('hide');
+                        el.classList.add('show');
+                        function anim() {
+                            document.querySelectorAll('svg line.wave-line').forEach((c, i) => {
+                                var amp = 1 - (i / points);
+                                var freq = 1 / 50;
+                                var osc_freq = mouseY;
+                                var phase = osc_freq * i;
+                                var t = performance.now();
+                                var norm = mouseX;
+
+                                var maths = 50 + (amp * norm * i) * Math.sin(freq * t + phase);
+
+                                c.setAttribute('y1', maths);
+                                c.setAttribute('y2', maths);
+
+                                // mappedNorm = mapper(norm, 0, 1, out_min, out_max);
+                                // waveHeight.update(norm);
+                                // console.log(norm);
+
+                            })
+                            requestAnimationFrame(anim);
+                        }
+                        requestAnimationFrame(anim);
+                    }, delay);
+
+                </script>
+            </div>
             <p id="main-question-paragraph" style="text-align: center; padding-bottom: var(--spacing)">
                 Where should we draw the line<br>
                 between free speech and hate speech?
@@ -2372,8 +2476,27 @@
     <!--    /////////    -->
     <!--    SECTION 2    -->
     <!--    /////////    -->
-    <div class="text-section" id="section-2">
-        <div class="flex-container">
+
+    <div class="section-wrapper">
+        <div class="section-container col-1">
+            <div class="section-text">
+                <h1>EU Steps for&nbsp;fighting online&nbsp;hate&nbsp;speech</h1>
+                <p class="">
+                    Many EU countries believe that hate speech might be prevented by restricting free speech. One of
+                    the hardest battleground is online, because of its characteristics of permanence, transnationality,
+                    unpredictability and&nbsp;anonymity.
+                </p>
+            </div>
+            <div class="section-graph">
+                <div class="graph">
+                    <img src="src/graphs/Social_Hate Speech2.png" style="display: inline; max-width: 750px;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="text-section" id="section-2">
+        <div class="container">
             <div class="flex-text">
                 <div class="flex-child section-title">
                     <h1>EU Steps for&nbsp;fighting online&nbsp;hate&nbsp;speech</h1>
@@ -2382,21 +2505,22 @@
                     Many EU countries believe that hate speech might be prevented by restricting free speech. One of
                     the hardest battleground is online, because of its characteristics of permanence, transnationality,
                     unpredictability and&nbsp;anonymity.
+                </p>
             </div>
             <div class="graph-container" style="margin-bottom: 0px;">
-                <img src="src/graphs/Social_Hate Speech2.png" style="width: 100%; display: block; margin: 0 auto; transform: translate(0, 0)">
-            </div>
-            <div class="source-container">
-                <a class="source-text" href="">Ciaone</a>
+                <img src="src/graphs/Social_Hate Speech2.png" style="display: inline; max-width: 100%;">
             </div>
         </div>
-    </div>
+        <div class="source-container">
+            <a class="source-text" href="">Ciaone</a>
+        </div>
+    </div> -->
 
     <!--    /////////    -->
     <!--    SECTION 3    -->
     <!--    /////////    -->
     <div class="text-section" id="section-3">
-        <div class="flex-container">
+        <div class="container">
             <div class="flex-text">
                 <div class="flex-child section-title">
                     <h2>The Code&nbsp;of&nbsp;Conduct</h2>
@@ -3326,7 +3450,7 @@
     <!--    SECTION 4    -->
     <!--    /////////    -->
     <div class="text-section dark" id="section-4" style="display: block; height: 90vh;">
-        <div class="flex-container" style="display: block;">
+        <div class="container" style="display: block;">
             <div class="flex-text" style="justify-content: flex-start; max-width: 860px; margin: 0 auto; margin-top: calc(var(--spacing) * 2);">
                 <div class="flex-child section-title">
                     <h1>What&nbsp;are&nbsp;they filtering&nbsp;for?</h1>
@@ -3359,7 +3483,7 @@
     <!--    SECTION 5    -->
     <!--    /////////    -->
     <div class="text-section" id="section-5">
-        <div class="flex-container">
+        <div class="container">
             <div class="flex-text">
                 <div class="flex-child section-title">
                     <h1>The journey of a&nbsp;reported&nbsp;content</h1>
@@ -3382,7 +3506,7 @@
     <!--    SECTION 6    -->
     <!--    /////////    -->
     <div class="text-section" id="section-6">
-        <div class="flex-container">
+        <div class="container">
             <div class="flex-text">
                 <div class="flex-child section-title">
                     <h2>How does it end?</h2>
@@ -3405,7 +3529,7 @@
     <!--    SECTION 7    -->
     <!--    /////////    -->
     <div class="text-section dark" id="section-7">
-        <div class="flex-container">
+        <div class="container">
             <div class="flex-text">
                 <div class="flex-child section-title">
                     <h1>Hateful categories</h1>
@@ -3426,7 +3550,7 @@
     <!--    SECTION 8    -->
     <!--    /////////    -->
     <div class="text-section dark" id="section-8">
-        <div class="flex-container">
+        <div class="container">
             <div class="flex-text">
                 <div class="flex-child section-title">
                     <h2>Hate words</h2>
@@ -3449,8 +3573,12 @@
 
 </body>
 <script>
+    // questa è la variabile globale dove andiamo a salvare il risultato dell'interpolazione del volume/percentuale
+    // var globalResult = 0;
+
+
     var sectionHeights = [];
-    var sections = document.getElementsByClassName("flex-container");
+    var sections = document.getElementsByClassName("container");
     var mouseX, mouseY;
     var toc = document.getElementsByClassName('toc')[0];
     // contiene tutti i titoli delle sezioni
@@ -3582,69 +3710,49 @@
     };
 </script>
 
-
 <script>
-    document.addEventListener("mousemove", (e) => {
-        mouseX = e.clientX / window.innerWidth;
-        // mouseY = e.clientY / window.innerHeight;
-        // console.log(mouseX);
-        if (mouseX > 0.75) {
-            toc.classList.add('summon');
-            line.classList.add('active');
-        } else {
-            toc.classList.remove('summon');
-            line.classList.remove('active');
-        }
-    })
 
-    function animateValue(id, start, end, duration, append) {
-        if (start == undefined) { start = 0 };
-        var range = end - start;
-        var current = start;
-        var increment = end > start ? 1 : -1;
-        var stepTime = Math.abs(Math.floor(duration / range));
-        var obj = document.getElementById(id);
-        var timer = setInterval(function () {
-            current += increment;
-            obj.innerHTML = current + append;
-            if (current == end) {
-                clearInterval(timer);
-            }
-        }, stepTime);
+    var options_numAnim = {
+        suffix: '%'
+    };
+
+    var numAnim = new CountUp("map-percentage", 0, 0, 0, 3, options_numAnim);
+    // console.log(numAnim.printValue);
+
+
+    if (!numAnim.error) {
+        numAnim.start(console.log(numAnim));
+    } else {
+        console.error(numAnim.error);
     }
 
-    function updatePercentage() {
-        var els = document.getElementsByClassName('graph1-area');
-        // console.log(els);
-        var oldp, newp, pct;
-        for (i = 0; i < els.length; i++) {
-            els[i].onmouseenter = function () {
-                newp = this.getAttribute("data-percentage");
-                pct = document.getElementById('map-percentage');
 
-                pct.style.opacity = "1";
-                animateValue('map-percentage', 0, newp, 2000, '%');
-                // oldp = newp;
-                // pct.innerHTML = p + "%";
-                console.log('new: ' + newp + ' – old: ' + oldp);
-            }
-        }
-        for (i = 0; i < els.length; i++) {
-            els[i].onmouseleave = function () {
-                // var pct = document.getElementById('map-percentage');
-                oldp = newp;
-                console.log(oldp);
+    // gestione eventi
+    var els = document.getElementsByClassName('graph1-area');
+    // console.log(els);
+    var oldp, newp, pct;
+    for (i = 0; i < els.length; i++) {
+        els[i].onmouseenter = function () {
+            newp = this.getAttribute("data-percentage");
+            pct = document.getElementById('map-percentage');
+            mp3.play();
 
-                // setTimeout(function () {
-                //     pct.style.opacity = "0";
-                // }, 2000);
-            }
+            pct.style.opacity = "1";
+
+            // aggiorna il contatore percentuale
+            numAnim.update(newp);
         }
     }
-    updatePercentage();
+    for (i = 0; i < els.length; i++) {
+        els[i].onmouseleave = function () {
+            // riporta percentuale a zero
+            numAnim.update(0);
+        }
+    }
 </script>
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/ScrollMagic.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/ScrollMagic.min.js"></script>
+
 <script>
     var waveformController = new ScrollMagic.Controller();
 
@@ -3654,23 +3762,40 @@
         triggerHook: 0.35,
         duration: "200%"
     })
-        .setPin("#main-question")           // pins the element for the the scene's duration
+        .setPin("#main-question")      // pins the element for the the scene's duration
         .addTo(waveformController)     // assign the scene to the controller
 
     scene.on("enter", function (event) {
         // console.log("Scene started.");
         document.getElementById('section-1').classList.add("bg", "dark");
         document.getElementById('main-question-paragraph').classList.add("dark");
+        document.getElementById('wave').classList.add("focus");
     });
     scene.on("leave", function (event) {
         // console.log("Scene left.");
         document.getElementById('section-1').classList.remove("bg", "dark");
         document.getElementById('main-question-paragraph').classList.remove("dark");
         document.getElementById('main-question-paragraph').style.marginBottom = '0';
+        document.getElementById('wave').classList.remove("focus");
     });
     scene.on("end", function (event) {
         // console.log("Scene ended.");
     });
+
+    var toc = document.getElementsByClassName('toc')[0];
+    var line = document.getElementById('current-line');
+    document.addEventListener("mousemove", (e) => {
+        mouseX = e.clientX / window.innerWidth;
+        // mouseY = e.clientY / window.innerHeight;
+        // console.log(mouseX);
+        if (mouseX > 0.85) {
+            toc.classList.add('summon');
+            line.classList.add('active');
+        } else {
+            toc.classList.remove('summon');
+            line.classList.remove('active');
+        }
+    })
 </script>
 
 </html>
