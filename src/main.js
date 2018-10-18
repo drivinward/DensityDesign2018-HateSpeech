@@ -291,22 +291,22 @@ timelineScene.on("enter", function(event) {
 // apertura/chiusura indice dei contenuti
 var toc = document.getElementsByClassName("toc")[0];
 var line = document.getElementById("current-line");
-// document.addEventListener("mousemove", e => {
-//   mouseX = e.clientX / window.innerWidth;
-//   // mouseY = e.clientY / window.innerHeight;
-//   // console.log(mouseX);
-//   if (mouseX > 0.85) {
-//     toc.classList.add("summon");
-//     line.classList.add("active");
-//   } /* else  {
-//             toc.classList.remove('summon');
-//             line.classList.remove('active');
-//         } */
-// });
-// toc.addEventListener("mouseleave", e => {
-//   toc.classList.remove("summon");
-//   line.classList.remove("active");
-// });
+document.addEventListener("mousemove", e => {
+  mouseX = e.clientX / window.innerWidth;
+  // mouseY = e.clientY / window.innerHeight;
+  // console.log(mouseX);
+  if (mouseX > 0.85) {
+    toc.classList.add("summon");
+    line.classList.add("active");
+  } /* else  {
+            toc.classList.remove('summon');
+            line.classList.remove('active');
+        } */
+});
+toc.addEventListener("mouseleave", e => {
+  toc.classList.remove("summon");
+  line.classList.remove("active");
+});
 
 
 // /////////////////////////////////////////// //
