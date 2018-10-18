@@ -178,10 +178,8 @@ function calcHeights() {
 
 function updateIndicator() {
   var indicator = document.getElementById("current-line");
-  var currentLiHeight = document
-    .getElementsByClassName("current")[0]
-    .getBoundingClientRect().top;
-  // console.log(currentLiHeight.top);
+  var currentLiHeight = document.getElementsByClassName("current")[0].getBoundingClientRect().top;
+  console.log(currentLiHeight.top);
   indicator.style.top = currentLiHeight;
 }
 function updateSection(e) {

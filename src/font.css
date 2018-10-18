@@ -10,10 +10,5 @@
 
 @font-face {
     font-family: 'IBM Plex Mono';
-    src: url('fonts/IBM-Plex-mono/IBMPlexMono-Regular.woff2') format('Woff2');
-}
-
-@font-face {
-    font-family: 'Playfair';
-    src: url('fonts/Playfair_Display/PlayfairDisplay-Bold.ttf') format('TrueType');
+    src: url('fonts/IBM-Plex-Mono/IBMPlexMono-Regular.woff2') format('Woff2');
 }
