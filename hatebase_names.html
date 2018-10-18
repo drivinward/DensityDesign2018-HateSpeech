@@ -28,7 +28,7 @@
             height: var(--dot-size);
             width: var(--dot-size);
             /* background-color: #e05363; */
-            border: 2.5px solid   #e05363;
+            border: 2.5px solid  blue;
             opacity: .45;
             border-radius: 50%;
             display: inline-block;
@@ -47,9 +47,10 @@
 
         .dot:hover {
             /* transform: scale(1); */
-            opacity: .9;
+            opacity: .7;
             z-index: 10;
-            border: 2px solid #e05363;
+            border: 2px solid blue;
+            /* #e05363; */
 
             transition: opacity calc(var(--a-transition)/1.5) cubic-bezier(.65,0,.15,1),
                         transform calc(var(--a-transition)/1.5) cubic-bezier(.65,0,.15,1);
@@ -61,7 +62,8 @@
                        transform calc(var(--a-transition)/1.5) cubic-bezier(.65,0,.15,1);
             transition-duration: .35s;
 
-            background-color: #e05363;
+            background-color: blue;
+             /* #e05363; */
             opacity: .9;
             transform: scale(1.2);
             z-index: 10;
@@ -72,7 +74,7 @@
             transition-duration: .35s;
             /* border: 1px solid #e05363; */
             /* background-color: rgba(224, 83, 99, .8); */
-            background-color: #e05363;
+            background-color: blue;
             opacity: .9;
             z-index: 10;
         }
