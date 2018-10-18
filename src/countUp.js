@@ -112,6 +112,7 @@ var CountUp = function(target, startVal, endVal, decimals, duration, options) {
 
         // aggiorna il volume dell'audio
         document.getElementById('mp3').volume =+ result.replace('%','') / 100;
+        norm =+ result.replace('%','') / 100;
 
         if (self.d.tagName === 'INPUT') {
             this.d.value = result;

@@ -2365,15 +2365,17 @@
         <div id="main-question">
             <div id="waveform" class="">
                 <svg id="wave" class="hide" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                    x="0px" y="0px" viewBox="-5 5 200 200" xml:space="preserve">
+                    x="0px" y="0px" viewBox="-5 0 200 200" xml:space="preserve">
                     <style type="text/css">
                         :root {
                             --anim: 1s cubic-bezier(0.39, 0.575, 0.565, 1);
                         }
+
                         #wave.focus {
                             transform: scaleX(2);
                             transition: transform var(--anim);
                         }
+
                         line {
                             fill: none;
                             stroke: var(--c-3);
@@ -2394,77 +2396,6 @@
                     </style>
                 </svg>
                 <audio id="mp3" src="src/audiello.mp3" type="audio/mpeg" volume="1"></audio>
-                <script>
-                    var mouseX = 0;
-                    var mouseY = 0;
-
-                    var delay = 500;
-                    // var updateInterval = 25;
-
-                    var mp3 = document.getElementById('mp3');
-                    mp3.volume = 1;
-
-                    // function to map some range of values to another range of values
-                    function mapper(num, in_min, in_max, out_min, out_max) {
-                        return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-                    }
-
-                    // get mouse coordinates
-                    document.addEventListener("mousemove", (e) => {
-                        mouseX = mapper(e.clientX / window.innerWidth, 0, 1, 0, 1.5);
-                        mouseY = mapper(e.clientY / window.innerHeight, 0, 1, 0, .35);
-                    })
-
-                    var points = 100;
-                    // generate wave dots
-                    window.onload = generateDots();
-                    function generateDots() {
-                        var svgNS = "http://www.w3.org/2000/svg",
-                            container = document.getElementById('wave');
-                        for (var i = 0; i <= points; i++) {
-                            var svgLine = document.createElementNS(svgNS, 'line');
-                            var spacing = container.clientWidth / (points * 1.825);
-                            svgLine.setAttributeNS(null, 'x1', 0 + (spacing * i));
-                            svgLine.setAttributeNS(null, 'x2', 0 + (spacing * i));
-                            svgLine.setAttributeNS(null, 'y1', 0 + (spacing * i));
-                            svgLine.setAttributeNS(null, 'y2', 0 + (spacing * i));
-                            svgLine.classList.add('wave-line');
-                            container.appendChild(svgLine);
-                            // console.log(points[i]);
-                        }
-                    }
-                    // var waveHeight = new CountUp("wave", 0, 0, 0, 3);
-
-                    // animate the wave dots
-                    setTimeout(function () {
-                        var el = document.getElementsByClassName('hide')[0];
-                        el.classList.remove('hide');
-                        el.classList.add('show');
-                        function anim() {
-                            document.querySelectorAll('svg line.wave-line').forEach((c, i) => {
-                                var amp = 1 - (i / points);
-                                var freq = 1 / 50;
-                                var osc_freq = mouseY;
-                                var phase = osc_freq * i;
-                                var t = performance.now();
-                                var norm = mouseX;
-
-                                var maths = 50 + (amp * norm * i) * Math.sin(freq * t + phase);
-
-                                c.setAttribute('y1', maths);
-                                c.setAttribute('y2', maths);
-
-                                // mappedNorm = mapper(norm, 0, 1, out_min, out_max);
-                                // waveHeight.update(norm);
-                                // console.log(norm);
-
-                            })
-                            requestAnimationFrame(anim);
-                        }
-                        requestAnimationFrame(anim);
-                    }, delay);
-
-                </script>
             </div>
             <p id="main-question-paragraph" style="text-align: center; padding-bottom: var(--spacing)">
                 Where should we draw the line<br>
@@ -3572,10 +3503,12 @@
     </div>
 
 </body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/ScrollMagic.min.js"></script>
+
 <script>
     // questa è la variabile globale dove andiamo a salvare il risultato dell'interpolazione del volume/percentuale
     // var globalResult = 0;
-
 
     var sectionHeights = [];
     var sections = document.getElementsByClassName("container");
@@ -3585,16 +3518,107 @@
     var lis = [];
     var line = document.getElementById('current-line');
 
-    window.onload = (e) => {
-        calcHeights();
-        tocTitles();
-        updateSection(e);
-        updateIndicator();
+    var mouseX = 0;
+    var mouseY = 0;
+
+    var delay = 500;
+    // var updateInterval = 25;
+
+    var mp3 = document.getElementById('mp3');
+    mp3.volume = 1;
+
+    // function to map some range of values to another range of values
+    function mapper(num, in_min, in_max, out_min, out_max) {
+        return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
     }
-    document.addEventListener("scroll", (e) => {
-        updateSection(e);
-        updateIndicator();
-    });
+
+    // get mouse coordinates
+    document.addEventListener("mousemove", (e) => {
+        mouseX = mapper(e.clientX / window.innerWidth, 0, 1, 0, 1.5);
+        mouseY = mapper(e.clientY / window.innerHeight, 0, 1, 0, .35);
+    })
+
+    var points = 100;
+    // generate wave dots
+    function generateDots() {
+        var svgNS = "http://www.w3.org/2000/svg",
+            container = document.getElementById('wave');
+        for (var i = 0; i <= points; i++) {
+            var svgLine = document.createElementNS(svgNS, 'line');
+            var spacing = container.clientWidth / (points * 1.825);
+            svgLine.setAttributeNS(null, 'x1', 0 + (spacing * i));
+            svgLine.setAttributeNS(null, 'x2', 0 + (spacing * i));
+            svgLine.setAttributeNS(null, 'y1', 0 + (spacing * i));
+            svgLine.setAttributeNS(null, 'y2', 0 + (spacing * i));
+            svgLine.classList.add('wave-line');
+            container.appendChild(svgLine);
+            // console.log(points[i]);
+        }
+    }
+
+    var options_numAnim = {
+        suffix: '%'
+    };
+    var numAnim = new CountUp("map-percentage", 0, 0, 0, 3, options_numAnim);
+    // console.log(numAnim.printValue);
+    if (!numAnim.error) {
+        numAnim.start(console.log(numAnim));
+    } else {
+        console.error(numAnim.error);
+    }
+
+    var els = document.getElementsByClassName('graph1-area');
+    // console.log(els);
+    var oldp, newp, pct;
+    for (i = 0; i < els.length; i++) {
+        els[i].onmouseenter = function () {
+            newp = this.getAttribute("data-percentage");
+            // norm controlla l'ampiezza dell'onda nella funzione *dalle un cazzo di nome però*
+            // norm = newp / 100;
+            console.log(norm);
+            pct = document.getElementById('map-percentage');
+            mp3.play();
+
+            pct.style.opacity = "1";
+
+            // aggiorna il contatore percentuale
+            numAnim.update(newp);
+
+        }
+    }
+    for (i = 0; i < els.length; i++) {
+        els[i].onmouseleave = function () {
+            // riporta percentuale a zero
+            numAnim.update(0);
+        }
+    }
+
+    // animate the wave dots
+    var norm = 1;
+    setTimeout(function () {
+        var el = document.getElementsByClassName('hide')[0];
+        el.classList.remove('hide');
+        el.classList.add('show');
+        function anim() {
+            document.querySelectorAll('svg line.wave-line').forEach((c, i) => {
+                var amp = 1 - (i / points);
+                var freq = 1 / 50;
+                var osc_freq = .15;
+                var phase = osc_freq * i;
+                var t = performance.now();
+                // norm = 1;
+                
+                var maths = 50 + (amp*2 * norm * i) * Math.sin(freq * t + phase);
+                
+                c.setAttribute('y1', maths);
+                c.setAttribute('y2', maths);
+                
+                
+            })
+            requestAnimationFrame(anim);
+        }
+        requestAnimationFrame(anim);
+    }, delay);
 
     // function jump(h) {
     //     location.href = '';
@@ -3666,8 +3690,7 @@
 
     function updateIndicator() {
         var indicator = document.getElementById("current-line");
-        var currentLi = document.getElementsByClassName("current")[0];
-        var currentLiHeight = currentLi.getBoundingClientRect().top;
+        var currentLiHeight = document.getElementsByClassName("current")[0].getBoundingClientRect().top;
         // console.log(currentLiHeight.top);
         indicator.style.top = currentLiHeight;
     };
@@ -3683,9 +3706,9 @@
             var oldSectionHeight = sectionHeights[i - 1] || sectionHeights[0];
             // console.log(oldSectionHeight);
 
-            var oldSection = sections[i - 1] || sections[0];
-            var currSection = sections[i];
-            var nextSection = sections[i + 1];
+            // var oldSection = sections[i - 1] || sections[0];
+            // var currSection = sections[i];
+            // var nextSection = sections[i + 1];
 
             var oldLi = document.querySelectorAll('.toc > ul > li')[i - 1];
             var currLi = document.querySelectorAll('.toc > ul > li')[i];
@@ -3708,52 +3731,7 @@
             }
         }
     };
-</script>
 
-<script>
-
-    var options_numAnim = {
-        suffix: '%'
-    };
-
-    var numAnim = new CountUp("map-percentage", 0, 0, 0, 3, options_numAnim);
-    // console.log(numAnim.printValue);
-
-
-    if (!numAnim.error) {
-        numAnim.start(console.log(numAnim));
-    } else {
-        console.error(numAnim.error);
-    }
-
-
-    // gestione eventi
-    var els = document.getElementsByClassName('graph1-area');
-    // console.log(els);
-    var oldp, newp, pct;
-    for (i = 0; i < els.length; i++) {
-        els[i].onmouseenter = function () {
-            newp = this.getAttribute("data-percentage");
-            pct = document.getElementById('map-percentage');
-            mp3.play();
-
-            pct.style.opacity = "1";
-
-            // aggiorna il contatore percentuale
-            numAnim.update(newp);
-        }
-    }
-    for (i = 0; i < els.length; i++) {
-        els[i].onmouseleave = function () {
-            // riporta percentuale a zero
-            numAnim.update(0);
-        }
-    }
-</script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/ScrollMagic.min.js"></script>
-
-<script>
     var waveformController = new ScrollMagic.Controller();
 
     // create a scene
@@ -3770,18 +3748,21 @@
         document.getElementById('section-1').classList.add("bg", "dark");
         document.getElementById('main-question-paragraph').classList.add("dark");
         document.getElementById('wave').classList.add("focus");
+        numAnim.update(100);
     });
     scene.on("leave", function (event) {
         // console.log("Scene left.");
         document.getElementById('section-1').classList.remove("bg", "dark");
-        document.getElementById('main-question-paragraph').classList.remove("dark");
+        // document.getElementById('main-question-paragraph').classList.remove("dark");
         document.getElementById('main-question-paragraph').style.marginBottom = '0';
         document.getElementById('wave').classList.remove("focus");
+        numAnim.update(0);
     });
     scene.on("end", function (event) {
         // console.log("Scene ended.");
     });
 
+    // apertura/chiusura indice dei contenuti
     var toc = document.getElementsByClassName('toc')[0];
     var line = document.getElementById('current-line');
     document.addEventListener("mousemove", (e) => {
@@ -3791,11 +3772,28 @@
         if (mouseX > 0.85) {
             toc.classList.add('summon');
             line.classList.add('active');
-        } else {
+        } /* else  {
             toc.classList.remove('summon');
             line.classList.remove('active');
-        }
-    })
+        } */
+    });
+    toc.addEventListener("mouseleave", (e) => {
+        toc.classList.remove('summon');
+        line.classList.remove('active');
+    });
+
+    window.onload = (e) => {
+        calcHeights();
+        tocTitles();
+        updateSection(e);
+        updateIndicator();
+        generateDots();
+    }
+    document.addEventListener("scroll", (e) => {
+        updateSection(e);
+        updateIndicator();
+    });
+
 </script>
 
 </html>
