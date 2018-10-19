@@ -11,19 +11,19 @@
     transition: opacity .3s cubic-bezier(.65, 0, .15, 1);   
 }
 
-.st3 {
+.fb-ball {
     fill: #650499;
 }
 
-.st4 {
+.tw-ball {
     fill: #CE3B19;
 }
 
-.st5 {
+.yt-ball {
     fill: #F2C004;
 }
 
-.st6 {
+.w-ball {
     fill: #EEEEEE;
 }
 
