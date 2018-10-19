@@ -24,13 +24,13 @@ function offsetOff() {
     curves = document.querySelectorAll('.graph-curve');
     lower = document.getElementById('x-axis');
     higher = document.querySelectorAll('.higher');
-    arrow = document.getElementById('y-axis');
+    // arrow = document.getElementById('y-axis');
     x = -100;
 
     lower.style.transform = "translateX(" + ((x*-1) + 46) + "px)";
-    arrow.style.transitionDelay = 0 + "s"; 
-    arrow.style.transitionDuration = .25 + "s";   
-    arrow.style.opacity = 0;
+    // arrow.style.transitionDelay = 0 + "s"; 
+    // arrow.style.transitionDuration = .25 + "s";   
+    // arrow.style.opacity = 0;
 
     for (t = 0; t < higher.length; t++) {
         higher[t].style.transform = "translateX(" + x + "px)";
@@ -46,13 +46,13 @@ function offsetOn() {
     curves = document.querySelectorAll('.graph-curve');
     lower = document.getElementById('x-axis');
     higher = document.querySelectorAll('.higher');
-    arrow = document.getElementById('y-axis');
+    // arrow = document.getElementById('y-axis');
     x = 0;
 
     lower.style.transform = "translateX(" + x + "px)";
-    arrow.style.transitionDelay = .2 + "s";  
-    arrow.style.transitionDuration = .3 + "s";  
-    arrow.style.opacity = 1;
+    // arrow.style.transitionDelay = .2 + "s";  
+    // arrow.style.transitionDuration = .3 + "s";  
+    // arrow.style.opacity = 1;
 
     for (t = 0; t < higher.length; t++) {
         higher[t].style.transform = "translateX(" + x + "px)";

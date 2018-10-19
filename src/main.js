@@ -10,7 +10,7 @@ var line = document.getElementById("current-line");
 var mouseX = 0;
 var mouseY = 0;
 
-var delay = 500;
+var delay = 200;
 // var updateInterval = 25;
 
 var mp3 = document.getElementById("mp3");
@@ -21,9 +21,25 @@ function mapper(num, in_min, in_max, out_min, out_max) {
 }
 
 // get mouse coordinates
-document.addEventListener("mousemove", e => {
+document.addEventListener("mousemove", function(e) {
   mouseX = mapper(e.clientX / window.innerWidth, 0, 1, 0, 1.5);
   mouseY = mapper(e.clientY / window.innerHeight, 0, 1, 0, 0.35);
+});
+
+// apertura/chiusura indice dei contenuti
+var line = document.getElementById("current-line");
+document.addEventListener("mousemove", function(e) {
+  mouseX = e.clientX / window.innerWidth;
+  // mouseY = e.clientY / window.innerHeight;
+  // console.log(mouseX);
+  if (mouseX > 0.85) {
+    toc.classList.add("summon");
+    line.classList.add("active");
+  }
+});
+toc.addEventListener("mouseleave", function() {
+  toc.classList.remove("summon");
+  line.classList.remove("active");
 });
 
 var points = 100;
@@ -107,25 +123,6 @@ setTimeout(function() {
   requestAnimationFrame(anim);
 }, delay);
 
-// function jump(h) {
-//     location.href = '';
-//     var url = location.href;                     // Save down the URL without hash.
-//     location.href = "#" + h;                     // Go to the target element.
-//     // history.replaceState(null, null, url);    // Don't like hashes. Changing it back.
-// }
-
-// function scrollTo(element, to, duration) {
-//   if (duration <= 0) return;
-//   var difference = to - element.scrollTop;
-//   var perTick = (difference / duration) * 10;
-
-//   setTimeout(function() {
-//     element.scrollTop = element.scrollTop + perTick;
-//     if (element.scrollTop === to) return;
-//     scrollTo(element, to, duration - 10);
-//   }, 10);
-// }
-
 // prende tutti i titoli delle sezioni h1 e h2 con classe 'section-title'
 // e li inserisce come tag <li> nell'indice dei contenuti
 var where = [];
@@ -137,18 +134,19 @@ function tocTitles() {
 
   var li;
   // insieme di tutte le sezioni con testo
-  var anchor = document.getElementsByClassName("narrative-section");
+  // var anchor = document.getElementsByClassName("narrative-section");
 
   for (i = 0; i < liTxt.length; i++) {
     li = document.createElement("li");
-    // elemento link da inserire dentro ogni 'li'
+    // link da inserire dentro ogni 'li'
     a = document.createElement("a");
     // setta il collegamento di ogni 'a'
-    where.push(anchor[i].id);
+    console.log(liTxt[i].id);
+    where.push(liTxt[i].id);
     a.href = "#" + where[i];
     // prende il primo elemento figlio di 'section-title', cioè i titoli delle sezioni
     a.innerHTML = liTxt[i].childNodes[1].innerHTML;
-    console.log(a);
+    // console.log(a);
     // inserisce il 'li' in 'ul'
     ul.appendChild(li);
     // inserisce il collegamento 'a' in 'li'
@@ -169,10 +167,31 @@ function tocTitles() {
 }
 
 var sectionHeights = [];
-var sections = document.getElementsByClassName("narrative-section");
+var sections = document.getElementsByClassName("section-title");
 
 function calcHeights() {
   for (i = 0; i < sections.length; i++) {
+    // prova con questa funzione
+    // serve per calcolare la posizione assoluta (dall'alto) di un elemento nella pagina
+    // perchè il metodo offsetTop restituisce solo la distanza rispetto all'elemento padre
+    // 
+    //   var cumulativeOffset = function(element) {
+    //     var top = 0, left = 0;
+    //     do {
+    //         top += element.offsetTop  || 0;
+    //         left += element.offsetLeft || 0;
+    //         element = element.offsetParent;
+    //     } while(element);
+
+    //     return {
+    //         top: top,
+    //         left: left
+    //     };
+    // };
+    //
+    // dovrebbe essere:
+    // var height = sections[i].top;
+
     var height = sections[i].offsetTop;
     sectionHeights.push(height);
     // console.log(height);
@@ -181,16 +200,7 @@ function calcHeights() {
   // console.log(sectionHeights);
 }
 
-function updateIndicator() {
-  var indicator = document.getElementById("current-line");
-  var currentLi = document.getElementsByClassName("current")[0];
-  var currentLiHeight = currentLi.getBoundingClientRect().top;
-  // console.log(currentLiHeight.top);
-  indicator.style.top = currentLiHeight;
-}
-
 function updateSection(e) {
-
   calcHeights();
 
   var doc = document.documentElement;
@@ -213,6 +223,7 @@ function updateSection(e) {
 
     var oldLi = document.querySelectorAll(".toc > ul > li")[i - 1];
     var currLi = document.querySelectorAll(".toc > ul > li")[i];
+    console.log(currLi);
     var nextLi = document.querySelectorAll(".toc > ul > li")[i + 1];
     if (
       (top >= currSectionHeight && top < nextSectionHeight) ||
@@ -223,11 +234,11 @@ function updateSection(e) {
 
       // ora bisogna selezionare il 'li' corrispondente e mettergli la classe 'current'
       if (typeof oldLi === "undefined") {
-        document.querySelectorAll(".toc > ul > li")[0].classList.add("current");
+        // document.querySelectorAll(".toc > ul > li")[0].classList.add("current");
       } else {
         oldLi.classList.remove("current");
       }
-      // currLi.classList.add("current");
+      currLi.classList.add("current");
       // console.log(currLi);
     } else if (top <= currSectionHeight && top > oldSectionHeight) {
       oldLi.classList.add("current");
@@ -235,7 +246,17 @@ function updateSection(e) {
       oldLi = currLi;
     }
   }
-  updateIndicator();
+  updateIndicator(currLi);
+}
+
+function updateIndicator(currLi) {
+  var indicator = document.getElementById("current-line");
+  var currLi = document.getElementsByClassName("current")[0];
+  // console.log(currentLi);
+  // console.log(currLi);
+  var curLiHeight = currLi.getBoundingClientRect().top;
+  // console.log(currentLiHeight.top);
+  indicator.style.top = curLiHeight;
 }
 
 // ////////////////// START ////////////////// //
@@ -277,8 +298,6 @@ var wipeAnimation = new TimelineMax().fromTo(
   { x: "-100%", ease: Linear.easeNone }
 ); // in from left
 
-
-
 var timelineScene = new ScrollMagic.Scene({
   triggerElement: "#section-3",
   triggerHook: 0,
@@ -297,27 +316,11 @@ timelineScene.on("enter", function(event) {
 // //////// SCROLLMAGIC + GSAP SCENES //////// //
 // /////////////////// END /////////////////// //
 
-// apertura/chiusura indice dei contenuti
-var line = document.getElementById("current-line");
-document.addEventListener("mousemove", e => {
-  mouseX = e.clientX / window.innerWidth;
-  // mouseY = e.clientY / window.innerHeight;
-  // console.log(mouseX);
-  if (mouseX > 0.85) {
-    toc.classList.add("summon");
-    line.classList.add("active");
-  }
-});
-toc.addEventListener("mouseleave", e => {
-  toc.classList.remove("summon");
-  line.classList.remove("active");
-})
-
 // /////////////////////////////////////////// //
 // ///////// GESTIONE EVENTI PAGINA ////////// //
 // /////////////////////////////////////////// //
 
-window.onload = function(e) {
+window.onload = function() {
   generateDots();
   tocTitles();
   updateSection(e);

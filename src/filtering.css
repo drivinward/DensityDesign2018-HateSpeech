@@ -1,34 +1,30 @@
 body {
+    --coefficent: 1;
     background-color: var(--c-1);
 }
 
 .graph-curve {
 
-    transition: opacity calc(var(--a-transition)/1.5) cubic-bezier(.65, 0, .15, 1),
-                transform calc(var(--a-transition)/1.5) cubic-bezier(.65, 0, .15, 1),
-                background-color calc(var(--a-transition)/1.5) cubic-bezier(.65, 0, .15, 1);
-
-    transition-duration: .5s;
+    transition: opacity calc(var(--a-transition)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1),
+                transform calc(var(--a-transition)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1),
+                background-color calc(var(--a-transition)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1);
 }
 
 .graph-curve.disappear {
     opacity: .1;
-    transition: opacity calc(var(--a-transition)/1.5) cubic-bezier(.65, 0, .15, 1),
-                transform calc(var(--a-transition)/1.5) cubic-bezier(.65, 0, .15, 1),
-                background-color calc(var(--a-transition)/1.5) cubic-bezier(.65, 0, .15, 1);
-    transition-duration: .5s; 
+    transition: opacity calc(var(--a-transition)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1),
+                transform calc(var(--a-transition)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1),
+                background-color calc(var(--a-transition)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1);
 }
 
 #y-axis{
-    transition: opacity calc(var(--a-transition)/1.5) cubic-bezier(.65, 0, .15, 1);
-    transition-duration: .4s;  
+    transition: opacity calc(var(--a-transition)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1);
 }
 
 .higher, #x-axis {
-    transition: opacity calc(var(--a-transition)/1.5) cubic-bezier(.65, 0, .15, 1),
-                transform calc(var(--a-transition)/1.5) cubic-bezier(.65, 0, .15, 1),
-                background-color calc(var(--a-transition)/1.5) cubic-bezier(.65, 0, .15, 1);
-    transition-duration: .5s;  
+    transition: opacity calc(var(--a-transition)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1),
+                transform calc(var(--a-transition)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1),
+                background-color calc(var(--a-transition)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1);
 }
 
 /* -------------- SVG -------------- */
@@ -46,260 +42,243 @@ body {
 
 
 .text-general {
-    fill: #0033FF;
+    fill: var(--c-2);
 }
 
-.st0 {
+.encounter-side-line {
     fill: none;
     stroke: url(#SVGID_1_);
     stroke-miterlimit: 10;
 }
 
-.st1 {
+.encounter-polygon-fill {
     fill: url(#SVGID_2_);
 }
 
-.st2 {
+.encounter-blue-line {
     fill: none;
-    stroke: #0033FF;
+    stroke: var(--c-2);
     stroke-miterlimit: 10;
 }
 
-
-.st4 {
+.encounter-text {
     font-family: 'IBM Plex Mono';
-}
-
-.st5 {
     font-size: 14px;
 }
-
-.st6 {
-    fill: none;
-}
-
-.st7 {
-    fill: #F2F2F2;
-    stroke: #0033FF;
-    stroke-miterlimit: 10;
-}
-
-.st8 {
+                
+.encounter-graph-mountains {
     opacity: 0.7;
 }
 
-.st9 {
+.encounter-malta-fill {
     fill: url(#SVGID_3_);
-}
-
-.st10 {
     fill: #1E4BFD;
 }
 
-.st14 {
+.encounter-st-14 {
     fill: url(#SVGID_4_);
 }
 
-.st15 {
+.encounter-st-15 {
     fill: url(#SVGID_5_);
 }
 
-.st16 {
+.encounter-st-16 {
     fill: #244FFD;
 }
 
-.st17 {
+.encounter-st-17 {
     fill: url(#SVGID_6_);
 }
 
-.st18 {
+.encounter-st-18 {
     fill: #2D57FD;
 }
 
-.st19 {
+.encounter-st-19 {
     fill: url(#SVGID_7_);
 }
 
-.st20 {
+.encounter-st-20 {
     fill: #325AFC;
 }
 
-.st21 {
+.encounter-st-21 {
     fill: url(#SVGID_8_);
 }
 
-.st22 {
+.encounter-st-22 {
     fill: #385FFC;
 }
 
-.st23 {
+.encounter-st-23 {
     fill: url(#SVGID_9_);
 }
 
-.st24 {
+.encounter-st-24 {
     fill: #3D63FC;
 }
 
-.st25 {
+.encounter-st-25 {
     fill: url(#SVGID_10_);
 }
 
-.st26 {
+.encounter-st-26 {
     fill: #4065FC;
 }
 
-.st27 {
+.encounter-st-27 {
     fill: url(#SVGID_11_);
 }
 
-.st28 {
+.encounter-st-28 {
     fill: #466AFB;
 }
 
-.st29 {
+.encounter-st-29 {
     fill: url(#SVGID_12_);
 }
 
-.st30 {
+.encounter-st-30 {
     fill: #4E70FB;
 }
 
-.st31 {
+.encounter-st-31 {
     fill: url(#SVGID_13_);
 }
 
-.st32 {
+.encounter-st-32 {
     fill: #5878FA;
 }
 
-.st33 {
+.encounter-st-33 {
     fill: url(#SVGID_14_);
 }
 
-.st34 {
+.encounter-st-34 {
     fill: #6281FA;
 }
 
-.st35 {
+.encounter-st-35 {
     fill: url(#SVGID_15_);
 }
 
-.st36 {
+.encounter-st-36 {
     fill: #6683FA;
 }
 
-.st37 {
+.encounter-st-37 {
     fill: url(#SVGID_16_);
 }
 
-.st38 {
+.encounter-st-38 {
     fill: #6E8AF9;
 }
 
-.st39 {
+.encounter-st-39 {
     fill: url(#SVGID_17_);
 }
 
-.st40 {
+.encounter-st-40 {
     fill: #7A93F8;
 }
 
-.st41 {
+.encounter-st-41 {
     fill: url(#SVGID_18_);
 }
 
-.st42 {
+.encounter-st-42 {
     fill: #8199F8;
 }
 
-.st43 {
+.encounter-st-43 {
     fill: url(#SVGID_19_);
 }
 
-.st44 {
+.encounter-st-44 {
     fill: #8BA1F8;
 }
 
-.st45 {
+.encounter-st-45 {
     fill: url(#SVGID_20_);
 }
 
-.st46 {
+.encounter-st-46 {
     fill: #8FA4F7;
 }
 
-.st47 {
+.encounter-st-47 {
     fill: #98ABF7;
 }
 
-.st48 {
+.encounter-st-48 {
     fill: url(#SVGID_21_);
 }
 
-.st49 {
+.encounter-st-49 {
     fill: #9FB0F6;
 }
 
-.st50 {
+.encounter-st-50 {
     fill: url(#SVGID_22_);
 }
 
-.st51 {
+.encounter-st-51 {
     fill: #A8B8F6;
 }
 
-.st52 {
+.encounter-st-52 {
     fill: url(#SVGID_23_);
 }
 
-.st53 {
+.encounter-st-53 {
     fill: url(#SVGID_24_);
 }
 
-.st54 {
+.encounter-st-54 {
     fill: url(#SVGID_25_);
 }
 
-.st55 {
+.encounter-st-55 {
     fill: #BBC7F5;
 }
 
-.st56 {
+.encounter-st-56 {
     fill: url(#SVGID_26_);
 }
 
-.st57 {
+.encounter-st-57 {
     fill: url(#SVGID_27_);
 }
 
-.st58 {
+.encounter-st-58 {
     fill: url(#SVGID_28_);
 }
 
-.st59 {
+.encounter-st-59 {
     fill: #CCD4F4;
 }
 
-.st60 {
+.encounter-st-60 {
     fill: url(#SVGID_29_);
 }
 
-.st61 {
+.encounter-st-61 {
     fill: #D7DDF3;
 }
 
-.st62 {
+.encounter-st-62 {
     fill: url(#SVGID_30_);
 }
 
-.st63 {
+.encounter-st-63 {
     fill: #DDE1F3;
 }
 
-.st64 {
+.encounter-st-64 {
     fill: url(#SVGID_31_);
 }
 
-.st65 {
+.encounter-st-65 {
     fill: #E6E8F3;
 }
