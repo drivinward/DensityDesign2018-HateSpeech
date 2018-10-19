@@ -8,8 +8,7 @@
 }
 
 .social-disappear, .social-all {
-    transition: opacity calc(var(--a-transition)/1.5) cubic-bezier(.65, 0, .15, 1);
-    transition-duration: .5s; 
+    transition: opacity .3s cubic-bezier(.65, 0, .15, 1);   
 }
 
 .st3 {
