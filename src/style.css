@@ -18,6 +18,8 @@
   -webkit-font-feature-settings: "kern" on;
   -ms-font-feature-settings: "kern" on;
   -o-font-feature-settings: "kern" on;
+
+  --dot-size: 50px;
 }
 
 html,
@@ -32,6 +34,38 @@ a {
   text-decoration: none;
   color: var(--c-1);
 }
+<<<<<<< HEAD
+=======
+
+/* a::after {
+  position: relative;
+  display: block;
+  content: "";
+  height: 1px;
+  bottom: 0px;
+
+  margin: 0 auto;
+  right: 0;
+  width: 0%;
+  background: var(--c-1);
+
+  -o-transition: var(--a-transition) var(--bezier);
+  -ms-transition: var(--a-transition) var(--bezier);
+  -moz-transition: var(--a-transition) var(--bezier);
+  -webkit-transition: var(--a-transition) var(--bezier);
+  transition: var(--a-transition) var(--bezier);
+}
+a:hover:after {
+  width: 120%;
+  right: 10%;
+
+  -o-transition: var(--a-transition) var(--bezier);
+  -ms-transition: var(--a-transition) var(--bezier);
+  -moz-transition: var(--a-transition) var(--bezier);
+  -webkit-transition: var(--a-transition) var(--bezier);
+  transition: var(--a-transition) var(--bezier);
+} */
+>>>>>>> hateNames_section
 
 .toc {
   position: fixed;
@@ -277,6 +311,7 @@ p .highlighted {
   .toc.summon {
     right: calc(var(--spacing) * 2);
   }
+<<<<<<< HEAD
   .section-container {
     grid-template-columns: 1fr;
   }
@@ -293,3 +328,8 @@ p .highlighted {
     display: block;
   }
 }
+=======
+}
+
+/* La parte di Nic */
+>>>>>>> hateNames_section
