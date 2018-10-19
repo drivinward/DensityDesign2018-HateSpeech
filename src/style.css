@@ -367,13 +367,16 @@ svg {
 
 
 @media (max-width: 1024px) {
+  :root {
+    --spacing: 16px;
+  }
   .toc {
     right: -400px;
   }
   .toc.summon {
     right: calc(var(--spacing) * 2);
   }
-  .section-heading {
+  /* .section-heading {
     display: block;
     margin: var(--spacing);
     max-width: 500px;
@@ -384,5 +387,5 @@ svg {
   }
   .section-graph {
     display: block;
-  }
+  } */
 }
