@@ -83,7 +83,7 @@ for (i = 0; i < els.length; i++) {
 }
 
 // animate the wave dots
-var norm = 1;
+var norm = 0;
 setTimeout(function() {
   var el = document.getElementsByClassName("hide")[0];
   el.classList.remove("hide");
@@ -137,22 +137,23 @@ function tocTitles() {
 
   var li;
   // insieme di tutte le sezioni con testo
-  var anchor = document.getElementsByClassName("text-section");
+  var anchor = document.getElementsByClassName("narrative-section");
 
   for (i = 0; i < liTxt.length; i++) {
     li = document.createElement("li");
     // elemento link da inserire dentro ogni 'li'
-    h = document.createElement("a");
+    a = document.createElement("a");
     // setta il collegamento di ogni 'a'
     where.push(anchor[i].id);
-    h.href = "#" + where[i];
+    a.href = "#" + where[i];
     // prende il primo elemento figlio di 'section-title', cioè i titoli delle sezioni
-    h.innerHTML = liTxt[i].childNodes[1].innerHTML;
+    a.innerHTML = liTxt[i].childNodes[1].innerHTML;
+    console.log(a);
     // inserisce il 'li' in 'ul'
     ul.appendChild(li);
     // inserisce il collegamento 'a' in 'li'
-    li.appendChild(h);
-    // scrivere funzione per ascoltare il click sui 'li' ed animare scroll verso sezione relativa
+    li.appendChild(a);
+    // funzione per ascoltare il click sui 'li' ed animare scroll verso sezione relativa
     // li.addEventListener("click", function () {
     //     scrollTo(document.body, sectionHeights[i], 600);
     //     console.log(where[i]);
@@ -168,11 +169,11 @@ function tocTitles() {
 }
 
 var sectionHeights = [];
-var sections = document.getElementsByClassName("text-section");
+var sections = document.getElementsByClassName("narrative-section");
 
 function calcHeights() {
-for (i = 0; i < sections.length; i++) {
-  var height = sections[i].offsetTop;
+  for (i = 0; i < sections.length; i++) {
+    var height = sections[i].offsetTop;
     sectionHeights.push(height);
     // console.log(height);
   }
@@ -189,12 +190,16 @@ function updateIndicator() {
 }
 
 function updateSection(e) {
-  var doc = document.documentElement;
-  var top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0) + (window.innerHeight / 2);
-  // var top = (window.pageYOFfset / window.innerHeight) / 2;
-  // console.log(window.innerHeight);
 
   calcHeights();
+
+  var doc = document.documentElement;
+  var top =
+    (window.pageYOffset || doc.scrollTop) -
+    (doc.clientTop || 0) +
+    window.innerHeight / 2;
+  // var top = (window.pageYOFfset / window.innerHeight) / 2;
+  // console.log(window.innerHeight);
 
   for (i = 0; i < sections.length; i++) {
     var currSectionHeight = sectionHeights[i];
@@ -222,7 +227,7 @@ function updateSection(e) {
       } else {
         oldLi.classList.remove("current");
       }
-      currLi.classList.add("current");
+      // currLi.classList.add("current");
       // console.log(currLi);
     } else if (top <= currSectionHeight && top > oldSectionHeight) {
       oldLi.classList.add("current");
@@ -256,7 +261,7 @@ mapScene.on("enter", function(event) {
 mapScene.on("leave", function(event) {
   // console.log("Scene left.");
   document.getElementById("section-1").classList.remove("bg", "dark");
-  document.getElementById('main-question-paragraph').classList.remove("dark");
+  document.getElementById("main-question-paragraph").classList.remove("dark");
   document.getElementById("main-question-paragraph").style.marginBottom = "0";
   document.getElementById("wave").classList.remove("focus");
   numAnim.update(0);
@@ -272,7 +277,7 @@ var wipeAnimation = new TimelineMax().fromTo(
   { x: "-100%", ease: Linear.easeNone }
 ); // in from left
 
-// console.log(document.getElementById('graph-scroller'));
+
 
 var timelineScene = new ScrollMagic.Scene({
   triggerElement: "#section-3",
@@ -306,7 +311,7 @@ document.addEventListener("mousemove", e => {
 toc.addEventListener("mouseleave", e => {
   toc.classList.remove("summon");
   line.classList.remove("active");
-});
+})
 
 // /////////////////////////////////////////// //
 // ///////// GESTIONE EVENTI PAGINA ////////// //

@@ -16,30 +16,30 @@ body {
     background-color: var(--c-1);
 }
 
-h1.title {
+h1.hate-title {
     font-family:"IBM Plex";
     font-size: 30px;
     letter-spacing: .5px;
-    color: blue;
-    border: 3px solid blue;
+    color: var(--c-2);
+    border: var(--border) var(--c-2);
     padding: 5px 20px;
     /* padding: 0px 35px; */
     line-height: 1.4;
 }
 
 .tooltip-content {
-    color: blue;
+    color: var(--c-2);
 }
 
-.dot {
+span.dot {
     height: var(--dot-size);
     width: var(--dot-size);
     /* background-color: #e05363; */
-    border: 1.5px solid blue;
+    border: var(--border) var(--c-2);
     opacity: .45;
-    border-radius: 50%;
+    border-radius: 100%;
     display: inline-block;
-    margin: 50px 40px;
+    margin: var(--spacing);
 
     /* cursor: pointer; */
     z-index: 1;
@@ -55,7 +55,7 @@ h1.title {
     /* transform: scale(1); */
     opacity: .7;
     z-index: 10;
-    border: 2px solid blue;
+    border: 2px solid var(--c-2);
     /* #e05363; */
 
     transition: opacity calc(var(--a-transition)/1.5) cubic-bezier(.65, 0, .15, 1),
@@ -68,10 +68,10 @@ h1.title {
                 transform calc(var(--a-transition)/1.5) cubic-bezier(.65, 0, .15, 1);
     transition-duration: .35s;
 
-    background-color: blue; */
+    background-color: var(--c-2); */
     opacity: 1;
 
-    /* border: 1px solid blue; */
+    /* border: 1px solid var(--c-2); */
     /* transform: scale(1.2); */
     z-index: 100;
 }
@@ -82,7 +82,7 @@ h1.title {
     transition-duration: .35s;
     /* border: 1px solid #e05363; */
     /* background-color: rgba(224, 83, 99, .8); */
-    background-color: blue;
+    background-color: var(--c-2);
     opacity: .7;
     z-index: 10;
 }
@@ -99,7 +99,7 @@ h1.title {
     height: auto;
     max-width: 300px;
 
-    border: 3px solid blue;
+    border: var(--border) var(--c-2);
 
     color: var(--c-2);
     background: var(--c-1);
@@ -136,11 +136,10 @@ h1.title {
 
 
 #hate-words {
-    display: inline-block;
-    margin: auto;
-    margin-left: 50%;
-    transform: translate(-50%, 0%);
-    
+    display: block;
+    max-width: 860px;
+    margin: 0 auto;
+    padding-bottom: calc(var(--spacing) * 5);
 }
 
 #description-container {
