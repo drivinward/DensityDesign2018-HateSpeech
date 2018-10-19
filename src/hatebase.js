@@ -78,8 +78,8 @@ function sameCategoriesOn() {
 
     //------Cosa scrive nell'hate-word-container
     hateWord.innerHTML = 
-                        `<h1 class="title">
-                         ${this.getAttribute('data-name')}
+                        `<h1 class="hate-title">
+                            ${this.getAttribute('data-name')}
                         </h1>`
                                 // <br>
                                 // <span style="line-height: 1.6">
