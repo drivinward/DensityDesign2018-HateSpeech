@@ -1,8 +1,6 @@
 // questa è la variabile globale dove andiamo a salvare il risultato dell'interpolazione del volume/percentuale
 // var globalResult = 0;
 
-var sectionHeights = [];
-var sections = document.getElementsByClassName("container");
 var mouseX, mouseY;
 var toc = document.getElementsByClassName("toc")[0];
 // contiene tutti i titoli delle sezioni
@@ -16,7 +14,6 @@ var delay = 500;
 // var updateInterval = 25;
 
 var mp3 = document.getElementById("mp3");
-mp3.volume = 1;
 
 // function to map some range of values to another range of values
 function mapper(num, in_min, in_max, out_min, out_max) {
@@ -47,6 +44,7 @@ function generateDots() {
   }
 }
 
+// animating percentage values and waveform volume
 var options_numAnim = {
   suffix: "%"
 };
@@ -58,6 +56,7 @@ var numAnim = new CountUp("map-percentage", 0, 0, 0, 3, options_numAnim);
 //     console.error(numAnim.error);
 // }
 
+// funzioni che prendono la percentuale dei dati nella mappa – grafico 1
 var els = document.getElementsByClassName("graph1-area");
 // console.log(els);
 var oldp, newp, pct;
@@ -66,7 +65,7 @@ for (i = 0; i < els.length; i++) {
     newp = this.getAttribute("data-percentage");
     // norm controlla l'ampiezza dell'onda nella funzione *dalle un cazzo di nome però*
     // norm = newp / 100;
-    console.log(norm);
+    // console.log(norm);
     pct = document.getElementById("map-percentage");
     mp3.play();
 
@@ -115,17 +114,17 @@ setTimeout(function() {
 //     // history.replaceState(null, null, url);    // Don't like hashes. Changing it back.
 // }
 
-function scrollTo(element, to, duration) {
-  if (duration <= 0) return;
-  var difference = to - element.scrollTop;
-  var perTick = (difference / duration) * 10;
+// function scrollTo(element, to, duration) {
+//   if (duration <= 0) return;
+//   var difference = to - element.scrollTop;
+//   var perTick = (difference / duration) * 10;
 
-  setTimeout(function() {
-    element.scrollTop = element.scrollTop + perTick;
-    if (element.scrollTop === to) return;
-    scrollTo(element, to, duration - 10);
-  }, 10);
-}
+//   setTimeout(function() {
+//     element.scrollTop = element.scrollTop + perTick;
+//     if (element.scrollTop === to) return;
+//     scrollTo(element, to, duration - 10);
+//   }, 10);
+// }
 
 // prende tutti i titoli delle sezioni h1 e h2 con classe 'section-title'
 // e li inserisce come tag <li> nell'indice dei contenuti
@@ -162,36 +161,42 @@ function tocTitles() {
     // valore dato all'inizio
     if (liTxt[i] == liTxt[0]) {
       li.classList.add("current");
+      //   console.log(li);
     }
   }
   // console.log(lis);
 }
 
+var sectionHeights = [];
+var sections = document.getElementsByClassName("text-section");
+
 function calcHeights() {
-  for (i = 0; i < sections.length; i++) {
-    var height = sections[i].offsetTop;
+for (i = 0; i < sections.length; i++) {
+  var height = sections[i].offsetTop;
     sectionHeights.push(height);
     // console.log(height);
   }
+  // console.log(sections);
   // console.log(sectionHeights);
 }
 
 function updateIndicator() {
   var indicator = document.getElementById("current-line");
-  var currentLiHeight = document.getElementsByClassName("current")[0].getBoundingClientRect().top;
-  console.log(currentLiHeight.top);
+  var currentLi = document.getElementsByClassName("current")[0];
+  var currentLiHeight = currentLi.getBoundingClientRect().top;
+  // console.log(currentLiHeight.top);
   indicator.style.top = currentLiHeight;
 }
+
 function updateSection(e) {
   var doc = document.documentElement;
-  var top =
-    (window.pageYOffset || doc.scrollTop) -
-    (doc.clientTop || 0) +
-    window.innerHeight / 2;
+  var top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0) + (window.innerHeight / 2);
   // var top = (window.pageYOFfset / window.innerHeight) / 2;
   // console.log(window.innerHeight);
 
-  for (i = 0; i < sectionHeights.length; i++) {
+  calcHeights();
+
+  for (i = 0; i < sections.length; i++) {
     var currSectionHeight = sectionHeights[i];
     var nextSectionHeight = sectionHeights[i + 1];
     var oldSectionHeight = sectionHeights[i - 1] || sectionHeights[0];
@@ -209,22 +214,23 @@ function updateSection(e) {
       (top >= currSectionHeight && top < document.body.scrollHeight)
     ) {
       // ora sai in quale sezione sei nel documento
-      // console.log('current section: ' + currSection.getAttribute('id') + '— next section: ' + nextSection.getAttribute('id'));
+      //   console.log('current section: ' + currSection.getAttribute('id') + '— next section: ' + nextSection.getAttribute('id'));
 
       // ora bisogna selezionare il 'li' corrispondente e mettergli la classe 'current'
       if (typeof oldLi === "undefined") {
-        document
-          .querySelectorAll(".toc > ul > li")[0]
-          .classList.remove("current");
+        document.querySelectorAll(".toc > ul > li")[0].classList.add("current");
       } else {
         oldLi.classList.remove("current");
       }
       currLi.classList.add("current");
+      // console.log(currLi);
     } else if (top <= currSectionHeight && top > oldSectionHeight) {
       oldLi.classList.add("current");
       currLi.classList.remove("current");
+      oldLi = currLi;
     }
   }
+  updateIndicator();
 }
 
 // ////////////////// START ////////////////// //
@@ -250,7 +256,7 @@ mapScene.on("enter", function(event) {
 mapScene.on("leave", function(event) {
   // console.log("Scene left.");
   document.getElementById("section-1").classList.remove("bg", "dark");
-  // document.getElementById('main-question-paragraph').classList.remove("dark");
+  document.getElementById('main-question-paragraph').classList.remove("dark");
   document.getElementById("main-question-paragraph").style.marginBottom = "0";
   document.getElementById("wave").classList.remove("focus");
   numAnim.update(0);
@@ -271,11 +277,11 @@ var wipeAnimation = new TimelineMax().fromTo(
 var timelineScene = new ScrollMagic.Scene({
   triggerElement: "#section-3",
   triggerHook: 0,
-  duration: '200%'
+  duration: "200%"
 })
   .setPin("#section-3")
   .setTween(wipeAnimation)
-//   .addIndicators()
+  //   .addIndicators()
   .addTo(timelineController);
 
 timelineScene.on("enter", function(event) {
@@ -287,7 +293,6 @@ timelineScene.on("enter", function(event) {
 // /////////////////// END /////////////////// //
 
 // apertura/chiusura indice dei contenuti
-var toc = document.getElementsByClassName("toc")[0];
 var line = document.getElementById("current-line");
 document.addEventListener("mousemove", e => {
   mouseX = e.clientX / window.innerWidth;
@@ -296,29 +301,22 @@ document.addEventListener("mousemove", e => {
   if (mouseX > 0.85) {
     toc.classList.add("summon");
     line.classList.add("active");
-  } /* else  {
-            toc.classList.remove('summon');
-            line.classList.remove('active');
-        } */
+  }
 });
 toc.addEventListener("mouseleave", e => {
   toc.classList.remove("summon");
   line.classList.remove("active");
 });
 
-
 // /////////////////////////////////////////// //
 // ///////// GESTIONE EVENTI PAGINA ////////// //
 // /////////////////////////////////////////// //
 
-window.onload = e => {
-  calcHeights();
+window.onload = function(e) {
+  generateDots();
   tocTitles();
   updateSection(e);
-  updateIndicator();
-  generateDots();
 };
 document.addEventListener("scroll", e => {
   updateSection(e);
-  updateIndicator();
 });

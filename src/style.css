@@ -70,7 +70,7 @@ span#current-line {
   top: 50%;
   right: calc(var(--spacing) * 0);
   position: fixed;
-  /* content: ""; */
+  z-index: 999;
   background-color: var(--c-3);
   mix-blend-mode: normal;
   transform: rotateZ(90deg);
