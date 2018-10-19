@@ -101,16 +101,16 @@ function sameCategoriesOn() {
 
     //------Cosa scrive nel tooltip
     tooltip.innerHTML =`
-                        <span>
+                        <span class="tooltip-content">
                             Category:  ${this.getAttribute('data-category')}
                         </span>
                         <br>
-                        <span style="line-height: 1.6">
+                        <span class="tooltip-content" style="line-height: 1.6">
                             Offensiveness: ${this.getAttribute('data-offensiveness')}
                         </span>
                         <br>
                         <br>
-                        <span>
+                        <span class="tooltip-content">
                             ${this.getAttribute('data-description')}
                         </span>
                         `
