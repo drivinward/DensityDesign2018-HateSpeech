@@ -1,11 +1,3 @@
-// document.addEventListener('mousein', (e) => {
-//     curvesArray.classList.add("appear");
-// }, false);
-
-// document.addEventListener('mouseout', (e) => {
-//     curvesArray.classList.remove("appear");
-// }, false);
-
 var curvesArray = document.querySelectorAll('.graph-curve');
 var graphContainer = document.getElementById('curve-graph-container');
 
@@ -48,7 +40,6 @@ function offsetOff() {
         curves[i].style.transform = "translateX(" + x + "px)";
         x += 9;
     }
-    
 }
 
 function offsetOn() {
