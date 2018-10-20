@@ -28,14 +28,14 @@ document.addEventListener("mousemove", function(e) {
 
 // apertura/chiusura indice dei contenuti
 var line = document.getElementById("current-line");
-document.addEventListener("mousemove", function(e) {
-  mouseX = e.clientX / window.innerWidth;
-  // mouseY = e.clientY / window.innerHeight;
-  // console.log(mouseX);
-  if (mouseX > 0.85) {
+line.addEventListener("mousemove", function(e) {
+  // mouseX = e.clientX / window.innerWidth;
+  // // mouseY = e.clientY / window.innerHeight;
+  // // console.log(mouseX);
+  // if (mouseX > 0.85) {
     toc.classList.add("summon");
     line.classList.add("active");
-  }
+  // }
 });
 toc.addEventListener("mouseleave", function() {
   toc.classList.remove("summon");
@@ -255,21 +255,19 @@ function updateSection() {
 var waveformController = new ScrollMagic.Controller();
 var mapScene = new ScrollMagic.Scene({
   triggerElement: "#map-percentage",
-  triggerHook: 0.3,
+  triggerHook: 0.235,
   duration: "200%"
 })
   .setPin("#main-question") // pins the element for the the scene's duration
   .addTo(waveformController); // assign the scene to the controller
 
 mapScene.on("enter", function(event) {
-  // console.log("Scene started.");
   document.getElementById("section-1").parentElement.parentElement.classList.add("bg", "dark");
   document.getElementById("main-question-paragraph").classList.add("dark");
   document.getElementById("wave").classList.add("focus");
   numAnim.update(100);
 });
 mapScene.on("leave", function(event) {
-  // console.log("Scene left.");
   document.getElementById("section-1").parentElement.parentElement.classList.remove("bg", "dark");
   document.getElementById("main-question-paragraph").classList.remove("dark");
   document.getElementById("main-question-paragraph").style.marginBottom = "0";
@@ -277,8 +275,8 @@ mapScene.on("leave", function(event) {
   numAnim.update(0);
 });
 
-var timelineController = new ScrollMagic.Controller();
 
+var timelineController = new ScrollMagic.Controller();
 // define movement of panels
 var wipeAnimation = new TimelineMax().fromTo(
   "#timeline",
@@ -288,18 +286,18 @@ var wipeAnimation = new TimelineMax().fromTo(
 ); // in from left
 
 var timelineScene = new ScrollMagic.Scene({
-  triggerElement: "#section-3",
+  triggerElement: "#section-2-2",
   triggerHook: 0,
   duration: "200%"
 })
   .setPin("#section-3-pin")
   .setTween(wipeAnimation)
-  //   .addIndicators()
+  // .addIndicators()
   .addTo(timelineController);
 
 timelineScene.on("enter", function(event) {
-  // console.log("entered");
-  document.getElementById("section-3-pin").style.marginTop = "calc(var(--spacing) * 2)";
+  console.log("entered");
+  // document.getElementById("section-3-pin").style.marginTop = "calc(var(--spacing) * 2)";
 });
 
 

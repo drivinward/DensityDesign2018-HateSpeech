@@ -44,7 +44,7 @@ body {
   right: -50vw;
   /* background-color: var(--c-2); */
   transform: translate(-0%, -50%);
-  z-index: 10;
+  z-index: 20;
   mix-blend-mode: difference;
   text-align: right;
   transition: all calc(var(--a-transition) / 1) ease-out;
@@ -105,6 +105,7 @@ h2 {
 }
 p {
   font-family: "IBM Plex Light";
+  margin-bottom: var(--spacing);
 }
 a {
   text-decoration: none;
@@ -158,6 +159,7 @@ svg {
   position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-gap: calc(var(--spacing) / 1.5);
   box-sizing: border-box;
   color: var(--c-2);
   margin: calc(var(--spacing) * 2) auto calc(var(--spacing) * 1) auto;
@@ -207,7 +209,7 @@ svg {
 }
 .section-heading.sub .section-paragraph p {
   margin-left: calc(var(--spacing) / 2);
-  margin-top: calc(var(--spacing) / -2);
+  margin-top: calc(var(--spacing) * -1.1);
   max-width: 450px;
   background-color: var(--c-1);
 }
@@ -245,8 +247,8 @@ svg {
   z-index: 5;
 }
 .section-heading.focus .section-paragraph p {
-  margin-left: 24px;
-  margin-top: -12px;
+  margin-left: calc(var(--spacing) / 2);
+  margin-top: calc(var(--spacing) * -1.1);
   max-width: 450px;
   color: var(--c-1);
   border: var(--border) var(--c-1);
@@ -258,32 +260,26 @@ svg {
 
 
 
-.narrative-section.dark {
-  background-color: var(--c-2);
-}
 .narrative-section.dark > .section-heading.sub > .section-title {
   color: var(--c-2);
 }
-
 .section-heading.dark .section-title {
   z-index: 10;
 }
 .section-heading.dark .section-title h2 {
   display: inline-block;
-  background-color: var(--c-2);
+  background-color: var(--c-1);
   border: var(--border) var(--c-1);
-  color: var(--c-1);
+  color: var(--c-2);
 }
 .section-heading.dark .section-paragraph {
   z-index: 5;
 }
 .section-heading.dark .section-paragraph p {
-  margin-left: 24px;
-  margin-top: -12px;
   max-width: 450px;
   color: var(--c-1);
   border: var(--border) var(--c-1);
-  background-color: var(--c-2)
+  background-color: var(--c-2);
 }
 .section-title.dark.highlighted h2 {
   color: var(--c-2);
@@ -340,14 +336,30 @@ svg {
 .source-container {
   /* max-width: 860px; */
   width: 100%;
+  max-width: 1024px;
   display: block;
-  text-align: left;
+  position: relative;
+  text-align: right;
+  box-sizing: border-box;
+  margin: 0 auto;
 }
-.source-text {
+.source-text a {
   color: var(--c-2);
-  display: block;
-  text-align: left;
   margin: var(--spacing) auto 0 auto;
+
+  font-family: 'IBM Plex Mono';
+
+  font-size: .8rem;
+  text-decoration-color: var(--c-2);
+  text-decoration-line: underline;
+}
+.source-text.dark a {
+  color: var(--c-1);
+  text-decoration-color: var(--c-1);
+}
+.source-text.focus a {
+  color: var(--focus);
+  text-decoration-color: var(--focus);
 }
 
 .more-info {
@@ -379,9 +391,18 @@ svg {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 20px;
+  align-items: baseline;
+  justify-items: center;
   margin: calc(var(--spacing)*1) auto;
   height: 75%;
   max-width: 860px;
+}
+
+#categories-graph {
+  /* max-height: 75vh; */
+  position: relative;
+  margin: 0 auto;
+  display: block;
 }
 
 

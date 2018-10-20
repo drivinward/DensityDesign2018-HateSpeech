@@ -11,6 +11,8 @@
     transition: opacity .3s cubic-bezier(.65, 0, .15, 1);   
 }
 
+
+
 .fb-ball {
     fill: #650499;
 }
@@ -27,13 +29,14 @@
     fill: #EEEEEE;
 }
 
+
+
 .fb-paths {
     fill: none;
     stroke: #650499;
     stroke-width: 1.6648;
     stroke-miterlimit: 10;
 }
-
 
 .tw-paths {
     fill: none;
@@ -48,6 +51,8 @@
     stroke-width: 1.6648;
     stroke-miterlimit: 10;
 }
+
+
 
 .path-100 {
     stroke-dasharray: 1000;

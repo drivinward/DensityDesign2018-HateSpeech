@@ -17,6 +17,8 @@
         <link rel="stylesheet" type="text/css" href="src/hatebase.css">
         <link rel="stylesheet" type="text/css" href="src/timeline.css">
         <link rel="stylesheet" type="text/css" href="src/filtering.css">
+        <link rel="stylesheet" type="text/css" href="src/categories_graph.css">
+        <link rel="stylesheet" type="text/css" href="src/categories_alluvial.css">
 </head>
 
 <body>
@@ -42,16 +44,7 @@
                                 <h1>The&nbsp;dark&nbsp;side of&nbsp;free&nbsp;speech</h1>
                         </div>
                         <div class="section-paragraph">
-                                <p>
-                                        Free speech is one of the most important humans rights and one of the most
-                                        misunderstood. The&nbsp;preservation&nbsp;of&nbsp;free speech right is the
-                                        result of the
-                                        difficult equilibrium with what is done to contain hate.
-                                        &ldquo;Hate&nbsp;speech&rdquo; cannot be easily defined, but
-                                        by&nbsp;agreement it expresses hate and intolerance towards a person or a
-                                        group. The consequenses can range from mere
-                                        bullying or intimidation to actual violent events.
-                                </p>
+                                <p>Free speech is one of the most important humans rights but it has a difficult equilibrium when people want to contain and prevent hate. Indeed, hate speech cannot be easily defined, but by agreement it expresses loathing and intolerance: the consequences can range from mere bullying or intimidation to actual violent events.</p>
                         </div>
                 </div>
                 <div class="graph-container" style="margin-bottom: 0px;">
@@ -2355,35 +2348,42 @@
                                 </g>
                                 <g class="graph1-area" data-percentage="46">
                                         <circle id="O-Africa_1_" class="graph1-oval" cx="478.9" cy="339.6" r="32.5" />
-                                        <text transform="matrix(1 0 0 1 458 345)" class="graph1-label">Africa</text>
+                                        <text transform="matrix(1 0 0 1 453 346)" class="graph1-label">Africa</text>
                                 </g>
                                 <g class="graph1-area" data-percentage="50">
                                         <circle id="O-Asia_1_" class="graph1-oval" cx="677.9" cy="168.6" r="46.5" />
-                                        <text transform="matrix(1 0 0 1 662 174)" class="graph1-label">Asia</text>
+                                        <text transform="matrix(1 0 0 1 659 176)" class="graph1-label">Asia</text>
                                 </g>
                                 <g class="graph1-area" data-percentage="43">
                                         <circle id="O-MiddleEast_1_" class="graph1-oval" cx="542.4" cy="263.1" r="21" />
-                                        <text transform="matrix(1 0 0 1 503 269)" class="graph1-label">Middle
+                                        <text transform="matrix(1 0 0 1 490 269)" class="graph1-label">Middle
                                                 East</text>
                                 </g>
                                 <g class="graph1-area" data-percentage="71">
                                         <circle id="O-US_1_" class="graph1-oval" cx="180.9" cy="215.6" r="97.5" />
-                                        <text transform="matrix(1 0 0 1 132 225)" class="graph1-label">United
+                                        <text transform="matrix(1 0 0 1 120 223)" class="graph1-label">United
                                                 States</text>
                                 </g>
                                 <g class="graph1-area" id="eu" data-percentage="65">
                                         <circle id="O-Europe_1_" class="graph1-oval" cx="436.4" cy="204.1" r="63" />
-                                        <text transform="matrix(1 0 0 1 412 209)" class="graph1-label">Europe</text>
+                                        <text transform="matrix(1 0 0 1 408 212)" class="graph1-label">Europe</text>
                                 </g>
                                 <g class="graph1-area" data-percentage="69">
                                         <circle id="O-LatinAmerica_1_" class="graph1-oval" cx="257.4" cy="404.1" r="83" />
-                                        <text transform="matrix(1 0 0 1 212 410)" class="graph1-label">Latin
+                                        <text transform="matrix(1 0 0 1 197 413)" class="graph1-label">Latin
                                                 America</text>
                                 </g>
                         </svg>
                         <div style="display: block; margin: -40px auto 0 auto; text-align: center;">
                                 <span id="map-percentage"></span><br>
                                 <span style="color: var(--c-2)"> of people feel they can express their opinion</span>
+                        </div>
+                        <div class="source-container">
+                                <div class="source-text">
+                                        <a href="http://www.pewglobal.org/2015/11/18/global-support-for-principle-of-free-expression-but-opposition-to-some-forms-of-speech/" target="blank">
+                                                Source
+                                        </a>
+                                </div>
                         </div>
                 </div>
                 <div id="main-question">
@@ -2404,7 +2404,7 @@
                                                 line {
                                                         fill: none;
                                                         stroke: var(--c-3);
-                                                        stroke-width: 1.5;
+                                                        stroke-width: 2;
                                                         stroke-miterlimit: 10;
                                                         stroke-linecap: round;
                                                 }
@@ -2421,10 +2421,10 @@
                                         </style>
                                 </svg>
                         </div>
-                        <p id="main-question-paragraph" style="text-align: center; padding: var(--spacing) 0">
+                        <h2 id="main-question-paragraph" style="text-align: center; padding: var(--spacing) 0">
                                 Where should we draw the line<br>
                                 between free speech and hate speech?
-                        </p>
+                        </h2>
                 </div>
         </div>
 
@@ -2435,15 +2435,25 @@
         <div class="narrative-section">
                 <div class="section-heading">
                         <div class="section-title" id="section-2">
-                                <h1>EU Steps for&nbsp;fighting online&nbsp;hate&nbsp;speech</h1>
+                                <h1>Filtering on social networks</h1>
+                        </div>
+                </div>
+                <div class="section-heading sub">
+                        <div class="section-title" id="section-2-1">
+                                <h2>EU Steps to&nbsp;fight online&nbsp;hate&nbsp;speech</h2>
                         </div>
                         <div class="section-paragraph">
                                 <p>
                                         Many EU countries believe that hate speech might be prevented by restricting
-                                        free speech. One of
-                                        the hardest battleground is online, because of its characteristics of
-                                        permanence, transnationality,
-                                        unpredictability and&nbsp;anonymity.
+                                        free speech. One of the hardest battlegrounds is online, because of its
+                                        characteristics of permanence, transnationality, unpredictability and
+                                        anonymity.<br><br>
+                                        According to the European Union average published by the European Commission,
+                                        29% of the population was a conscious witness of online hate speech phenomena.
+                                        The social networks are among the main actors in the environment that are
+                                        required to manage and dominate this kind of problems, since 70% of the
+                                        European population has been on their platforms at least once and 44% uses them
+                                        daily.
                                 </p>
                         </div>
                 </div>
@@ -2451,8 +2461,7 @@
                         <div class="graph" id="curve-graph-container">
                                 <?xml version="1.0" encoding="utf-8"?>
                                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                        x="0px" y="0px" viewBox="0 0 1920 1080" style="enable-background:new 0 0 1920 1080;"
-                                        xml:space="preserve">
+                                        viewBox="600 200 600 900">
                                         <!-- <g id="y-axis">
                                                 <g>
                                                         <g>
@@ -3342,6 +3351,13 @@
                                 </svg>
                         </div>
                 </div>
+                <div class="source-container">
+                        <div class="source-text">
+                                <a href="https://ec.europa.eu/digital-single-market/en/news/europe-protects-countering-illegal-content-online" target="blank">
+                                        Source
+                                </a>
+                        </div>
+                </div>
         </div>
 
         <!--    ///////////////////////////    -->
@@ -3349,27 +3365,20 @@
         <!--    ///////////////////////////    -->
         <div class="narrative-section">
                 <div class="section-heading sub">
-                        <div class="section-title" id="section-3">
+                        <div class="section-title" id="section-2-2">
                                 <h2 style="display:none">The Code&nbsp;of&nbsp;Conduct</h2>
                                 <!-- serve per non scombinare scrollMagic -->
-                                <div id="section-3-pin">
+                                <div id="section-3-pin" style="background-color: var(--c-1)">
                                         <h2>The Code&nbsp;of&nbsp;Conduct</h2>
                                         <div class="section-paragraph">
-                                                <p>
-                                                        The IT Companies do not follow territorial legislations but
-                                                        role models -
-                                                        called policy - that make them proceed through the filtering
-                                                        process or the
-                                                        removal of improper contents from each platform. The most
-                                                        relevant in EU is
-                                                        the&nbsp;<span class="highlighted more-info">Code
-                                                                of&nbsp;Conduct</span>.
+                                                <p> The IT Companies have their own role models—called policies—that are of course influenced by laws in Europe. These policies regulate the filtering process or the removal of improper contents from each platform. The most relevant in the EU is the <span class="highlighted more-info">Code of&nbsp;Conduct</span> on countering illegal hate speech online”, that since its establishment has done 3 surveys and has published them in order to understand how IT Companies react to notifications of illegal hate speech.
                                                         <!-- /////////////// TO-DO /////////////// -->
                                                         <!-- Fai tooltip che mostra la definizione -->
                                                         <!-- ///////////////////////////////////// -->
                                                 </p>
+                                                <!-- It is a voluntary commitment presented by the European Commission with IT companies like Facebook, Twitter, YouTube. <br>
+                                                        It is applied on the already existing filtering policies in the various social networks and its aim is to make sure that the requests to remove content are assessed quickly.} -->
                                         </div>
-
                                         <div class="graph-container" id="graph-scroller-timeline" style="position: relative;">
                                                 <div id="timeline" style="position: relative; display: block;">
                                                         <?xml version="1.0" encoding="utf-8"?>
@@ -4312,6 +4321,13 @@
 
                                                 </div>
                                         </div>
+                                        <div class="source-container">
+                                                <div class="source-text">
+                                                        <a href="https://ec.europa.eu/digital-single-market/en/news/europe-protects-countering-illegal-content-online" target="blank">
+                                                                Source
+                                                        </a>
+                                                </div>
+                                        </div>
                                 </div>
                         </div>
 
@@ -4327,25 +4343,32 @@
                                 <h1>What&nbsp;are&nbsp;they filtering&nbsp;for?</h1>
                         </div>
                         <div id="sns" style="color: var(--c-1);">
-                                <div class="">
+                                <div>
                                         <h3>Twitter</h3>
-                                        <p>Freedom of expression means little if voices are silenced because people are
-                                                afraid to <span class="highlighted">speak up</span>. We do not tolerate
-                                                behavior that harasses, intimidates, or uses fear to silence another
-                                                person&apos;s voice. </p>
+                                        <p>We do not tolerate behavior that harasses, intimidates, or uses fear to silence another person’s voice. If you see something on Twitter that violates these rules, please report it to us.</p>
+                                        <div class="source-container">
+                                                <div class="source-text dark">
+                                                        <a href="https://help.twitter.com/en/rules-and-policies/hateful-conduct-policy" target="blank">Source</a><br>
+                                                </div>
+                                        </div>
                                 </div>
-                                <div class="">
+                                <div>
                                         <h3>Facebook</h3>
-                                        <p>Non permettiamo su Facebook discorsi di incitazione all'odio perché creano
-                                                un ambiente di <span class="highlighted">intimidazione</span> ed <span
-                                                        class="highlighted">esclusione</span> e, in alcuni casi,
-                                                possono promuovere violenza reale.</p>
+                                        <p>Hate Speech is not allowed on Facebook because it causes intimidation, exclusion and in some cases it can generate actual violence.</p>
+                                        <div class="source-container">
+                                                <div class="source-text dark">
+                                                        <a href="https://www.facebook.com/communitystandards/hate_speech" target="blank">Source</a><br>
+                                                </div>
+                                        </div>
                                 </div>
-                                <div class="">
+                                <div>
                                         <h3>YouTube</h3>
-                                        <p>We encourage free speech and try to defend your right to express <span class="highlighted">unpopular</span>
-                                                points of view, but we don't permit hate speech. There is a fine line
-                                                between what is and what is not considered to be hate speech.</p>
+                                        <p>We encourage free speech and try to defend your right to express unpopular points of view, but we don't permit hate speech. There is a fine line between what is and what is not considered to be hate speech.</p>
+                                        <div class="source-container">
+                                                <div class="source-text dark">
+                                                        <a href="https://support.google.com/youtube/answer/2801939?hl=en" target="blank">Source</a><br>
+                                                </div>
+                                        </div>                                
                                 </div>
                         </div>
                 </div>
@@ -4357,14 +4380,10 @@
         <div class="narrative-section">
                 <div class="section-heading sub">
                         <div class="section-title" id="section-5-1">
-                                <h1>The journey of a&nbsp;reported&nbsp;content</h1>
+                                <h1>The journey of a&nbsp;notification</h1>
                         </div>
                         <div class="section-paragraph">
-                                <p style="border: none;">
-                                        Two are the main important elements of effective filtering: the time of
-                                        assessment of the notifications by the moderator, and the effective decision
-                                        that establishes that a content is&nbsp;hateful&nbsp;or&nbsp;not.
-                                </p>
+                                <p style="border: none;">There are two main important elements of effective filtering: the time of assessment of the notifications and the effective decision which establishes if a content is hateful or not.</p>
                         </div>
                 </div>
                 <div class="section-heading sub" style="margin-top: 0;">
@@ -4372,37 +4391,39 @@
                                 <h2>How&nbsp;fast can&nbsp;it&nbsp;be?</h2>
                         </div>
                         <div class="section-paragraph sub">
-                                <p>
-                                        Le notifications fornite durante il terzo monitoraggio istituito dal European
-                                        Council vengono convogliate e analizzate con differenti tempistiche dai tre
-                                        social networks aderenti al code of conduct durante il periodo del survey.
-                                </p>
+                                <p>Time is important because the longer the hateful content stays available, the more damage it can inflict on the victims and empower the perpetrators. The third monitoring highlights the fact that IT Companies have different timings when it comes to assess notifications.<br><br>
+                                The notifications provided during the third monitoring, established by the European Council, are conveyed and analyzed with different timings by the three social networks adhering to the Code of Conduct during the survey period.</p>
                         </div>
                 </div>
-                <div class="graph-container">
-                        <!-- LA_LETTURA GOES DOWN HERE -->
-                        <img src="src/graphs/lettura_placeholder_y.png" style="max-width: 50%; margin: 0 auto; display: block;" />
-                        <!-- LA_LETTURA GOES UPPP HERE -->
+                <div class="source-container">
+                        <div class="source-text">
+                                <a href="http://ec.europa.eu/newsroom/just/document.cfm?doc_id=49286" target="blank">Source</a>
+                        </div>
                 </div>
+
         </div>
 
         <!--    /////////////////////////    -->
         <!--    SECTION 6 — DELETED RATIO    -->
         <!--    /////////////////////////    -->
-        <div class="narrative-section dark">
-                <div class="section-heading sub">
+        <div class="narrative-section bg dark">
+                <div class="section-heading sub dark">
                         <div class="section-title" id="section-6">
                                 <h2>How does it end?</h2>
                         </div>
                         <div class="section-paragraph">
-                                <p>
-                                        During the three monitorings, as the problem became more and more visible,
-                                        there had been a relatively increasing number of notifications that at the end
-                                        of theprocess have been actually removed.
-                                </p>
+                                <p>During the three monitorings, as the problem became more and more visible, there was
+                                        a relatively increasing number of notifications that at the end of the process
+                                        were&nbsp;actually&nbsp;removed.</p>
                         </div>
                         <div class="graph-container">
-                                <img src="src/graphs/deleted_percent.svg" style="max-width: 75%; margin: 0 auto;" />
+                        </div>
+                </div>
+                <div class="source-container">
+                        <div class="source-text dark">
+                                <a href="http://ec.europa.eu/newsroom/just/document.cfm?doc_id=49286" target="blank">Source[1]</a><br>
+                                <a href="http://ec.europa.eu/newsroom/just/item-detail.cfm?item_id=71674" target="blank">Source[2]</a><br>
+                                <a href="http://ec.europa.eu/information_society/newsroom/image/document/2016-50/factsheet-code-conduct-8_40573.pdf" target="blank">Source[3]</a>
                         </div>
                 </div>
         </div>
@@ -4421,36 +4442,235 @@
                                 <h2>Hateful Categories</h2>
                         </div>
                         <div class="section-paragraph">
-                                <p>
-                                        Since hate is generated in different contexts, it doesn’t have a
-                                        uniquetarget. Social Networks have only been a means of proliferation for
-                                        differentkind ofhatred, but thedifferent sympathies and policies of the
-                                        companies have given moreimportanceto some&nbsp;groupsdespite&nbsp;others.
-                                </p>
+                                <p>Since hate is generated in different contexts, it doesn’t have a unique target. Social Networks have only been a means of proliferation for different kinds of hatred, but the different sympathies and policies of the companies have given more importance to some groups despite others.<br><br>
+                                The following chart shows the categories of speeches that are held to be Hate Speech from Facebook, Twitter, YouTube.<br>
+                                Over time, the amount of affluence of hatred towards categories may change.</p>
                         </div>
                 </div>
-                <div class="graph-container">
+                <div class="graph-container" id="categories-graph">
+                        <?xml version="1.0" encoding="utf-8"?>
+                        <!-- Generator: Adobe Illustrator 22.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                x="0px" y="0px" viewBox="650 100 600 900" style="max-height: 75vh;" xml:space="preserve">
+                                <g id="Testi-Social">
+                                        <text transform="matrix(1 0 0 1 504.481 576.2192)" class="testi social social-all twitter"
+                                                id="twitter">Twitter</text>
+                                        <text transform="matrix(1 0 0 1 493.7163 491.1265)" class="testi social social-all facebook"
+                                                id="facebook">Facebook</text>
+                                        <text transform="matrix(1 0 0 1 504.481 661.312)" class="testi social social-all youtube"
+                                                id="youtube">YouTube</text>
+                                        <circle class="fb-ball" cx="616.5" cy="487.8" r="5" />
+                                        <circle class="tw-ball" cx="616.5" cy="572.9" r="5" />
+                                        <circle class="yt-ball" cx="616.5" cy="658" r="5" />
+                                </g>
+                                <g id="Testi-Parole">
+                                        <text transform="matrix(1 0 0 1 1225.1851 545.5879)" class="testi category-words social-all nation-or facebook twitter">Nation
+                                                origin</text>
+                                        <text transform="matrix(1 0 0 1 1225.1851 611.001)" class="testi category-words social-all race facebook youtube twitter">Race</text>
+                                        <text transform="matrix(1 0 0 1 1225.1851 414.7612)" class="testi category-words social-all gender facebook youtube twitter">Gender</text>
+                                        <text transform="matrix(1 0 0 1 1225.1851 676.4146)" class="testi category-words social-all religion facebook youtube twitter">Religion</text>
+                                        <text transform="matrix(1 0 0 1 1225.1851 807.2407)" class="testi category-words social-all sexual facebook youtube twitter">Sexual
+                                                orientation</text>
+                                        <text transform="matrix(1 0 0 1 1225.1851 218.5215)" class="testi category-words social-all casta facebook">Casta</text>
+                                        <text transform="matrix(1 0 0 1 1225.1851 872.6538)" class="testi category-words social-all sex facebook">Sex</text>
+                                        <text transform="matrix(1 0 0 1 1225.1851 349.3481)" class="testi category-words social-all ethnicity facebook youtube twitter">Ethnicity</text>
+                                        <text transform="matrix(1 0 0 1 1225.1851 480.1743)" class="testi category-words social-all gender-id facebook youtube twitter">Gender
+                                                identity</text>
+                                        <text transform="matrix(1 0 0 1 1225.1851 283.9341)" class="testi category-words social-all disability facebook youtube twitter">Disability</text>
+                                        <text transform="matrix(1 0 0 1 1225.1851 741.8276)" class="testi category-words social-all serious-dis facebook twitter">Serious
+                                                Disaease</text>
+                                        <text transform="matrix(1 0 0 1 1225.1851 938.0679)" class="testi category-words social-all veteran youtube">Veteran
+                                                status</text>
+                                        <text transform="matrix(1 0 0 1 1229.689 153.1079)" class="testi category-words social-all age youtube twitter">Age</text>
+                                        <circle class="w-ball category-words social-all casta facebook" cx="1209.5" cy="213.2"
+                                                r="5" />
+                                        <circle class="w-ball category-words social-all age youtube twitter" cx="1209.5"
+                                                cy="148.2" r="5" />
+                                        <circle class="w-ball category-words social-all disability facebook youtube twitter"
+                                                cx="1209.5" cy="278.6" r="5" />
+                                        <circle class="w-ball category-words social-all ethnicity facebook youtube twitter"
+                                                cx="1209.5" cy="344" r="5" />
+                                        <circle class="w-ball category-words social-all gender facebook youtube twitter"
+                                                cx="1209.5" cy="409.4" r="5" />
+                                        <circle class="w-ball category-words social-all gender-id facebook youtube twitter"
+                                                cx="1209.5" cy="474.8" r="5" />
+                                        <circle class="w-ball category-words social-all nation-or facebook twitter" cx="1209.5"
+                                                cy="540.2" r="5" />
+                                        <circle class="w-ball category-words social-all race facebook youtube twitter"
+                                                cx="1209.5" cy="605.6" r="5" />
+                                        <circle class="w-ball category-words social-all religion facebook youtube twitter"
+                                                cx="1209.5" cy="671" r="5" />
+                                        <circle class="w-ball category-words social-all serious-dis facebook twitter"
+                                                cx="1209.5" cy="736.5" r="5" />
+                                        <circle class="w-ball category-words social-all sexual facebook youtube twitter"
+                                                cx="1209.5" cy="801.9" r="5" />
+                                        <circle class="w-ball category-words social-all sex facebook" cx="1209.5" cy="867.3"
+                                                r="5" />
+                                        <circle class="w-ball category-words social-all veteran youtube" cx="1209.5" cy="932.7"
+                                                r="5" />
+                                </g>
+                                <g id="Linee-FB">
+                                        <path class="fb-paths all-paths facebook social-all casta" d="M1209.5,213.2c-346,0-346,274.7-593.2,274.7" />
+                                        <path class="fb-paths all-paths facebook social-all disability" d="M1209.5,278.6c-346,0-346,209.3-593.2,209.3" />
+                                        <path class="fb-paths all-paths facebook social-all ethnicity" d="M1209.5,344c-346,0-346,143.9-593.2,143.9" />
+                                        <path class="fb-paths all-paths facebook social-all gender" d="M1209.5,409.4c-346,0-346,78.4-593.2,78.4" />
+                                        <path class="fb-paths all-paths facebook social-all gender-id" d="M1209.5,474.8c-346,0-346,13-593.2,13" />
+                                        <path class="fb-paths all-paths facebook social-all nation-or" d="M1209.5,540.2c-346,0-346-52.4-593.2-52.4" />
+                                        <path class="fb-paths all-paths facebook social-all race" d="M1209.5,605.6c-346,0-346-117.8-593.2-117.8" />
+                                        <path class="fb-paths all-paths facebook social-all religion" d="M1209.5,671c-346,0-346-183.2-593.2-183.2" />
+                                        <path class="fb-paths all-paths facebook social-all serious-dis" d="M1209.5,736.5c-346,0-346-248.6-593.2-248.6" />
+                                        <path class="fb-paths all-paths facebook social-all sexual" d="M1209.5,801.9c-346,0-346-314-593.2-314" />
+                                        <path class="fb-paths all-paths facebook social-all sex" d="M1209.5,867.3c-346,0-346-379.5-593.2-379.5" />
+                                </g>
+                                <g id="Linee-TW">
+                                        <path class="tw-paths all-paths twitter social-all disability" d="M1209.5,278.6c-346,0-346,294.4-593.2,294.4" />
+                                        <path class="tw-paths all-paths twitter social-all ethnicity" d="M1209.5,344c-346,0-346,228.9-593.2,228.9" />
+                                        <path class="tw-paths all-paths twitter social-all gender" d="M1209.5,409.4c-346,0-346,163.5-593.2,163.5" />
+                                        <path class="tw-paths all-paths twitter social-all gender-id" d="M1209.5,474.8c-346,0-346,98.1-593.2,98.1" />
+                                        <path class="tw-paths all-paths twitter social-all nation-or" d="M1209.5,540.2c-346,0-346,32.7-593.2,32.7" />
+                                        <path class="tw-paths all-paths twitter social-all race" d="M1209.5,605.6c-346,0-346-32.7-593.2-32.7" />
+                                        <path class="tw-paths all-paths twitter social-all religion" d="M1209.5,671c-346,0-346-98.1-593.2-98.1" />
+                                        <path class="tw-paths all-paths twitter social-all serious-dis" d="M1209.5,736.5c-346,0-346-163.5-593.2-163.5" />
+                                        <path class="tw-paths all-paths twitter social-all sexual" d="M1209.5,801.9c-346,0-346-228.9-593.2-228.9" />
+                                        <path class="tw-paths all-paths twitter social-all age" d="M1209.5,147.7c-346,0-346,425.2-593.2,425.2" />
+                                </g>
+                                <g id="Linee-YT">
+                                        <path class="yt-paths all-paths youtube social-all disability" d="M1209.5,278.6c-346,0-346,379.5-593.2,379.5" />
+                                        <path class="yt-paths all-paths youtube social-all ethnicity" d="M1209.5,344c-346,0-346,314-593.2,314" />
+                                        <path class="yt-paths all-paths youtube social-all gender" d="M1209.5,409.4c-346,0-346,248.6-593.2,248.6" />
+                                        <path class="yt-paths all-paths youtube social-all gender-id" d="M1209.5,474.8c-346,0-346,183.2-593.2,183.2" />
+                                        <path class="yt-paths all-paths youtube social-all race" d="M1209.5,605.6c-346,0-346,52.4-593.2,52.4" />
+                                        <path class="yt-paths all-paths youtube social-all religion" d="M1209.5,671c-346,0-346-13-593.2-13" />
+                                        <path class="yt-paths all-paths youtube social-all sexual" d="M1209.5,801.9c-346,0-346-143.9-593.2-143.9" />
+                                        <path class="yt-paths all-paths youtube social-all veteran" d="M1209.5,932.7c-346,0-346-274.7-593.2-274.7" />
+                                        <path class="yt-paths all-paths youtube social-all age" d="M1209.5,147.7c-346,0-346,510.3-593.2,510.3" />
+                                </g>
+                        </svg>
+
+                </div>
+                <div class="section-heading focus">
+                        <div class="section-title" id="section-7-2">
+                                <h2>Hateful Categories in&nbsp;the&nbsp;years</h2>
+                        </div>
+                        <div class="section-paragraph">
+                                <p>The alluvial diagram shows the development of Hate Speech categories during the three surveys carried out by the European Commission.</p>
+                        </div>
+                </div>
+
+                <div class="graph-container" id="alluvial-graph">
+                        <?xml version="1.0" encoding="utf-8"?>
+                        <!-- Generator: Adobe Illustrator 22.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                x="0px" y="0px" viewBox="650 100 600 900" style="enable-background:new 0 0 1920 1080;"
+                                xml:space="preserve">
+                                <g id="3rd-monitoring">
+                                        <path class="stroke stroke0 3rd" d="M711.6,279.4c259.4,0,259.4,385.3,518.8,385.3" />
+                                        <path class="stroke stroke1 3rd" d="M711.6,380.6C971,380.6,971,690,1230.4,690" />
+                                        <path class="stroke stroke2 3rd" d="M711.6,469.2c259.4,0,259.4,247.1,518.8,247.1" />
+                                        <path class="stroke stroke3 3rd" d="M711.6,506.1c259.4,0,259.4,229.7,518.8,229.7" />
+                                        <path class="stroke stroke1 3rd" d="M711.6,588.9c259.4,0,259.4,159.7,518.8,159.7" />
+                                        <path class="stroke stroke3 3rd" d="M711.6,644.3c259.4,0,259.4,116.9,518.8,116.9" />
+                                        <path class="stroke stroke4 3rd" d="M711.6,707.5c259.4,0,259.4,64.4,518.8,64.4" />
+                                        <path class="stroke stroke3 3rd" d="M711.6,739.6c259.4,0,259.4,43.1,518.8,43.1" />
+                                        <path class="stroke stroke5 3rd" d="M711.6,793.1c259.4,0,259.4,6.1,518.8,6.1" />
+                                        <path class="stroke stroke0 3rd" d="M711.6,869c259.4,0,259.4-40.5,518.8-40.5" />
+                                </g>
+                                <g id="2nd-monitoring">
+                                        <path class="stroke stroke6 2nd" d="M711.6,246.3c259.4,0,259.4,210,518.8,210" />
+                                        <path class="stroke stroke7 2nd" d="M711.6,362.1c259.4,0,259.4,120.4,518.8,120.4" />
+                                        <path class="stroke stroke0 2nd" d="M711.6,437.1c259.4,0,259.4,69.9,518.8,69.9" />
+                                        <path class="stroke stroke3 2nd" d="M711.6,500.3c259.4,0,259.4,25.2,518.8,25.2" />
+                                        <path class="stroke stroke7 2nd" d="M711.6,570.3c259.4,0,259.4-33.2,518.8-33.2" />
+                                        <path class="stroke stroke8 2nd" d="M711.6,639.4c259.4,0,259.4-91.6,518.8-91.6" />
+                                        <path class="stroke stroke7 2nd" d="M711.6,691C971,691,971,558.6,1230.4,558.6" />
+                                        <path class="stroke stroke9 2nd" d="M711.6,731.8c259.4,0,259.4-159.5,518.8-159.5" />
+                                        <path class="stroke stroke10 2nd" d="M711.6,766.8c259.4,0,259.4-177,518.8-177" />
+                                        <path class="stroke stroke6 2nd" d="M711.6,835.8C971,835.8,971,620,1230.4,620" />
+                                </g>
+                                <g id="st-monitoring">
+                                        <path class="stroke stroke11 1st" d="M711.6,209.4c259.4,0,259.4,40.5,518.8,40.5" />
+                                        <path class="stroke stroke12 1st" d="M711.6,330c259.4,0,259.4-37.3,518.8-37.3" />
+                                        <path class="stroke stroke1 1st" d="M711.6,411.7c259.4,0,259.4-85.9,518.8-85.9" />
+                                        <path class="stroke stroke13 1st" d="M711.6,541.1C971,541.1,971,356,1230.4,356" />
+                                        <path class="stroke stroke5 1st" d="M711.6,623.8c259.4,0,259.4-233.7,518.8-233.7" />
+                                        <path class="stroke stroke14 1st" d="M711.6,670.5c259.4,0,259.4-255.1,518.8-255.1" />
+                                </g>
+                                <g id="lines-values">
+                                        <rect x="1230.4" y="649.1" class="vertical-values" width="1.2" height="194.9" />
+                                        <rect x="1230.4" y="438.7" class="vertical-values" width="1.2" height="198.8" />
+                                        <rect x="1230.4" y="230" class="vertical-values" width="1.2" height="197.1" />
+                                        <rect x="710.4" y="190" class="vertical-values" width="1.2" height="105" />
+                                        <rect x="710.4" y="306.6" class="vertical-values" width="1.2" height="83.8" />
+                                        <rect x="710.4" y="402" class="vertical-values" width="1.2" height="83.8" />
+                                        <rect x="710.4" y="497.4" class="vertical-values" width="1.2" height="11.7" />
+                                        <rect x="710.4" y="520.6" class="vertical-values" width="1.2" height="78" />
+                                        <rect x="710.4" y="610.2" class="vertical-values" width="1.2" height="37" />
+                                        <rect x="710.4" y="658.8" class="vertical-values" width="1.2" height="56.5" />
+                                        <rect x="710.4" y="726.9" class="vertical-values" width="1.2" height="15.6" />
+                                        <rect x="710.4" y="754.1" class="vertical-values" width="1.2" height="52.6" />
+                                        <rect x="710.4" y="818.3" class="vertical-values" width="1.2" height="66.3" />
+                                </g>
+                                <g id="Monitoring">
+                                        <text transform="matrix(1 0 0 1 1253.2207 323.1324)" class="texts stroke 1st">10
+                                                Oct–18 Nov</text>
+                                        <text transform="matrix(1 0 0 1 1253.2207 345.3668)" class="texts stroke 1st">1</text>
+                                        <text transform="matrix(0.583 0 0 0.583 1264.3379 339.1968)" class="texts stroke 1st">st</text>
+                                        <text transform="matrix(1 0 0 1 1277.2998 345.3668)" class="texts stroke 1st">
+                                                monitoring</text>
+                                        <text transform="matrix(1 0 0 1 1265.7705 532.5464)" class="texts stroke 2nd">20
+                                                Mar–5 May</text>
+                                        <text transform="matrix(1 0 0 1 1265.7705 554.7808)" class="texts stroke 2nd">2</text>
+                                        <text transform="matrix(0.583 0 0 0.583 1276.8877 548.6109)" class="texts stroke 2nd">nd</text>
+                                        <text transform="matrix(1 0 0 1 1289.8496 554.7808)" class="texts stroke 2nd">
+                                                monitoring </text>
+                                        <text transform="matrix(1 0 0 1 1253.2197 740.9976)" class="texts stroke 3rd">6
+                                                Nov–15 Dec</text>
+                                        <text transform="matrix(1 0 0 1 1253.2197 763.232)" class="texts stroke 3rd">3</text>
+                                        <text transform="matrix(0.583 0 0 0.583 1264.3369 757.0621)" class="texts stroke 3rd">rd</text>
+                                        <text transform="matrix(1 0 0 1 1277.2988 763.232)" class="texts stroke 3rd">
+                                                monitoring</text>
+                                </g>
+                                <g id="Categories">
+                                        <text transform="matrix(1 0 0 1 486.9316 246.4263)" class="texts">Anti-Muslim
+                                                hatred</text>
+                                        <text transform="matrix(1 0 0 1 553.6328 352.5406)" class="texts">Antisemitism</text>
+                                        <text transform="matrix(1 0 0 1 542.5156 447.9351)" class="texts">Ethnic origin</text>
+                                        <text transform="matrix(1 0 0 1 520.2813 507.2701)" class="texts">Gender
+                                                identity</text>
+                                        <text transform="matrix(1 0 0 1 520.2813 563.6812)" class="texts">National
+                                                origin</text>
+                                        <text transform="matrix(1 0 0 1 631.4512 632.7623)" class="texts">Other</text>
+                                        <text transform="matrix(1 0 0 1 642.5684 691.1216)" class="texts">Race</text>
+                                        <text transform="matrix(1 0 0 1 598.0996 738.7613)" class="texts">Religion</text>
+                                        <text transform="matrix(1 0 0 1 486.9316 784.4527)" class="texts">Sexual
+                                                orientation</text>
+                                        <text transform="matrix(1 0 0 1 575.8672 855.482)" class="texts">Xenophobia</text>
+                                </g>
+                        </svg>
+
+                </div>
+                <div class="source-container">
+                        <div class="source-text dark">
+                                <a href="http://ec.europa.eu/newsroom/just/document.cfm?doc_id=49286" target="blank">Source[1]</a><br>
+                                <a href="http://ec.europa.eu/newsroom/just/item-detail.cfm?item_id=71674" target="blank">Source[2]</a><br>
+                                <a href="http://ec.europa.eu/information_society/newsroom/image/document/2016-50/factsheet-code-conduct-8_40573.pdf" target="blank">Source[3]</a>
+                        </div>
                 </div>
         </div>
 
         <!--    //////////////////////////    -->
         <!--    SECTION 8 — HATEBASE WORDS    -->
         <!--    //////////////////////////    -->
-        <div class="narrative-section" style="height: 100vh;">
+        <div class="narrative-section" style="padding-bottom: var(--spacing)">
                 <div class="section-heading sub">
                         <div class="section-title highlighted" id="section-8">
                                 <h2>Hate words</h2>
                         </div>
                         <div class="section-paragraph">
                                 <p>
-                                        <span class="highlighted"><a class="more-info" href="https://hatebase.org"
-                                                        target="blank">Hatebase</a></span> is a tool that aims to map
-                                        the way hate spreads: the words it contains help people recognize hate episodes
-                                        both online and in real life, better understand that they can cause moral
-                                        damage, and that their censorship is in many contexts understandable.
+                                        <span class="highlighted"><a class="more-info" href="https://hatebase.org" target="blank">Hatebase</a></span> is a tool that aims to map the way hatred spreads: the words it contains help people recognizing hate episodes both online and in real life. Moreover it gives a better understanding of how hate words cause moral damage and how their censorship is in many contexts justifiable.
                                 </p>
                         </div>
-
                 </div>
                 <div id="description-container">
                         <!-- Parola -->
@@ -4458,7 +4678,6 @@
 
                         </span>
                 </div>
-
                 <div id="graph-container">
                         <span id="tooltip">
                         </span>
@@ -4499,12 +4718,17 @@
                                         data-offensiveness=82 data-description="[1] Used in 19th-century United States to refer to the Irish <br> [2] Sometimes used today in reference to white people in a manner similar to white trash or redneck <br> [3] Also refers to white youth that imitate urban black youth by means of clothing style, mannerisms, and slang speech. The 'w' at the start of wigger refers to the white person and the 'igger' refers to nigger, which is a racial slur for black people."></span>
                                 <span class="dot" data-name="Slope" data-category="Ethnicity" data-offensiveness=82
                                         data-description="A person of Asian descent, particularly Vietnamese or Chinese"></span>
-                                <!-- <span class="dot" data-name="Niglet" data-category="Ethnicity" data-offensiveness=85 data-description="A black child"></span>
-                                                        <span class="dot" data-name="Ginzo" data-category="Ethnicity, Nationality" data-offensiveness=96
-                                                            data-description="A person of Italian birth or descent. Most likely derived from 'Guinea Negro,' implying that Italians are dark or swarthy-skinned like the natives of Guinea. The diminutive 'Ginzo' probably dates back to World War II and is derived from Australian slang"></span> -->
+                                <span class="dot" data-name="Niglet" data-category="Ethnicity" data-offensiveness=85
+                                        data-description="A black child"></span>
+                                <span class="dot" data-name="Ginzo" data-category="Ethnicity, Nationality"
+                                        data-offensiveness=96 data-description="A person of Italian birth or descent. Most likely derived from 'Guinea Negro,' implying that Italians are dark or swarthy-skinned like the natives of Guinea. The diminutive 'Ginzo' probably dates back to World War II and is derived from Australian slang"></span>
                         </div>
                 </div>
-        </div>
+                <div class="source-container">
+                        <div class="source-text">
+                                <a href="https://www.hatebase.org/popular" target="blank">Source</a><br>
+                        </div>
+                </div>
         </div>
 
         <audio controls loop id="mp3" style="display: none">
@@ -4522,6 +4746,8 @@
         <script type="text/javascript" src="src/main.js"></script>
         <script type="text/javascript" src="src/hatebase.js"></script>
         <script type="text/javascript" src="src/filtering.js"></script>
+        <script type="text/javascript" src="src/categories_graph.js"></script>
+        <script type="text/javascript" src="src/categories_alluvial.js"></script>
 
         <script></script>
 
