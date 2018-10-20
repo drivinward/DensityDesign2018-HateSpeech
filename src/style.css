@@ -32,6 +32,8 @@ body {
   box-sizing: border-box;
 }
 
+
+
 /*        INIZIO        */
 /*     MENU LATERALE    */
 
@@ -90,6 +92,7 @@ span#current-line.active {
 
 /*     MENU LATERALE    */
 /*         FINE         */
+
 
 h1, h2, p, span {
   margin: 0;
@@ -182,6 +185,9 @@ svg {
   border: var(--border) var(--c-2);
 }
 
+
+
+
 .section-heading.sub {
   /* inherits from section-heading */
   grid-template-columns: 1fr;
@@ -200,16 +206,18 @@ svg {
   z-index: 5;
 }
 .section-heading.sub .section-paragraph p {
-  margin-left: 24px;
-  margin-top: -12px;
+  margin-left: calc(var(--spacing) / 2);
+  margin-top: calc(var(--spacing) / -2);
   max-width: 450px;
   background-color: var(--c-1);
 }
-
 .section-title.sub.highlighted h2 {
   color: var(--c-1);
   background-color: var(--c-2);
 }
+
+
+
 
 .narrative-section.focus {
   background-color: var(--focus);
@@ -250,15 +258,21 @@ svg {
 
 
 
+.narrative-section.dark {
+  background-color: var(--c-2);
+}
+.narrative-section.dark > .section-heading.sub > .section-title {
+  color: var(--c-2);
+}
 
 .section-heading.dark .section-title {
   z-index: 10;
 }
 .section-heading.dark .section-title h2 {
   display: inline-block;
-  /* background-color: var(--c-2); */
+  background-color: var(--c-2);
   border: var(--border) var(--c-1);
-  /* color: var(--c-1); */
+  color: var(--c-1);
 }
 .section-heading.dark .section-paragraph {
   z-index: 5;
@@ -279,13 +293,33 @@ svg {
 
 
 
-.narrative-section.dark .section-title {
+
+/*                  INIZIO                   */
+/* GESTIONE CLASSI SCROLLMAGIC PRIMA SEZIONE */
+/*                                           */
+.narrative-section {
+  transition: background-color var(--a-transition) ease-out;
+}
+.narrative-section.bg.dark {
+  background-color: var(--c-2);
+  color: var(--c-1);
+  transition: background-color var(--a-transition) ease-out;
+}
+#main-question-paragraph.dark {
   color: var(--c-1);
 }
+/*                                           */
+/* GESTIONE CLASSI SCROLLMAGIC PRIMA SEZIONE */
+/*                   FINE                    */
+
 
 
 .dark {
   border-color: var(--c-1) !important;
+  color: var(--c-1);
+}
+
+.narrative-section.dark .section-title {
   color: var(--c-1);
 }
 
@@ -319,10 +353,6 @@ svg {
 .more-info {
   color: var(--c-1);
   cursor: help;
-}
-
-#section-1 {
-  transition: background-color var(--a-transition) ease-out;
 }
 
 #main-question {
@@ -368,7 +398,7 @@ svg {
 
 @media (max-width: 1024px) {
   :root {
-    --spacing: 16px;
+    --spacing: 24px;
   }
   .toc {
     right: -400px;

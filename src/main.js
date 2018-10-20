@@ -58,9 +58,36 @@ function generateDots() {
     container.appendChild(svgLine);
     // console.log(points[i]);
   }
-}
+} generateDots();
 
-// animating percentage values and waveform volume
+// animate the wave dots
+var norm = 0;
+setTimeout(function() {
+  var el = document.getElementsByClassName("hide")[0];
+  el.classList.remove("hide");
+  el.classList.add("show");
+  function anim() {
+    document.querySelectorAll("svg line.wave-line").forEach((c, i) => {
+      var amp = 1 - i / points;
+      var freq = 1 / 50;
+      var osc_freq = 0.15;
+      var phase = osc_freq * i;
+      var t = performance.now();
+      // norm = 1;
+
+      var maths = 50 + amp * 2 * norm * i * Math.sin(freq * t + phase);
+
+      c.setAttribute("y1", maths);
+      c.setAttribute("y2", maths);
+    });
+    requestAnimationFrame(anim);
+  }
+  requestAnimationFrame(anim);
+}, delay);
+
+
+
+// CountUp anima percentage values e waveform volume
 var options_numAnim = {
   suffix: "%"
 };
@@ -98,30 +125,7 @@ for (i = 0; i < els.length; i++) {
   };
 }
 
-// animate the wave dots
-var norm = 0;
-setTimeout(function() {
-  var el = document.getElementsByClassName("hide")[0];
-  el.classList.remove("hide");
-  el.classList.add("show");
-  function anim() {
-    document.querySelectorAll("svg line.wave-line").forEach((c, i) => {
-      var amp = 1 - i / points;
-      var freq = 1 / 50;
-      var osc_freq = 0.15;
-      var phase = osc_freq * i;
-      var t = performance.now();
-      // norm = 1;
 
-      var maths = 50 + amp * 2 * norm * i * Math.sin(freq * t + phase);
-
-      c.setAttribute("y1", maths);
-      c.setAttribute("y2", maths);
-    });
-    requestAnimationFrame(anim);
-  }
-  requestAnimationFrame(anim);
-}, delay);
 
 // prende tutti i titoli delle sezioni h1 e h2 con classe 'section-title'
 // e li inserisce come tag <li> nell'indice dei contenuti
@@ -130,7 +134,7 @@ function tocTitles() {
   var ul = document.createElement("UL");
   toc.appendChild(ul);
   // HTMLCollection dei titoli nel documento HTML
-  liTxt = document.getElementsByClassName("section-title");
+  var liTxt = document.getElementsByClassName("section-title");
 
   var li;
   // insieme di tutte le sezioni con testo
@@ -141,7 +145,7 @@ function tocTitles() {
     // link da inserire dentro ogni 'li'
     a = document.createElement("a");
     // setta il collegamento di ogni 'a'
-    console.log(liTxt[i].id);
+    // console.log(liTxt[i].id);
     where.push(liTxt[i].id);
     a.href = "#" + where[i];
     // prende il primo elemento figlio di 'section-title', cioè i titoli delle sezioni
@@ -165,54 +169,46 @@ function tocTitles() {
   }
   // console.log(lis);
 }
+window.onload = tocTitles();
+
+
 
 var sectionHeights = [];
+// questo è l'elemento che viene considerato come sezione.
 var sections = document.getElementsByClassName("section-title");
 
 function calcHeights() {
+  var height;
   for (i = 0; i < sections.length; i++) {
-    // prova con questa funzione
-    // serve per calcolare la posizione assoluta (dall'alto) di un elemento nella pagina
-    // perchè il metodo offsetTop restituisce solo la distanza rispetto all'elemento padre
-    // 
-    //   var cumulativeOffset = function(element) {
-    //     var top = 0, left = 0;
-    //     do {
-    //         top += element.offsetTop  || 0;
-    //         left += element.offsetLeft || 0;
-    //         element = element.offsetParent;
-    //     } while(element);
-
-    //     return {
-    //         top: top,
-    //         left: left
-    //     };
-    // };
-    //
-    // dovrebbe essere:
-    // var height = sections[i].top;
-
-    var height = sections[i].offsetTop;
-    sectionHeights.push(height);
-    // console.log(height);
+    // prendi il contenitore del titolo di ogni sezione (per capire quando comincia la sezione)
+    height = sections[i].parentElement.offsetTop;
+    sectionHeights.splice(i, 1, height);
   }
-  // console.log(sections);
   // console.log(sectionHeights);
 }
 
-function updateSection(e) {
-  calcHeights();
 
+function updateIndicator(currLi) {
+  var indicator = document.getElementById("current-line");
+  var currLi = document.getElementsByClassName("current")[0];
+  var currLiHeight = currLi.getBoundingClientRect().top;
+  // console.log(currentLiHeight.top);
+  indicator.style.top = currLiHeight;
+}
+
+
+function updateSection() {
+  
   var doc = document.documentElement;
-  var top =
-    (window.pageYOffset || doc.scrollTop) -
-    (doc.clientTop || 0) +
-    window.innerHeight / 2;
-  // var top = (window.pageYOFfset / window.innerHeight) / 2;
-  // console.log(window.innerHeight);
+  var top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0) + (window.innerHeight / 2);
+  // var top = (window.pageYOffset / window.innerHeight) / 2;
+  
+  calcHeights();
+  // console.log('Current height: ' + top);
 
   for (i = 0; i < sections.length; i++) {
     var currSectionHeight = sectionHeights[i];
+    // console.log(sections[i].innerHTML + ' — ' + currSectionHeight);
     var nextSectionHeight = sectionHeights[i + 1];
     var oldSectionHeight = sectionHeights[i - 1] || sectionHeights[0];
     // console.log(oldSectionHeight);
@@ -223,18 +219,17 @@ function updateSection(e) {
 
     var oldLi = document.querySelectorAll(".toc > ul > li")[i - 1];
     var currLi = document.querySelectorAll(".toc > ul > li")[i];
-    console.log(currLi);
     var nextLi = document.querySelectorAll(".toc > ul > li")[i + 1];
     if (
       (top >= currSectionHeight && top < nextSectionHeight) ||
       (top >= currSectionHeight && top < document.body.scrollHeight)
     ) {
       // ora sai in quale sezione sei nel documento
-      //   console.log('current section: ' + currSection.getAttribute('id') + '— next section: ' + nextSection.getAttribute('id'));
+      // console.log('current section: ' + currLi.innerHTML);
 
       // ora bisogna selezionare il 'li' corrispondente e mettergli la classe 'current'
       if (typeof oldLi === "undefined") {
-        // document.querySelectorAll(".toc > ul > li")[0].classList.add("current");
+        document.querySelectorAll(".toc > ul > li")[0].classList.add("current");
       } else {
         oldLi.classList.remove("current");
       }
@@ -249,24 +244,18 @@ function updateSection(e) {
   updateIndicator(currLi);
 }
 
-function updateIndicator(currLi) {
-  var indicator = document.getElementById("current-line");
-  var currLi = document.getElementsByClassName("current")[0];
-  // console.log(currentLi);
-  // console.log(currLi);
-  var curLiHeight = currLi.getBoundingClientRect().top;
-  // console.log(currentLiHeight.top);
-  indicator.style.top = curLiHeight;
-}
+
+
 
 // ////////////////// START ////////////////// //
 // //////// SCROLLMAGIC + GSAP SCENES //////// //
 // /////////////////////////////////////////// //
 
+
 var waveformController = new ScrollMagic.Controller();
 var mapScene = new ScrollMagic.Scene({
   triggerElement: "#map-percentage",
-  triggerHook: 0.35,
+  triggerHook: 0.3,
   duration: "200%"
 })
   .setPin("#main-question") // pins the element for the the scene's duration
@@ -274,14 +263,14 @@ var mapScene = new ScrollMagic.Scene({
 
 mapScene.on("enter", function(event) {
   // console.log("Scene started.");
-  document.getElementById("section-1").classList.add("bg", "dark");
+  document.getElementById("section-1").parentElement.parentElement.classList.add("bg", "dark");
   document.getElementById("main-question-paragraph").classList.add("dark");
   document.getElementById("wave").classList.add("focus");
   numAnim.update(100);
 });
 mapScene.on("leave", function(event) {
   // console.log("Scene left.");
-  document.getElementById("section-1").classList.remove("bg", "dark");
+  document.getElementById("section-1").parentElement.parentElement.classList.remove("bg", "dark");
   document.getElementById("main-question-paragraph").classList.remove("dark");
   document.getElementById("main-question-paragraph").style.marginBottom = "0";
   document.getElementById("wave").classList.remove("focus");
@@ -303,28 +292,33 @@ var timelineScene = new ScrollMagic.Scene({
   triggerHook: 0,
   duration: "200%"
 })
-  .setPin("#section-3")
+  .setPin("#section-3-pin")
   .setTween(wipeAnimation)
   //   .addIndicators()
   .addTo(timelineController);
 
 timelineScene.on("enter", function(event) {
   // console.log("entered");
+  document.getElementById("section-3-pin").style.marginTop = "calc(var(--spacing) * 2)";
 });
+
+
 
 // /////////////////////////////////////////// //
 // //////// SCROLLMAGIC + GSAP SCENES //////// //
 // /////////////////// END /////////////////// //
 
+
+
 // /////////////////////////////////////////// //
 // ///////// GESTIONE EVENTI PAGINA ////////// //
 // /////////////////////////////////////////// //
 
-window.onload = function() {
+window.onload = (e) => {
   generateDots();
   tocTitles();
-  updateSection(e);
+  updateSection();
 };
 document.addEventListener("scroll", e => {
-  updateSection(e);
+  updateSection();
 });
