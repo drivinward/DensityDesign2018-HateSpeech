@@ -3,8 +3,7 @@ body {
     background-color: var(--c-1);
 }
 
-.graph-curve {
-
+.graph-curve, .higher, #x-axis {
     transition: opacity calc(var(--a-transition)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1),
                 transform calc(var(--a-transition)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1),
                 background-color calc(var(--a-transition)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1);
@@ -21,12 +20,6 @@ body {
     transition: opacity calc(var(--a-transition)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1);
 }
 
-.higher, #x-axis {
-    transition: opacity calc(var(--a-transition)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1),
-                transform calc(var(--a-transition)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1),
-                background-color calc(var(--a-transition)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1);
-}
-
 /* -------------- SVG -------------- */
 
 .curve-stroke {
@@ -39,7 +32,6 @@ body {
     font-family: 'IBM Plex Mono';
     font-size: 16px;
 }
-
 
 .text-general {
     fill: var(--c-2);

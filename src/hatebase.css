@@ -1,14 +1,11 @@
-/* * {
-    cursor: url('src/assets/cursor.png'), auto;
-} */
-
 :root {
     --dot-size: 50px;
+    --timing: .5s;
+    --coefficent: 1.5;
 }
 
 html {
     background-color: var(--c-1);
-    /* overflow: hidden; */
 }
 
 body {
@@ -22,7 +19,6 @@ h1.hate-title {
     color: var(--c-2);
     border: var(--border) var(--c-2);
     padding: 5px 20px;
-    /* padding: 0px 35px; */
     line-height: 1.4;
 }
 
@@ -33,54 +29,40 @@ h1.hate-title {
 span.dot {
     height: var(--dot-size);
     width: var(--dot-size);
-    /* background-color: #e05363; */
     border: var(--border) var(--c-2);
     opacity: .45;
     border-radius: 100%;
     display: inline-block;
     margin: var(--spacing);
+    z-index: 100;
 
-    /* cursor: pointer; */
-    z-index: 1;
-
-    transition: opacity calc(var(--a-transition)/1.5) cubic-bezier(.65, 0, .15, 1),
-        transform calc(var(--a-transition)/1.5) cubic-bezier(.65, 0, .15, 1),
-        background-color calc(var(--a-transition)/1.5) cubic-bezier(.65, 0, .15, 1),
-        border calc(var(--a-transition)/1.5) cubic-bezier(.65, 0, .15, 1);
-    transition-duration: .35s;
+    transition: opacity calc(var(--timing)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1),
+        transform calc(var(--timing)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1),
+        background-color calc(var(--timing)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1),
+        border calc(var(--timing)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1);
 }
 
 .dot:hover {
-    /* transform: scale(1); */
     opacity: .7;
-    z-index: 10;
+    z-index: 1;
     border: 2px solid var(--c-2);
-    /* #e05363; */
 
-    transition: opacity calc(var(--a-transition)/1.5) cubic-bezier(.65, 0, .15, 1),
-        transform calc(var(--a-transition)/1.5) cubic-bezier(.65, 0, .15, 1);
-    transition-duration: .35s;
+    transition: opacity calc(var(--timing)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1),
+                 transform calc(var(--timing)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1);
 }
 
 .dot.on {
-    transition: background-color calc(var(--a-transition)/1.5) cubic-bezier(.65, 0, .15, 1),
-                transform calc(var(--a-transition)/1.5) cubic-bezier(.65, 0, .15, 1);
-    transition-duration: .35s;
+    transition: background-color calc(var(--timing)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1),
+                transform calc(var(--timing)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1);
 
-    background-color: var(--c-2); */
-    opacity: 1;
-
-    /* border: 1px solid var(--c-2); */
-    /* transform: scale(1.2); */
+    background-color: var(--c-2);
+    opacity: .6;
     z-index: 100;
 }
 
 .dot.onn {
-    transition: background-color calc(var(--a-transition)/1.5) cubic-bezier(.65, 0, .15, 1),
-        transform calc(var(--a-transition)/1.5) cubic-bezier(.65, 0, .15, 1);
-    transition-duration: .35s;
-    /* border: 1px solid #e05363; */
-    /* background-color: rgba(224, 83, 99, .8); */
+    transition: background-color calc(var(--timing)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1),
+        transform calc(var(--timing)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1);
     background-color: var(--c-2);
     opacity: .7;
     z-index: 10;
@@ -99,20 +81,18 @@ span.dot {
     max-width: 300px;
 
     border: var(--border) var(--c-2);
-
     color: var(--c-2);
     background: var(--c-1);
+    
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
 
-    transition: opacity calc(var(--a-transition)/2) linear;
-    transition-duration: .1s
+    transition: opacity calc(var(--timing)/2) linear;
 }
 
 #tooltip.summon {
     opacity: .90;
-    transition: opacity calc(var(--a-transition)/2) ease-in-out;
-    transition-duration: .4s
+    transition: opacity calc(var(--timing)/2) ease-in-out;
 }
 
 #hate-word-description {
@@ -123,14 +103,12 @@ span.dot {
     height: auto;
     color: var(--c-2);
 
-    transition: opacity calc(var(--a-transition)/2) linear;
-    transition-duration: .1s
+    transition: opacity calc(var(--timing)/2) linear;
 }
 
 #hate-word-description.appear {
     opacity: .90;
-    transition: opacity calc(var(--a-transition)/2) ease-in-out;
-    transition-duration: .4s
+    transition: opacity calc(var(--timing)/2) ease-in-out;
 }
 
 
@@ -148,13 +126,12 @@ span.dot {
     height: 70px;
     text-align: center;
     padding: 20px;
-    
+
 }
 
 #graph-container {
     top: 50%;
     display: block;
     margin: auto;
-    width: 100
-    %;
+    width: 100%;
 }

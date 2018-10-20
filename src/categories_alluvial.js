@@ -6,7 +6,6 @@ for (i = 0; i < strokes.length; i++) {
 }
 
 function highlightStrokesOn() {
-    var strokes = document.querySelectorAll('.stroke');
     for (i = 0; i < strokes.length; i++) {
         if (strokes[i].matches('.stroke:hover') && strokes[i].classList.contains('1st')) {
             for (l = 0; l < strokes.length; l++) {

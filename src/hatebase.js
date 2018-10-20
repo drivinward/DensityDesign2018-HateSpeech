@@ -10,6 +10,7 @@ function showTooltip(e) {
     tooltip.style.top = e.y + 'px';
 }
 
+//------aggiungo i listener ai pallini
 document.addEventListener('mousemove', showTooltip, false);
 document.addEventListener('mouseout', (e) => {
     tooltip.classList.remove("summon");
@@ -26,18 +27,17 @@ for (i = 0; i < dotsArray.length; i++) {
     dotsArray[i].addEventListener('mouseout', sameCategoriesOff, false);
 }
 
-//------variabili globali
+//------variabili globali per le funzioni
 var lastDotIgnored;
 var targetDotScale;
+var dots = document.querySelectorAll('.dot');
 
-//------funzioni delle categorie on/off
+//------accende tutti i dots // scrive il titolo nel box e lo mostra // mostra il tooltip
 function sameCategoriesOn() {
-    var dots = document.querySelectorAll('.dot');
     var dotToIgnore;
 
     //------controlla se tutti gli altri dots hanno la categoria del dot sul quale si trova il mouse
     for (t = 0; t < dots.length; t++) {
-
 
         //------controlla su quale pallino è hover
         if (dots[t].matches('.dot:hover')) {
@@ -76,30 +76,15 @@ function sameCategoriesOn() {
         dotIgnored = -1;
     }
 
-    //------Cosa scrive nell'hate-word-container
+    //------Cosa scrive nell'hate-word-container // TITOLO
     hateWord.innerHTML = 
                         `<h1 class="hate-title">
                             ${this.getAttribute('data-name')}
                         </h1>`
-                                // <br>
-                                // <span style="line-height: 1.6">
-                                //     Category: 
-                                //     ${this.getAttribute('data-category')}
-                                // </span>
-                                // <br>
-                                // <span style="line-height: 1.6">
-                                //     Offensiveness: 
-                                //     ${this.getAttribute('data-offensiveness')}
-                                // </span>
-                                // <br>
-                                // <br>
-                                // <span>
-                                //     ${this.getAttribute('data-description')}
-                                // </span>
 
     hateWord.classList.add("appear");
 
-    //------Cosa scrive nel tooltip
+    //------Cosa scrive nel tooltip // BOX HOVER
     tooltip.innerHTML =`
                         <span class="tooltip-content">
                             Category:  ${this.getAttribute('data-category')}
@@ -118,8 +103,8 @@ function sameCategoriesOn() {
     tooltip.classList.add("summon");
 }
 
+// spegne tutti i dots
 function sameCategoriesOff() {
-    var dots = document.querySelectorAll('.dot');
     for (i = 0; i < dots.length; i++) {
         dots[i].classList.remove('on');
         dots[i].style.transform = "";
@@ -131,7 +116,6 @@ function sameCategoriesOff() {
         }
     }
 }
-
 
 // function to map some range of values to another range of values`
 function mapper(num, in_min, in_max, out_min, out_max) {

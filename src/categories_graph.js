@@ -15,16 +15,21 @@ for (i = 0; i < categories.length; i++) {
 }
 
 function highlightSociaOn() {
+
+    //------var, quelle dei social prima erano dentro i .matches(class)
     var social = document.querySelectorAll('.social');
-    //------controlla se il social su cui sono hover ha categorie in comune
+    var twitterLines = document.querySelectorAll('.tw-paths');
+    var youtubeLines = document.querySelectorAll('.yt-paths');
+    var facebookLines = document.querySelectorAll('.fb-paths');
+    var categoryWords = document.querySelectorAll('.category-words');
+    var allPaths = document.querySelectorAll('.all-paths');
+
+    //------controlla se il SOCIAL su cui sono hover ha categorie in comune
     for (i = 0; i < social.length; i++) {
         //------controlla su quale social network è hover
+
         if (social[i].matches('.facebook:hover')) {
             // console.log("Facebook");
-            var twitterLines = document.querySelectorAll('.tw-paths');
-            var youtubeLines = document.querySelectorAll('.yt-paths');
-            var facebookLines = document.querySelectorAll('.fb-paths');
-            var categoryWords = document.querySelectorAll('.category-words');
 
             for (l = 0; l < twitterLines.length; l++) {
                 twitterLines[l].classList.add("social-disappear");
@@ -41,10 +46,6 @@ function highlightSociaOn() {
             }
         } else if (social[i].matches('.twitter:hover')) {
             // console.log("Twitter");
-            var twitterLines = document.querySelectorAll('.tw-paths');
-            var youtubeLines = document.querySelectorAll('.yt-paths');
-            var facebookLines = document.querySelectorAll('.fb-paths');
-            var categoryWords = document.querySelectorAll('.category-words');
 
             for (l = 0; l < facebookLines.length; l++) {
                 facebookLines[l].classList.add("social-disappear");
@@ -60,11 +61,7 @@ function highlightSociaOn() {
                 }
             }
         } else if (social[i].matches('.youtube:hover')) {
-            // console.log("Youtube");
-            var twitterLines = document.querySelectorAll('.tw-paths');
-            var youtubeLines = document.querySelectorAll('.yt-paths');
-            var facebookLines = document.querySelectorAll('.fb-paths');
-            var categoryWords = document.querySelectorAll('.category-words');
+            // // console.log("Youtube");
 
             for (l = 0; l < facebookLines.length; l++) {
                 facebookLines[l].classList.add("social-disappear");
@@ -82,9 +79,7 @@ function highlightSociaOn() {
         }
     }
 
-    var categoryWords = document.querySelectorAll('.category-words');
-    var allPaths = document.querySelectorAll('.all-paths');
-    //------controlla se la parola su cui sono hover ha categorie in comune
+    //------controlla se la PAROLA su cui sono hover ha categorie in comune
     for (i = 0; i < categoryWords.length; i++) {
         // console.log('ciao');
         if (categoryWords[i].matches('.category-words:hover') && categoryWords[i].classList.contains('age')) {

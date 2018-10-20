@@ -1,8 +1,22 @@
 body {
-background-color: bisque;   
+    background-color: bisque;   
 }
 
-.stroke0, .stroke1, .stroke2, .stroke3, .stroke4, .stroke5, .stroke6, .stroke7, .stroke8, .stroke9, .stroke10, .stroke11, .stroke12, .stroke13, .stroke14 {
+.stroke0,
+.stroke1,
+.stroke2,
+.stroke3,
+.stroke4,
+.stroke5,
+.stroke6,
+.stroke7,
+.stroke8,
+.stroke9,
+.stroke10,
+.stroke11,
+.stroke12,
+.stroke13,
+.stroke14 {
     opacity:0.5;
     fill:none;
     stroke:#0000FF;
