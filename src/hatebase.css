@@ -46,6 +46,7 @@ span.dot {
     opacity: .7;
     z-index: 1;
     border: 2px solid var(--c-2);
+    cursor: url('assets/dot-32-hd-small-reverse.png'), auto;
 
     transition: opacity calc(var(--timing)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1),
                  transform calc(var(--timing)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1);
