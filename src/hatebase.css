@@ -4,6 +4,10 @@
     --coefficent: 1.5;
 }
 
+body {
+    background-color: aliceblue;
+}
+
 h1.hate-title {
     font-family:"IBM Plex";
     font-size: 30px;
