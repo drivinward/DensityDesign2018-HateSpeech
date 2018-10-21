@@ -98,7 +98,7 @@ span.dot {
 #hate-word-description {
     opacity: 0;
     display: inline-block;
-    text-align: center;
+    text-align: left;
     max-width: 600px;
     height: auto;
     color: var(--c-2);
@@ -124,8 +124,8 @@ span.dot {
     margin: auto;
     width: auto;
     height: 70px;
-    text-align: center;
-    padding: 20px;
+    text-align: left;
+    padding: calc(var(--spacing) / 2);
 
 }
 
