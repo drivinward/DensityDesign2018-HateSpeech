@@ -7,6 +7,7 @@
   --a-transition: 0.25s;
   --bezier: cubic-bezier(0, -1, 0, 1);
   --border: solid 2px;
+  --max-width: 1024px;
 
   font-family: "IBM Plex Light", Helvetica, sans-serif;
   font-size: 16px;
@@ -39,43 +40,53 @@ body {
 
 .toc {
   position: fixed;
-  right: calc(var(--spacing) * 1);
   top: 50%;
   right: -50vw;
-  /* background-color: var(--c-2); */
+  background-color: var(--c-2);
   transform: translate(-0%, -50%);
   z-index: 20;
-  mix-blend-mode: difference;
   text-align: right;
   transition: all calc(var(--a-transition) / 1) ease-out;
-  max-width: 250px;
+  max-width: calc(var(--max-width) / 1);
+  margin: calc(var(--spacing) / 2);
+  border: solid 1px var(--c-1);
 }
 .toc.summon {
   right: calc(var(--spacing) * 2);
   padding: calc(var(--spacing) * 0);
   /* padding-right: calc(var(--spacing)*2); */
 }
+.toc > ul {
+  padding: calc(var(--spacing) / 2) calc(var(--spacing) / 2) calc(var(--spacing) / 2) var(--spacing) ;
+  margin: 0;
+}
 .toc > ul > li {
   list-style-type: none;
-  line-height: 1.75;
-  margin-bottom: 10px;
-  line-height: 1.2;
+  margin-bottom: 0;
   transform: translate(0, 0);
   transition: transform var(--a-transition) var(--bezier);
 }
 .toc > ul > li.current {
   /* transform: translate(-16px, 0); */
   transition: transform var(--a-transition) var(--bezier);
+  background-color: var(--c-2);
+  color: var(--c-2);
 }
 .toc a {
   display: block;
+  padding: calc(var(--spacing) / 8) 0;
+  transition: transform var(--a-transition) var(--bezier);
+}
+.toc a:hover {
+  transform: translateX(calc(var(--spacing) / -2));
+  transition: transform var(--a-transition) var(--bezier);
 }
 span#current-line {
   width: 24px;
   height: 3px;
   margin-top: 10px;
   top: 50%;
-  right: calc(var(--spacing) * 0);
+  right: calc(var(--spacing) * 0.25);
   position: fixed;
   z-index: 999;
   background-color: var(--c-3);
@@ -125,7 +136,7 @@ span.highlighted {
 svg {
   display: block;
   margin: 0 auto;
-  width: 90%;
+  /* width: 90%; */
   max-height: 90vh;
 }
 
@@ -162,8 +173,8 @@ svg {
   grid-gap: calc(var(--spacing) / 1.5);
   box-sizing: border-box;
   color: var(--c-2);
-  margin: calc(var(--spacing) * 2) auto calc(var(--spacing) * 1) auto;
-  max-width: 960px;
+  margin: calc(var(--spacing) * 2) auto calc(var(--spacing) * 0) auto;
+  max-width: var(--max-width);
 }
 .section-title,
 .section-paragraph {
@@ -193,10 +204,6 @@ svg {
 .section-heading.sub {
   /* inherits from section-heading */
   grid-template-columns: 1fr;
-  margin: calc(var(--spacing) * 1) 
-          auto 
-          calc(var(--spacing) * 1) 
-          auto; 
 }
 .section-heading.sub .section-title {
   z-index: 10;
@@ -210,7 +217,7 @@ svg {
 .section-heading.sub .section-paragraph p {
   margin-left: calc(var(--spacing) / 2);
   margin-top: calc(var(--spacing) * -1.1);
-  max-width: 450px;
+  max-width: calc(var(--max-width) / 2);
   background-color: var(--c-1);
 }
 .section-title.sub.highlighted h2 {
@@ -229,10 +236,6 @@ svg {
   color: var(--c-1);
   border-color: var(--focus) !important;
   grid-template-columns: 1fr;
-  margin: calc(var(--spacing) * 1) 
-          auto 
-          calc(var(--spacing) * 1) 
-          auto; 
 }
 .section-heading.focus .section-title {
   z-index: 10;
@@ -249,7 +252,7 @@ svg {
 .section-heading.focus .section-paragraph p {
   margin-left: calc(var(--spacing) / 2);
   margin-top: calc(var(--spacing) * -1.1);
-  max-width: 450px;
+  max-width: calc(var(--max-width) / 2);
   color: var(--c-1);
   border: var(--border) var(--c-1);
 }
@@ -276,7 +279,7 @@ svg {
   z-index: 5;
 }
 .section-heading.dark .section-paragraph p {
-  max-width: 450px;
+  max-width: calc(var(--max-width) / 2);
   color: var(--c-1);
   border: var(--border) var(--c-1);
   background-color: var(--c-2);
@@ -323,7 +326,7 @@ svg {
   width: 100%;
   box-sizing: border-box;
   display: inline-block;
-  margin: calc(var(--spacing) * 2) 
+  margin: calc(var(--spacing) * 0) 
           auto 
           calc(var(--spacing) * 1) 
           auto;
@@ -334,9 +337,8 @@ svg {
 }
 
 .source-container {
-  /* max-width: 860px; */
   width: 100%;
-  max-width: 1024px;
+  max-width: var(--max-width);
   display: block;
   position: relative;
   text-align: right;
@@ -395,7 +397,7 @@ svg {
   justify-items: center;
   margin: calc(var(--spacing)*1) auto;
   height: 75%;
-  max-width: 860px;
+  max-width: var(--max-width);
 }
 
 #categories-graph {
@@ -410,7 +412,7 @@ svg {
 .undefined-graph {
   display: block;
   margin: 0 auto;
-  max-width: 960px;
+  max-width: var(--max-width);
   background-image: url("graphs/graph_1-map_texture.png");
   background-repeat: repeat;
   background-size: 10px;
@@ -422,21 +424,9 @@ svg {
     --spacing: 24px;
   }
   .toc {
-    right: -400px;
+    /* right: -400px; */
   }
   .toc.summon {
     right: calc(var(--spacing) * 2);
   }
-  /* .section-heading {
-    display: block;
-    margin: var(--spacing);
-    max-width: 500px;
-    text-align: left;
-  }
-  .section-paragraph {
-    margin: 0 calc(var(--spacing) * 2);
-  }
-  .section-graph {
-    display: block;
-  } */
 }

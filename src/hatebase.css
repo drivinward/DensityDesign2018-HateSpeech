@@ -4,14 +4,6 @@
     --coefficent: 1.5;
 }
 
-html {
-    background-color: var(--c-1);
-}
-
-body {
-    background-color: var(--c-1);
-}
-
 h1.hate-title {
     font-family:"IBM Plex";
     font-size: 30px;
@@ -46,6 +38,7 @@ span.dot {
     opacity: .7;
     z-index: 1;
     border: 2px solid var(--c-2);
+    cursor: url('assets/dot-32-hd-small-reverse.png'), auto;
 
     transition: opacity calc(var(--timing)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1),
                  transform calc(var(--timing)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1);
@@ -98,7 +91,7 @@ span.dot {
 #hate-word-description {
     opacity: 0;
     display: inline-block;
-    text-align: center;
+    text-align: left;
     max-width: 600px;
     height: auto;
     color: var(--c-2);
@@ -124,8 +117,8 @@ span.dot {
     margin: auto;
     width: auto;
     height: 70px;
-    text-align: center;
-    padding: 20px;
+    text-align: left;
+    padding: calc(var(--spacing) / 2);
 
 }
 

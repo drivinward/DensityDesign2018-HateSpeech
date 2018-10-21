@@ -1,6 +1,5 @@
 body {
     --coefficent: 1;
-    background-color: var(--c-1);
 }
 
 .graph-curve, .higher, #x-axis {
@@ -28,9 +27,24 @@ body {
     stroke-miterlimit: 10;
 }
 
+.perc-labels {
+    opacity: 0;
+    transition: opacity calc(var(--a-transition)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1);
+}
+
+.perc-labels.highlight {
+    opacity: 1;
+    transition: opacity calc(var(--a-transition)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1);
+}
+
 .country-text {
     font-family: 'IBM Plex Mono';
     font-size: 16px;
+}
+
+.perc-text {
+    font-family: 'IBM Plex Mono';
+    font-size: 14px;
 }
 
 .text-general {
@@ -49,6 +63,12 @@ body {
 
 .encounter-blue-line {
     fill: none;
+    stroke: var(--c-2);
+    stroke-miterlimit: 10;
+}
+
+.encounter-perc {
+    fill: var(--c-1);
     stroke: var(--c-2);
     stroke-miterlimit: 10;
 }

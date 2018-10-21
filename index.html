@@ -6,12 +6,15 @@
 
         <meta charset="UTF-8">
         <meta name="description" content="Filtering online hate speech on social networks in Europe.">
-        <meta name="keywords" content="Hate, Online, Speech, Europe, Social, Networks">
+        <meta name="keywords" content="Hate, Online, Speech, Europe, Social, Networks, Dataviz, Data, Visualization, Density, Design">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!-- fogli di stile della pagina / variabili di stile globali / font -->
         <link rel="stylesheet" type="text/css" href="src/style.css">
-        <link rel="stylesheet" type="text/css" href="src/font.css">
+        <link rel="preload" as="style" onload="this.rel='stylesheet'" href="src/font.css">
+        <noscript>
+                <link rel="stylesheet" type="text/css" href="src/font.css">
+        </noscript>
 
         <!-- fogli di stile dei grafici -->
         <link rel="stylesheet" type="text/css" href="src/hatebase.css">
@@ -19,6 +22,8 @@
         <link rel="stylesheet" type="text/css" href="src/filtering.css">
         <link rel="stylesheet" type="text/css" href="src/categories_graph.css">
         <link rel="stylesheet" type="text/css" href="src/categories_alluvial.css">
+        <link rel="stylesheet" type="text/css" href="src/percentage.css">
+
 </head>
 
 <body>
@@ -27,11 +32,11 @@
         </div>
         <div class="hero">
                 <div class="hero-caption">
-                        <h1 class="title">404<br>Hate&nbsp;not&nbsp;found.</h1>
-                        <h1><span class="highlighted">
+                        <h1 class="title">404 Hate&nbsp;not&nbsp;found.</h1>
+                        <h2><span class="highlighted">
                                         Filtering online hate speech<br>
                                         on social networks in Europe.</span>
-                        </h1>
+                        </h2>
                 </div>
         </div>
 
@@ -44,7 +49,11 @@
                                 <h1>The&nbsp;dark&nbsp;side of&nbsp;free&nbsp;speech</h1>
                         </div>
                         <div class="section-paragraph">
-                                <p>Free speech is one of the most important humans rights but it has a difficult equilibrium when people want to contain and prevent hate. Indeed, hate speech cannot be easily defined, but by agreement it expresses loathing and intolerance: the consequences can range from mere bullying or intimidation to actual violent events.</p>
+                                <p>Free speech is one of the most important humans rights but it has a difficult
+                                        equilibrium when people want to contain and prevent hate. Indeed, hate speech
+                                        cannot be easily defined, but by agreement it expresses loathing and
+                                        intolerance: the consequences can range from mere bullying or intimidation to
+                                        actual violent events.</p>
                         </div>
                 </div>
                 <div class="graph-container" style="margin-bottom: 0px;">
@@ -2380,7 +2389,8 @@
                         </div>
                         <div class="source-container">
                                 <div class="source-text">
-                                        <a href="http://www.pewglobal.org/2015/11/18/global-support-for-principle-of-free-expression-but-opposition-to-some-forms-of-speech/" target="blank">
+                                        <a href="http://www.pewglobal.org/2015/11/18/global-support-for-principle-of-free-expression-but-opposition-to-some-forms-of-speech/"
+                                                target="blank">
                                                 Source
                                         </a>
                                 </div>
@@ -2389,7 +2399,7 @@
                 <div id="main-question">
                         <div id="waveform">
                                 <svg id="wave" class="hide" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-5 0 200 200"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-5 0 200 200"
                                         xml:space="preserve">
                                         <style type="text/css">
                                                 :root {
@@ -2404,7 +2414,7 @@
                                                 line {
                                                         fill: none;
                                                         stroke: var(--c-3);
-                                                        stroke-width: 2;
+                                                        stroke-width: 1;
                                                         stroke-miterlimit: 10;
                                                         stroke-linecap: round;
                                                 }
@@ -2460,8 +2470,8 @@
                 <div class="graph-container">
                         <div class="graph" id="curve-graph-container">
                                 <?xml version="1.0" encoding="utf-8"?>
-                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                        viewBox="600 200 600 900">
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%"
+                                        viewBox="600 200 600 800">
                                         <!-- <g id="y-axis">
                                                 <g>
                                                         <g>
@@ -3353,7 +3363,8 @@
                 </div>
                 <div class="source-container">
                         <div class="source-text">
-                                <a href="https://ec.europa.eu/digital-single-market/en/news/europe-protects-countering-illegal-content-online" target="blank">
+                                <a href="https://ec.europa.eu/digital-single-market/en/news/europe-protects-countering-illegal-content-online"
+                                        target="blank">
                                         Source
                                 </a>
                         </div>
@@ -3363,30 +3374,35 @@
         <!--    ///////////////////////////    -->
         <!--    SECTION 3 — CODE OF CONDUCT    -->
         <!--    ///////////////////////////    -->
-        <div class="narrative-section">
+        <div class="narrative-section" style="overflow: hidden">
                 <div class="section-heading sub">
                         <div class="section-title" id="section-2-2">
                                 <h2 style="display:none">The Code&nbsp;of&nbsp;Conduct</h2>
                                 <!-- serve per non scombinare scrollMagic -->
                                 <div id="section-3-pin" style="background-color: var(--c-1)">
                                         <h2>The Code&nbsp;of&nbsp;Conduct</h2>
-                                        <div class="section-paragraph">
-                                                <p> The IT Companies have their own role models—called policies—that are of course influenced by laws in Europe. These policies regulate the filtering process or the removal of improper contents from each platform. The most relevant in the EU is the <span class="highlighted more-info">Code of&nbsp;Conduct</span> on countering illegal hate speech online”, that since its establishment has done 3 surveys and has published them in order to understand how IT Companies react to notifications of illegal hate speech.
-                                                        <!-- /////////////// TO-DO /////////////// -->
-                                                        <!-- Fai tooltip che mostra la definizione -->
-                                                        <!-- ///////////////////////////////////// -->
+                                        <div class="section-paragraph" style="margin-top: calc(var(--spacing) / 1.5)">
+                                                <p> The IT Companies have their own role models—called policies—that
+                                                        are of course influenced by laws in Europe. These policies
+                                                        regulate the filtering process or the removal of improper
+                                                        contents from each platform. The most relevant in the EU is the
+                                                        <span class="highlighted more-info" data-definition="It is a voluntary commitment presented by the European Commission with IT companies like Facebook, Twitter, YouTube. It is applied on the already existing filtering policies in the various social networks and its aim is to make sure that the requests to remove content are assessed quickly.">Code
+                                                                of&nbsp;Conduct</span>
+                                                        on countering illegal hate speech online”, that since its
+                                                        establishment has done 3 surveys and has published them in
+                                                        order to understand how IT Companies react to notifications of
+                                                        illegal hate speech.
                                                 </p>
-                                                <!-- It is a voluntary commitment presented by the European Commission with IT companies like Facebook, Twitter, YouTube. <br>
-                                                        It is applied on the already existing filtering policies in the various social networks and its aim is to make sure that the requests to remove content are assessed quickly.} -->
                                         </div>
                                         <div class="graph-container" id="graph-scroller-timeline" style="position: relative;">
-                                                <div id="timeline" style="position: relative; display: block;">
+                                                <span id="info-tooltip"></span>
+                                                <div style="position: relative; display: block;">
                                                         <?xml version="1.0" encoding="utf-8"?>
                                                         <!-- Generator: Adobe Illustrator 22.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
                                                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
                                                                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                                                viewBox="0 0 1653.2 342.6" style="width: 200%; max-height: 50vh; transform: translate(0%, 0%);"
-                                                                xml:space="preserve">
+                                                                viewBox="0 0 1653.2 342.6" style="width: 200%; max-height: 50vh;"
+                                                                xml:space="preserve" id="timeline">
                                                                 <pattern x="-324.9" y="95.7" width="72" height="72"
                                                                         patternUnits="userSpaceOnUse" id="USGS_17_Lago_sabbioso_asciutto"
                                                                         viewBox="0 -72 72 72" style="overflow:visible;">
@@ -4320,10 +4336,63 @@
                                                         </svg>
 
                                                 </div>
+                                                <script type="text/javascript">
+                                                        var moreInfo, definition, infoTooltip;
+                                                        moreInfo = document.getElementsByClassName("more-info");
+                                                        infoTooltip = document.getElementById("info-tooltip");
+                                                        for (i = 0; i < moreInfo.length; i++) {
+                                                                definition = moreInfo[i].getAttribute("data-definition");
+                                                                // console.log(definition);
+                                                                moreInfo[i].addEventListener("mouseover", (e) => {
+                                                                        infoTooltip.innerHTML = definition;
+                                                                        infoTooltip.classList.add("summon");
+                                                                })
+                                                                moreInfo[i].addEventListener("mouseout", (e) => {
+                                                                        infoTooltip.classList.remove("summon");
+                                                                })
+                                                        }
+                                                        //------PER IL TOOLTIP
+                                                        function showInfoTooltip(event) {
+                                                                var tooltip = document.getElementById("info-tooltip");
+                                                                var x = window.innerWidth;
+                                                                var y = window.innerHeight;
+                                                                tooltip.style.left = event.x + 'px';
+                                                                tooltip.style.top = event.y + 'px';
+                                                        }
+                                                        document.addEventListener("mousemove", showInfoTooltip);
+                                                </script>
+                                                <style>
+                                                        #info-tooltip {
+                                                                opacity: 0;
+                                                                margin-top: 20px;
+                                                                margin-left: 20px;
+                                                                padding: 15px;
+                                                                position: fixed;
+                                                                z-index: 1000;
+                                                                width: auto;
+                                                                height: auto;
+                                                                max-width: 300px;
+
+                                                                border: var(--border) var(--c-2);
+                                                                color: var(--c-2);
+                                                                background: var(--c-1);
+                                                                
+                                                                backdrop-filter: blur(10px);
+                                                                -webkit-backdrop-filter: blur(10px);
+
+                                                                transition: opacity calc(var(--timing)/2) linear;
+                                                                }
+
+                                                        #info-tooltip.summon {
+                                                                opacity: .90;
+                                                                transition: opacity calc(var(--timing)/2) ease-in-out;
+                                                        }
+                                                </style>
                                         </div>
                                         <div class="source-container">
                                                 <div class="source-text">
-                                                        <a href="https://ec.europa.eu/digital-single-market/en/news/europe-protects-countering-illegal-content-online" target="blank">
+                                                        <a href="https://ec.europa.eu/digital-single-market/en/news/europe-protects-countering-illegal-content-online"
+                                                                target="blank">
                                                                 Source
                                                         </a>
                                                 </div>
@@ -4340,35 +4409,44 @@
         <div class="narrative-section dark" style="display: block; height: 90vh;">
                 <div class="section-heading" id="section-policies">
                         <div class="section-title" id="section-4">
-                                <h1>What&nbsp;are&nbsp;they filtering&nbsp;for?</h1>
+                                <h2 style="color: var(--c-1); background-color: transparent; border: none;
+                                font-family: 'IBM Plex Serif'; font-size: 2rem;">What&nbsp;are&nbsp;they filtering&nbsp;for?</h2 style="color: var(--c-1); background-color: var(--c-1); border: none;">
                         </div>
                         <div id="sns" style="color: var(--c-1);">
                                 <div>
                                         <h3>Twitter</h3>
-                                        <p>We do not tolerate behavior that harasses, intimidates, or uses fear to silence another person’s voice. If you see something on Twitter that violates these rules, please report it to us.</p>
+                                        <p>We do not tolerate behavior that harasses, intimidates, or uses fear to
+                                                silence another person’s voice. If you see something on Twitter that
+                                                violates these rules, please report it to us.</p>
                                         <div class="source-container">
                                                 <div class="source-text dark">
-                                                        <a href="https://help.twitter.com/en/rules-and-policies/hateful-conduct-policy" target="blank">Source</a><br>
+                                                        <a href="https://help.twitter.com/en/rules-and-policies/hateful-conduct-policy"
+                                                                target="blank">Source</a><br>
                                                 </div>
                                         </div>
                                 </div>
                                 <div>
                                         <h3>Facebook</h3>
-                                        <p>Hate Speech is not allowed on Facebook because it causes intimidation, exclusion and in some cases it can generate actual violence.</p>
+                                        <p>Hate Speech is not allowed on Facebook because it causes intimidation,
+                                                exclusion and in some cases it can generate actual violence.</p>
                                         <div class="source-container">
                                                 <div class="source-text dark">
-                                                        <a href="https://www.facebook.com/communitystandards/hate_speech" target="blank">Source</a><br>
+                                                        <a href="https://www.facebook.com/communitystandards/hate_speech"
+                                                                target="blank">Source</a><br>
                                                 </div>
                                         </div>
                                 </div>
                                 <div>
                                         <h3>YouTube</h3>
-                                        <p>We encourage free speech and try to defend your right to express unpopular points of view, but we don't permit hate speech. There is a fine line between what is and what is not considered to be hate speech.</p>
+                                        <p>We encourage free speech and try to defend your right to express unpopular
+                                                points of view, but we don't permit hate speech. There is a fine line
+                                                between what is and what is not considered to be hate speech.</p>
                                         <div class="source-container">
                                                 <div class="source-text dark">
-                                                        <a href="https://support.google.com/youtube/answer/2801939?hl=en" target="blank">Source</a><br>
+                                                        <a href="https://support.google.com/youtube/answer/2801939?hl=en"
+                                                                target="blank">Source</a><br>
                                                 </div>
-                                        </div>                                
+                                        </div>
                                 </div>
                         </div>
                 </div>
@@ -4383,7 +4461,9 @@
                                 <h1>The journey of a&nbsp;notification</h1>
                         </div>
                         <div class="section-paragraph">
-                                <p style="border: none;">There are two main important elements of effective filtering: the time of assessment of the notifications and the effective decision which establishes if a content is hateful or not.</p>
+                                <p style="border: none;">There are two main important elements of effective filtering:
+                                        the time of assessment of the notifications and the effective decision which
+                                        establishes if a content is hateful or not.</p>
                         </div>
                 </div>
                 <div class="section-heading sub" style="margin-top: 0;">
@@ -4391,9 +4471,19 @@
                                 <h2>How&nbsp;fast can&nbsp;it&nbsp;be?</h2>
                         </div>
                         <div class="section-paragraph sub">
-                                <p>Time is important because the longer the hateful content stays available, the more damage it can inflict on the victims and empower the perpetrators. The third monitoring highlights the fact that IT Companies have different timings when it comes to assess notifications.<br><br>
-                                The notifications provided during the third monitoring, established by the European Council, are conveyed and analyzed with different timings by the three social networks adhering to the Code of Conduct during the survey period.</p>
+                                <p>Time is important because the longer the hateful content stays available, the more
+                                        damage it can inflict on the victims and empower the perpetrators. The third
+                                        monitoring highlights the fact that IT Companies have different timings when it
+                                        comes to assess notifications.<br><br>
+                                        The notifications provided during the third monitoring, established by the
+                                        European Council, are conveyed and analyzed with different timings by the three
+                                        social networks adhering to the Code of Conduct during the survey period.</p>
                         </div>
+                </div>
+                <div class="graph-container" style="max-width: calc(var(--max-width) / 1.3); margin: 0 auto; display: block;">
+                        <object type="image/svg+xml" data="src/SVGs/lettura.svg">
+                                Your browser does not support SVG
+                        </object>
                 </div>
                 <div class="source-container">
                         <div class="source-text">
@@ -4416,14 +4506,219 @@
                                         a relatively increasing number of notifications that at the end of the process
                                         were&nbsp;actually&nbsp;removed.</p>
                         </div>
-                        <div class="graph-container">
-                        </div>
+                </div>
+                <div class="graph-container">
+                        <?xml version="1.0" encoding="utf-8"?>
+                        <!-- Generator: Adobe Illustrator 22.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                        <svg id="bar_chart" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                viewBox="150 400 1600 800" style="max-width: 85vw;">
+                                <g id="social-labels-arrows">
+                                        <g class="graph-section-fb">
+                                                <!-- <g>
+                                                <line class="labels" x1="391.6" y1="558.3" x2="461" y2="558.3"/>
+                                                <g>
+                                                        <polygon class="white-el" points="460.2,552.2 460.2,564.4 466.3,558.3 				"/>
+                                                </g>
+                                                </g> -->
+                                        </g>
+                                        <g class="graph-section-tw">
+                                                <!-- <g>
+                                                <line class="labels" x1="391.6" y1="632.3" x2="461" y2="632.3"/>
+                                                <g>
+                                                        <polygon class="white-el" points="460.2,626.2 460.2,638.4 466.3,632.3 				"/>
+                                                </g>
+                                                </g> -->
+                                        </g>
+                                        <g class="graph-section-yt">
+                                                <!-- <g>
+                                                <line class="labels" x1="391.6" y1="706.3" x2="461" y2="706.3"/>
+                                                <g>
+                                                        <polygon class="white-el" points="460.2,700.2 460.2,712.4 466.3,706.3 				"/>
+                                                </g>
+                                                </g> -->
+                                        </g>
+                                </g>
+
+                                <g id="social-labels">
+                                        <rect id="fb-box" class="labels fb-label social-label" x="197.9" y="532.2" width="193.7"
+                                                height="52.1" />
+                                        <text id="fb-text" class="labels fb-label social-label white-el percentages-font"
+                                                transform="matrix(1 0 0 1 246.7727 564.2681)">Facebook</text>
+                                        <rect id="tw-box" class="labels tw-label social-label" x="197.9" y="606" width="193.7"
+                                                height="52.1" />
+                                        <text id="tw-text" class="labels tw-label social-label white-el percentages-font"
+                                                transform="matrix(1 0 0 1 252.7727 638.0273)">Twitter</text>
+                                        <rect id="yt-box" class="labels yt-label social-label" x="197.9" y="679.7" width="193.7"
+                                                height="52.1" />
+                                        <text id="yt-text" class="labels yt-label social-label white-el percentages-font"
+                                                transform="matrix(1 0 0 1 252.7727 711.7871)">YouTube</text>
+                                </g>
+
+                                <g id="graph-lines">
+                                        <line class="labels" x1="1615.2" y1="945.5" x2="1615.2" y2="562" />
+                                        <line class="labels" x1="1615.2" y1="945.5" x2="505.1" y2="945.5" />
+                                </g>
+
+                                <g id="monitoring-labels">
+                                        <g>
+                                                <text class="white-el percentages-font" transform="matrix(1 0 0 1 555.0073 1103.6553)">1st
+                                                        Monitoring</text>
+                                        </g>
+                                        <g>
+                                                <text class="white-el percentages-font" transform="matrix(1 0 0 1 926.0156 1103.6553)">2nd
+                                                        Monitoring</text>
+                                        </g>
+                                        <g>
+                                                <text class="white-el percentages-font" transform="matrix(1 0 0 1 1297.0247 1103.6553)">3rd
+                                                        Monitoring</text>
+                                        </g>
+                                </g>
+                                <g id="perc-labels">
+                                        <rect class="labels" x="632.4" y="983.8" width="115.4" height="52.1" />
+                                        <rect class="labels" x="1002.9" y="983.8" width="115.4" height="52.1" />
+                                        <rect class="labels" x="1374.3" y="983.8" width="115.4" height="52.1" />
+                                        <line class="labels" x1="690" y1="935.9" x2="690" y2="984" />
+                                        <line class="labels" x1="1060.5" y1="935.9" x2="1060.5" y2="984" />
+                                        <line class="labels" x1="1431.9" y1="935.9" x2="1431.9" y2="984" />
+                                        <rect class="labels" x="903.3" y="490" width="115.4" height="52.1" />
+                                        <rect class="labels" x="1274.3" y="490" width="115.4" height="52.1" />
+                                        <rect class="labels" x="532.3" y="490" width="115.4" height="52.1" />
+                                        <line class="labels" x1="1332" y1="541.8" x2="1332" y2="945.5" />
+                                        <line class="labels" x1="961" y1="541.8" x2="961" y2="946" />
+                                        <line class="labels" x1="590" y1="541.8" x2="590" y2="946" />
+                                </g>
+
+                                <g id="white-columns">
+                                        <rect id="bar1-white" class="columns white-column white-el" x="505.5" y="581"
+                                                width="270" height="0" />
+                                        <rect id="bar2-white" class="columns white-column white-el" x="876.5" y="581"
+                                                width="270" height="0" />
+                                        <rect id="bar3-white" class="columns white-column white-el" x="1247" y="581"
+                                                width="270" height="0" />
+                                </g>
+                                <g id="red-columns">
+                                        <rect id="bar1-red" class="columns red-column" x="505.5" y="581" width="270"
+                                                height="0" />
+                                        <rect id="bar2-red" class="columns red-column" x="876.5" y="581" width="270"
+                                                height="0" />
+                                        <rect id="bar3-red" class="columns red-column" x="1247" y="581" width="270"
+                                                height="0" />
+                                </g>
+
+                                <g id="fb-graph-values" class="graph-section-fb">
+                                        <line class="line-values" x1="1615.2" y1="582.7" x2="505.1" y2="582.7" />
+                                        <line class="line-values" x1="1615.2" y1="655.5" x2="505.1" y2="655.5" />
+                                        <line class="line-values" x1="1615.2" y1="726.9" x2="505.1" y2="726.9" />
+                                        <line class="line-values" x1="1615.2" y1="875.4" x2="505.1" y2="875.4" />
+                                        <line class="line-values" x1="1615.2" y1="925.5" x2="505.1" y2="925.5" />
+                                        <line class="line-values" x1="1615.2" y1="617.8" x2="505.1" y2="617.8" />
+                                        <rect class="white-el" x="1629.9" y="641" width="59.8" height="27.8" />
+                                        <text class="white-el percentages-font" transform="matrix(1 0 0 1 1633.9778 881.4399)">270</text>
+                                        <rect class="useless-class" x="1634" y="607.7" width="67.7" height="20.2" />
+                                        <text class="white-el percentages-font" transform="matrix(1 0 0 1 1633.9773 622.6284)">1273</text>
+                                        <text class="red-numbers percentages-font" transform="matrix(1 0 0 1 1635.5139 662.2432)">1124</text>
+                                        <rect class="white-el" x="1629.9" y="713" width="59.8" height="27.8" />
+                                        <text class="red-numbers percentages-font" transform="matrix(1 0 0 1 1635.5139 734.2881)">847</text>
+                                        <rect class="white-el" x="1629.9" y="912.1" width="59.8" height="27.8" />
+                                        <text class="red-numbers percentages-font" transform="matrix(1 0 0 1 1635.5139 933.3486)">63</text>
+                                        <rect class="useless-class" x="1634" y="574.2" width="62.4" height="16.1" />
+                                        <text class="white-el percentages-font" transform="matrix(1 0 0 1 1633.9777 589.1509)">1408</text>
+                                        <text class="white-el percentages-font" transform="matrix(1 0 0 1 930.6549 523.1729)">33,5%</text>
+                                        <text class="white-el percentages-font" transform="matrix(1 0 0 1 1301.6622 522.0464)">20,2%</text>
+                                        <text class="white-el percentages-font" transform="matrix(1 0 0 1 559.6461 522.0464)">76,7%</text>
+                                        <text class="white-el percentages-font" transform="matrix(1 0 0 1 659.7795 1015.8301)">23,3%</text>
+                                        <text class="white-el percentages-font" transform="matrix(1 0 0 1 1030.2174 1015.8301)">66,5%</text>
+                                        <text class="white-el percentages-font" transform="matrix(1 0 0 1 1401.6553 1015.8301)">79,8%</text>
+                                </g>
+
+                                <g id="tw-graph-values" class="graph-section-tw">
+                                        <line class="line-values" x1="1615.2" y1="740.7" x2="505.1" y2="740.7" />
+                                        <line class="line-values" x1="1615.2" y1="851.5" x2="505.1" y2="851.5" />
+                                        <line class="line-values" x1="1615.2" y1="882.9" x2="505.1" y2="882.9" />
+                                        <line class="line-values" x1="1615.2" y1="903.4" x2="505.1" y2="903.4" />
+                                        <line class="line-values" x1="1615.2" y1="937" x2="505.1" y2="937" />
+                                        <line class="line-values" x1="1615.2" y1="779.5" x2="505.1" y2="779.5" />
+                                        <rect class="white-el" x="1629.9" y="838" width="59.8" height="27.8" />
+                                        <text class="white-el percentages-font" transform="matrix(1 0 0 1 1633.9778 913.4399)">163</text>
+                                        <rect class="useless-class" x="1634" y="769.7" width="67.7" height="20.2" />
+                                        <text class="white-el percentages-font" transform="matrix(1 0 0 1 1633.9773 784.6284)">644</text>
+                                        <text class="red-numbers percentages-font" transform="matrix(1 0 0 1 1635.5139 859.2432)">363</text>
+                                        <rect class="white-el" x="1629.9" y="869" width="59.8" height="27.8" />
+                                        <text class="red-numbers percentages-font" transform="matrix(1 0 0 1 1635.5139 890.2881)">241</text>
+                                        <rect class="white-el" x="1629.9" y="923.1" width="59.8" height="27.8" />
+                                        <text class="red-numbers percentages-font" transform="matrix(1 0 0 1 1635.5139 944.3486)">31</text>
+                                        <rect class="useless-class" x="1634" y="732.2" width="62.4" height="16.1" />
+                                        <text class="white-el percentages-font" transform="matrix(1 0 0 1 1633.9777 747.1509)">794</text>
+                                        <text class="white-el percentages-font" transform="matrix(1 0 0 1 930.6549 523.1729)">62,6%</text>
+                                        <text class="white-el percentages-font" transform="matrix(1 0 0 1 1301.6622 522.0464)">54,3%</text>
+                                        <text class="white-el percentages-font" transform="matrix(1 0 0 1 571.7877 522.0464)">81%</text>
+                                        <text class="white-el percentages-font" transform="matrix(1 0 0 1 671.9211 1015.8301)">19%</text>
+                                        <text class="white-el percentages-font" transform="matrix(1 0 0 1 1030.2174 1015.8301)">37,4%</text>
+                                        <text class="white-el percentages-font" transform="matrix(1 0 0 1 1401.6553 1015.8301)">45,7%</text>
+                                </g>
+
+                                <g id="yt-graph-values" class="graph-section-yt">
+                                        <line class="line-values" x1="1615.2" y1="744.7" x2="505.1" y2="744.7" />
+                                        <line class="line-values" x1="1615.2" y1="793.5" x2="505.1" y2="793.5" />
+                                        <line class="line-values" x1="1615.2" y1="833.9" x2="505.1" y2="833.9" />
+                                        <line class="line-values" x1="1615.2" y1="913.4" x2="505.1" y2="913.4" />
+                                        <line class="line-values" x1="1615.2" y1="930" x2="505.1" y2="930" />
+                                        <line class="line-values" x1="1615.2" y1="775.8" x2="505.1" y2="775.8" />
+                                        <rect class="white-el" x="1629.9" y="781" width="59.8" height="27.8" />
+                                        <text class="white-el percentages-font" transform="matrix(1 0 0 1 1633.9778 919.4399)">123</text>
+                                        <rect x="1634" y="764.7" class="useless-class" width="67.7" height="20.2" />
+                                        <text class="white-el percentages-font" transform="matrix(1 0 0 1 1633.9773 779.6284)">658</text>
+                                        <text class="red-numbers percentages-font " transform="matrix(1 0 0 1 1635.5139 802.2432)">585</text>
+                                        <rect class="white-el" x="1629.9" y="820" width="59.8" height="27.8" />
+                                        <text class="red-numbers percentages-font " transform="matrix(1 0 0 1 1635.5139 841.2881)">434</text>
+                                        <rect class="white-el" x="1629.9" y="922.1" width="59.8" height="27.8" />
+                                        <text class="red-numbers percentages-font " transform="matrix(1 0 0 1 1635.5139 943.3486)">60</text>
+                                        <rect x="1634" y="737.2" class="useless-class" width="62.4" height="16.1" />
+                                        <text class="white-el percentages-font" transform="matrix(1 0 0 1 1633.9777 752.1509)">780</text>
+                                        <text class="white-el percentages-font" transform="matrix(1 0 0 1 930.6549 523.1729)">34,4%</text>
+                                        <text class="white-el percentages-font" transform="matrix(1 0 0 1 1313.8038 522.0464)">25%</text>
+                                        <text class="white-el percentages-font" transform="matrix(1 0 0 1 559.6461 522.0464)">51,2%</text>
+                                        <text class="white-el percentages-font" transform="matrix(1 0 0 1 1030.2174 1015.8301)">65,6%</text>
+                                        <text class="white-el percentages-font" transform="matrix(1 0 0 1 1413.7969 1015.8301)">75%</text>
+                                        <text class="white-el percentages-font" transform="matrix(1 0 0 1 659.7795 1015.8301)">48,8%</text>
+                                </g>
+
+                                <!-- <g id="fb-dima" class="graph-section-fb">
+                                        <rect x="552.1" y="875.3" class="white-el" width="269.8" height="69.9" />
+                                        <rect x="923.1" y="617.7" class="white-el" width="269.8" height="327.6" />
+                                        <rect x="1294.1" y="582.7" class="white-el" width="269.8" height="362.5" />
+                                        <rect x="552.5" y="925.5" class="red-column" width="269" height="19.8" />
+                                        <rect x="923.6" y="727.1" class="red-column" width="269.8" height="218.1" />
+                                        <rect x="1294" y="655.3" class="red-column" width="269.8" height="289.6" />
+                                        </g>
+                                
+                                        <g id="tw-dima" class="graph-section-tw">
+                                        <rect x="552.1" y="903.2" class="white-el" width="269.8" height="42" />
+                                        <rect x="923.1" y="779.4" class="white-el" width="269.8" height="165.8" />
+                                        <rect x="1294.1" y="740.6" class="white-el" width="269.8" height="204.6" />
+                                        <rect x="552.5" y="937.2" class="red-column" width="269" height="8" />
+                                        <rect x="923.6" y="883.1" class="red-column" width="269.8" height="62.1" />
+                                        <rect x="1294" y="851.3" class="red-column" width="269.8" height="93.5" />
+                                        </g>
+                                
+                                        <g id="yt-dima" class="graph-section-yt">
+                                        <rect x="552.1" y="913.6" class="white-el" width="269.8" height="31.7" />
+                                        <rect x="923.1" y="775.9" class="white-el" width="269.8" height="169.4" />
+                                        <rect x="1294.1" y="744.4" class="white-el" width="269.8" height="200.8" />
+                                        <rect x="552.5" y="929.8" class="red-column" width="269" height="15.4" />
+                                        <rect x="923.6" y="833.5" class="red-column" width="269.8" height="111.7" />
+                                        <rect x="1294" y="793.7" class="red-column" width="269.8" height="151.1" />
+                                        </g> -->
+
+                        </svg>
+
                 </div>
                 <div class="source-container">
                         <div class="source-text dark">
                                 <a href="http://ec.europa.eu/newsroom/just/document.cfm?doc_id=49286" target="blank">Source[1]</a><br>
                                 <a href="http://ec.europa.eu/newsroom/just/item-detail.cfm?item_id=71674" target="blank">Source[2]</a><br>
-                                <a href="http://ec.europa.eu/information_society/newsroom/image/document/2016-50/factsheet-code-conduct-8_40573.pdf" target="blank">Source[3]</a>
+                                <a href="http://ec.europa.eu/information_society/newsroom/image/document/2016-50/factsheet-code-conduct-8_40573.pdf"
+                                        target="blank">Source[3]</a>
                         </div>
                 </div>
         </div>
@@ -4442,16 +4737,20 @@
                                 <h2>Hateful Categories</h2>
                         </div>
                         <div class="section-paragraph">
-                                <p>Since hate is generated in different contexts, it doesn’t have a unique target. Social Networks have only been a means of proliferation for different kinds of hatred, but the different sympathies and policies of the companies have given more importance to some groups despite others.<br><br>
-                                The following chart shows the categories of speeches that are held to be Hate Speech from Facebook, Twitter, YouTube.<br>
-                                Over time, the amount of affluence of hatred towards categories may change.</p>
+                                <p>Since hate is generated in different contexts, it doesn’t have a unique target.
+                                        Social Networks have only been a means of proliferation for different kinds of
+                                        hatred, but the different sympathies and policies of the companies have given
+                                        more importance to some groups despite others.<br><br>
+                                        The following chart shows the categories of speeches that are held to be Hate
+                                        Speech from Facebook, Twitter, YouTube.<br>
+                                        Over time, the amount of affluence of hatred towards categories may change.</p>
                         </div>
                 </div>
                 <div class="graph-container" id="categories-graph">
                         <?xml version="1.0" encoding="utf-8"?>
                         <!-- Generator: Adobe Illustrator 22.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                x="0px" y="0px" viewBox="650 100 600 900" style="max-height: 75vh;" xml:space="preserve">
+                                viewBox="650 100 600 900" style="max-height: 75vh;" xml:space="preserve">
                                 <g id="Testi-Social">
                                         <text transform="matrix(1 0 0 1 504.481 576.2192)" class="testi social social-all twitter"
                                                 id="twitter">Twitter</text>
@@ -4546,14 +4845,14 @@
                                         <path class="yt-paths all-paths youtube social-all age" d="M1209.5,147.7c-346,0-346,510.3-593.2,510.3" />
                                 </g>
                         </svg>
-
                 </div>
                 <div class="section-heading focus">
                         <div class="section-title" id="section-7-2">
                                 <h2>Hateful Categories in&nbsp;the&nbsp;years</h2>
                         </div>
                         <div class="section-paragraph">
-                                <p>The alluvial diagram shows the development of Hate Speech categories during the three surveys carried out by the European Commission.</p>
+                                <p>The alluvial diagram shows the development of Hate Speech categories during the
+                                        three surveys carried out by the European Commission.</p>
                         </div>
                 </div>
 
@@ -4561,8 +4860,7 @@
                         <?xml version="1.0" encoding="utf-8"?>
                         <!-- Generator: Adobe Illustrator 22.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                x="0px" y="0px" viewBox="650 100 600 900" style="enable-background:new 0 0 1920 1080;"
-                                xml:space="preserve">
+                                viewBox="650 150 600 780" style="max-height: 75vh;" xml:space="preserve">
                                 <g id="3rd-monitoring">
                                         <path class="stroke stroke0 3rd" d="M711.6,279.4c259.4,0,259.4,385.3,518.8,385.3" />
                                         <path class="stroke stroke1 3rd" d="M711.6,380.6C971,380.6,971,690,1230.4,690" />
@@ -4653,7 +4951,8 @@
                         <div class="source-text dark">
                                 <a href="http://ec.europa.eu/newsroom/just/document.cfm?doc_id=49286" target="blank">Source[1]</a><br>
                                 <a href="http://ec.europa.eu/newsroom/just/item-detail.cfm?item_id=71674" target="blank">Source[2]</a><br>
-                                <a href="http://ec.europa.eu/information_society/newsroom/image/document/2016-50/factsheet-code-conduct-8_40573.pdf" target="blank">Source[3]</a>
+                                <a href="http://ec.europa.eu/information_society/newsroom/image/document/2016-50/factsheet-code-conduct-8_40573.pdf"
+                                        target="blank">Source[3]</a>
                         </div>
                 </div>
         </div>
@@ -4662,21 +4961,26 @@
         <!--    SECTION 8 — HATEBASE WORDS    -->
         <!--    //////////////////////////    -->
         <div class="narrative-section" style="padding-bottom: var(--spacing)">
-                <div class="section-heading sub">
+                <div class="section-heading sub" style="margin-bottom: 0px;">
                         <div class="section-title highlighted" id="section-8">
                                 <h2>Hate words</h2>
                         </div>
                         <div class="section-paragraph">
                                 <p>
-                                        <span class="highlighted"><a class="more-info" href="https://hatebase.org" target="blank">Hatebase</a></span> is a tool that aims to map the way hatred spreads: the words it contains help people recognizing hate episodes both online and in real life. Moreover it gives a better understanding of how hate words cause moral damage and how their censorship is in many contexts justifiable.
+                                        <span class="highlighted"><a class="more-info" href="https://hatebase.org"
+                                                        target="blank">Hatebase</a></span> is a tool that aims to map
+                                        the way hatred spreads: the words it contains help people recognizing hate
+                                        episodes both online and in real life. Moreover it gives a better understanding
+                                        of how hate words cause moral damage and how their censorship is in many
+                                        contexts justifiable.
                                 </p>
                         </div>
-                </div>
-                <div id="description-container">
-                        <!-- Parola -->
-                        <span id="hate-word-description">
+                        <div id="description-container">
+                                <!-- Parola -->
+                                <span id="hate-word-description">
 
-                        </span>
+                                </span>
+                        </div>
                 </div>
                 <div id="graph-container">
                         <span id="tooltip">
@@ -4739,8 +5043,13 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TimelineMax.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/plugins/animation.gsap.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js"></script>
         <script src="src/countUp.js"></script>
-        <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/plugins/debug.addIndicators.min.js"></script> -->
+        <!--                 -->
+        <!-- CDN Y U NO WORK -->
+        <!--                 -->
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/1.9.3/countUp.min.js"></script> -->
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/plugins/debug.addIndicators.min.js"></script>
 
         <!-- script custom -->
         <script type="text/javascript" src="src/main.js"></script>
@@ -4748,6 +5057,7 @@
         <script type="text/javascript" src="src/filtering.js"></script>
         <script type="text/javascript" src="src/categories_graph.js"></script>
         <script type="text/javascript" src="src/categories_alluvial.js"></script>
+        <script type="text/javascript" src="src/percentage.js"></script>
 
         <script></script>
 

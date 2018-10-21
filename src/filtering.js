@@ -1,4 +1,5 @@
 var curvesArray = document.querySelectorAll('.graph-curve');
+var percLabelsArray = document.querySelectorAll('.perc-labels')
 var graphContainer = document.getElementById('curve-graph-container');
 
 var curves, lower, higher, x;
@@ -63,6 +64,7 @@ function highlightOn() {
         //------controlla su quale pallino è hover
         if (curvesArray[t].matches('.graph-curve:hover')) {
             curveToIgnore = t;
+            percLabelsArray[t].classList.add("highlight");
         } else if (t != curveToIgnore) {
             curvesArray[t].classList.add("disappear");
         }
@@ -72,5 +74,6 @@ function highlightOn() {
 function highlightOff() {
     for (i = 0; i < curvesArray.length; i++) {
         curvesArray[i].classList.remove('disappear');
+        percLabelsArray[i].classList.remove("highlight");
     }
 }

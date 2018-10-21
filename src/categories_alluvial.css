@@ -1,7 +1,3 @@
-body {
-    background-color: bisque;   
-}
-
 .stroke0,
 .stroke1,
 .stroke2,
@@ -20,6 +16,12 @@ body {
     opacity:0.5;
     fill:none;
     stroke:#0000FF;
+    cursor: url('assets/arrow-32-hd.png'), auto;
+    
+}
+
+.texts {
+    cursor: url('assets/arrow-32-hd.png'), auto;
 }
 
 .stroke0{stroke-width:31.1866;}
