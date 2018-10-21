@@ -7,6 +7,7 @@
   --a-transition: 0.25s;
   --bezier: cubic-bezier(0, -1, 0, 1);
   --border: solid 2px;
+  --max-width: 1024px;
 
   font-family: "IBM Plex Light", Helvetica, sans-serif;
   font-size: 16px;
@@ -48,7 +49,7 @@ body {
   mix-blend-mode: difference;
   text-align: right;
   transition: all calc(var(--a-transition) / 1) ease-out;
-  max-width: 250px;
+  max-width: calc(var(--max-width) / 3);
 }
 .toc.summon {
   right: calc(var(--spacing) * 2);
@@ -125,7 +126,7 @@ span.highlighted {
 svg {
   display: block;
   margin: 0 auto;
-  width: 90%;
+  /* width: 90%; */
   max-height: 90vh;
 }
 
@@ -162,8 +163,8 @@ svg {
   grid-gap: calc(var(--spacing) / 1.5);
   box-sizing: border-box;
   color: var(--c-2);
-  margin: calc(var(--spacing) * 2) auto calc(var(--spacing) * 1) auto;
-  max-width: 960px;
+  margin: calc(var(--spacing) * 2) auto calc(var(--spacing) * 0) auto;
+  max-width: var(--max-width);
 }
 .section-title,
 .section-paragraph {
@@ -193,10 +194,6 @@ svg {
 .section-heading.sub {
   /* inherits from section-heading */
   grid-template-columns: 1fr;
-  margin: calc(var(--spacing) * 1) 
-          auto 
-          calc(var(--spacing) * 1) 
-          auto; 
 }
 .section-heading.sub .section-title {
   z-index: 10;
@@ -210,7 +207,7 @@ svg {
 .section-heading.sub .section-paragraph p {
   margin-left: calc(var(--spacing) / 2);
   margin-top: calc(var(--spacing) * -1.1);
-  max-width: 450px;
+  max-width: calc(var(--max-width) / 2);
   background-color: var(--c-1);
 }
 .section-title.sub.highlighted h2 {
@@ -229,10 +226,6 @@ svg {
   color: var(--c-1);
   border-color: var(--focus) !important;
   grid-template-columns: 1fr;
-  margin: calc(var(--spacing) * 1) 
-          auto 
-          calc(var(--spacing) * 1) 
-          auto; 
 }
 .section-heading.focus .section-title {
   z-index: 10;
@@ -249,7 +242,7 @@ svg {
 .section-heading.focus .section-paragraph p {
   margin-left: calc(var(--spacing) / 2);
   margin-top: calc(var(--spacing) * -1.1);
-  max-width: 450px;
+  max-width: calc(var(--max-width) / 2);
   color: var(--c-1);
   border: var(--border) var(--c-1);
 }
@@ -276,7 +269,7 @@ svg {
   z-index: 5;
 }
 .section-heading.dark .section-paragraph p {
-  max-width: 450px;
+  max-width: calc(var(--max-width) / 2);
   color: var(--c-1);
   border: var(--border) var(--c-1);
   background-color: var(--c-2);
@@ -323,7 +316,7 @@ svg {
   width: 100%;
   box-sizing: border-box;
   display: inline-block;
-  margin: calc(var(--spacing) * 2) 
+  margin: calc(var(--spacing) * 0) 
           auto 
           calc(var(--spacing) * 1) 
           auto;
@@ -334,9 +327,8 @@ svg {
 }
 
 .source-container {
-  /* max-width: 860px; */
   width: 100%;
-  max-width: 1024px;
+  max-width: var(--max-width);
   display: block;
   position: relative;
   text-align: right;
@@ -395,7 +387,7 @@ svg {
   justify-items: center;
   margin: calc(var(--spacing)*1) auto;
   height: 75%;
-  max-width: 860px;
+  max-width: var(--max-width);
 }
 
 #categories-graph {
@@ -410,7 +402,7 @@ svg {
 .undefined-graph {
   display: block;
   margin: 0 auto;
-  max-width: 960px;
+  max-width: var(--max-width);
   background-image: url("graphs/graph_1-map_texture.png");
   background-repeat: repeat;
   background-size: 10px;
@@ -427,16 +419,4 @@ svg {
   .toc.summon {
     right: calc(var(--spacing) * 2);
   }
-  /* .section-heading {
-    display: block;
-    margin: var(--spacing);
-    max-width: 500px;
-    text-align: left;
-  }
-  .section-paragraph {
-    margin: 0 calc(var(--spacing) * 2);
-  }
-  .section-graph {
-    display: block;
-  } */
 }

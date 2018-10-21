@@ -111,7 +111,7 @@ function sameCategoriesOff() {
 
         if (i == lastDotIgnored) {
             dots[i].classList.remove("onn");
-            console.log('Rimuovo onn da ' + lastDotIgnored);
+            // console.log('Rimuovo onn da ' + lastDotIgnored);
             this.style.transform = "";
         }
     }

@@ -281,8 +281,8 @@ var timelineController = new ScrollMagic.Controller();
 var wipeAnimation = new TimelineMax().fromTo(
   "#timeline",
   1,
-  { x: "0%" },
-  { x: "-100%", ease: Linear.easeNone }
+  { x: "20%" },
+  { x: "-80%", ease: Linear.easeNone }
 ); // in from left
 
 var timelineScene = new ScrollMagic.Scene({
@@ -296,8 +296,8 @@ var timelineScene = new ScrollMagic.Scene({
   .addTo(timelineController);
 
 timelineScene.on("enter", function(event) {
-  console.log("entered");
-  // document.getElementById("section-3-pin").style.marginTop = "calc(var(--spacing) * 2)";
+  // console.log("entered");
+  document.getElementById("section-3-pin").style.marginTop = "calc(var(--spacing) * 1)";
 });
 
 
