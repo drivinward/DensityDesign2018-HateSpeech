@@ -1,7 +1,13 @@
+/* * {
+    cursor: url('assets/new-hand-blue-32.png'), auto;
+} */
+
 .testi {
     fill: #FFFFFF;
     font-family: 'IBM Plex Mono';
     font-size: 17.9419px;
+    
+    cursor: url('assets/new-hand-blue-32-2.png'), auto;
 }
 .social-disappear{
     opacity: .1;
