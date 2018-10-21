@@ -6485,17 +6485,27 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
         if (glob.doc.addEventListener) {
             return function (obj, type, fn, element) {
                 var realName = supportsTouch && touchMap[type] ? touchMap[type] : type,
+<<<<<<< HEAD
                     f = function (e) {
                         var scrollY = getScroll("y"),
                             scrollX = getScroll("x");
                         if (supportsTouch && touchMap[has](type)) {
                             for (var i = 0, ii = e.targetTouches && e.targetTouches.length; i < ii; i++) {
                                 if (e.targetTouches[i].target == obj || obj.contains(e.targetTouches[i].target)) {
+=======
+                    f = function (e) {
+                        var scrollY = getScroll("y"),
+                            scrollX = getScroll("x");
+                        if (supportsTouch && touchMap[has](type)) {
+                            for (var i = 0, ii = e.targetTouches && e.targetTouches.length; i < ii; i++) {
+                                if (e.targetTouches[i].target == obj || obj.contains(e.targetTouches[i].target)) {
+>>>>>>> e9c09c9594a7fd2501a5de2e25793024dcb36275
                                     var olde = e;
                                     e = e.targetTouches[i];
                                     e.originalEvent = olde;
                                     e.preventDefault = preventTouch;
                                     e.stopPropagation = stopTouch;
+<<<<<<< HEAD
                                     break;
                                 }
                             }
@@ -6507,13 +6517,31 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
 
                 if (type !== realName) {
                     obj.addEventListener(type, f, false);
+=======
+                                    break;
+                                }
+                            }
+                        }
+                        var x = e.clientX + scrollX,
+                            y = e.clientY + scrollY;
+                        return fn.call(element, e, x, y);
+                    };
+
+                if (type !== realName) {
+                    obj.addEventListener(type, f, false);
+>>>>>>> e9c09c9594a7fd2501a5de2e25793024dcb36275
                 }
 
                 obj.addEventListener(realName, f, false);
 
                 return function () {
+<<<<<<< HEAD
                     if (type !== realName) {
                         obj.removeEventListener(type, f, false);
+=======
+                    if (type !== realName) {
+                        obj.removeEventListener(type, f, false);
+>>>>>>> e9c09c9594a7fd2501a5de2e25793024dcb36275
                     }
 
                     obj.removeEventListener(realName, f, false);

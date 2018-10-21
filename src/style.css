@@ -1,3 +1,7 @@
+* {
+  cursor: url('assets/arrow-32-hd.png');
+}
+
 :root {
   --c-1: #fff;
   --c-2: #0033ff;
@@ -24,6 +28,22 @@
 
   --dot-size: 50px;
 }
+
+::-moz-selection { /* Code for Firefox */
+  color: var(--focus);
+  background: yellow;
+}
+
+::-webkit-selection { /* Code for Safari */
+  color: var(--focus);
+  background: yellow;
+}
+
+::selection {
+  color: var(--focus); 
+  background: yellow;
+}
+
 
 html,
 body {
@@ -114,12 +134,19 @@ h1 {
 h2 {
   font-size: 1.2rem;
 }
+h3 {
+  font-family: 'IBM Plex Sans';
+}
 p {
   font-family: "IBM Plex Light";
   margin-bottom: var(--spacing);
 }
 a {
   text-decoration: none;
+  color: var(--c-1);
+  cursor: url('assets/dot-32-hd-small.png');
+}
+a:hover {
   color: var(--c-1);
 }
 
