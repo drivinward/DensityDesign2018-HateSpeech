@@ -1,6 +1,5 @@
 body {
     --coefficent: 1;
-    background-color: var(--c-1);
 }
 
 .graph-curve, .higher, #x-axis {

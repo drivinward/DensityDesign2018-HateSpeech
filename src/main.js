@@ -22,25 +22,28 @@ function mapper(num, in_min, in_max, out_min, out_max) {
 
 // get mouse coordinates
 document.addEventListener("mousemove", function(e) {
-  mouseX = mapper(e.clientX / window.innerWidth, 0, 1, 0, 1.5);
-  mouseY = mapper(e.clientY / window.innerHeight, 0, 1, 0, 0.35);
+  mouseX = mapper(e.clientX / window.innerWidth, 0, 1, 0, 1);
+  mouseY = mapper(e.clientY / window.innerHeight, 0, 1, 0, 1);
 });
 
 // apertura/chiusura indice dei contenuti
 var line = document.getElementById("current-line");
-line.addEventListener("mousemove", function(e) {
+document.addEventListener("mousemove", function(e) {
   // mouseX = e.clientX / window.innerWidth;
-  // // mouseY = e.clientY / window.innerHeight;
-  // // console.log(mouseX);
-  // if (mouseX > 0.85) {
+  // mouseY = e.clientY / window.innerHeight;
+  // console.log(mouseX);
+  if (mouseX > 0.75) {
     toc.classList.add("summon");
     line.classList.add("active");
-  // }
+  } else if (mouseX < 0.75) {
+    toc.classList.remove("summon");
+    line.classList.remove("active");
+  }
 });
-toc.addEventListener("mouseleave", function() {
-  toc.classList.remove("summon");
-  line.classList.remove("active");
-});
+// document.addEventListener("mouseleave", function(e) {
+//   toc.classList.remove("summon");
+//   line.classList.remove("active");
+// });
 
 var points = 100;
 // generate wave dots
@@ -58,7 +61,8 @@ function generateDots() {
     container.appendChild(svgLine);
     // console.log(points[i]);
   }
-} generateDots();
+}
+generateDots();
 
 // animate the wave dots
 var norm = 0;
@@ -84,8 +88,6 @@ setTimeout(function() {
   }
   requestAnimationFrame(anim);
 }, delay);
-
-
 
 // CountUp anima percentage values e waveform volume
 var options_numAnim = {
@@ -125,16 +127,19 @@ for (i = 0; i < els.length; i++) {
   };
 }
 
-
-
 // prende tutti i titoli delle sezioni h1 e h2 con classe 'section-title'
 // e li inserisce come tag <li> nell'indice dei contenuti
 var where = [];
 function tocTitles() {
   var ul = document.createElement("UL");
   toc.appendChild(ul);
+
+  // l'HTMLCollection non è un array - ma vaffanculo.
   // HTMLCollection dei titoli nel documento HTML
-  var liTxt = document.getElementsByClassName("section-title");
+  // var liTxt = document.getElementsByTagName("section-title");
+
+  // HTMLCollection dei titoli h1 nel documento HTML
+  var liTxt = document.getElementsByTagName("h1");
 
   var li;
   // insieme di tutte le sezioni con testo
@@ -145,21 +150,20 @@ function tocTitles() {
     // link da inserire dentro ogni 'li'
     a = document.createElement("a");
     // setta il collegamento di ogni 'a'
-    // console.log(liTxt[i].id);
     where.push(liTxt[i].id);
     a.href = "#" + where[i];
+
     // prende il primo elemento figlio di 'section-title', cioè i titoli delle sezioni
-    a.innerHTML = liTxt[i].childNodes[1].innerHTML;
-    // console.log(a);
+    // a.innerHTML = liTxt[i].childNodes[1].innerHTML;
+
+    // questo prende tutti i titoli h1
+    a.innerHTML = liTxt[i].innerHTML;
+
     // inserisce il 'li' in 'ul'
     ul.appendChild(li);
+    
     // inserisce il collegamento 'a' in 'li'
     li.appendChild(a);
-    // funzione per ascoltare il click sui 'li' ed animare scroll verso sezione relativa
-    // li.addEventListener("click", function () {
-    //     scrollTo(document.body, sectionHeights[i], 600);
-    //     console.log(where[i]);
-    // });
     lis.push(li);
     // valore dato all'inizio
     if (liTxt[i] == liTxt[0]) {
@@ -171,22 +175,19 @@ function tocTitles() {
 }
 window.onload = tocTitles();
 
-
-
 var sectionHeights = [];
 // questo è l'elemento che viene considerato come sezione.
-var sections = document.getElementsByClassName("section-title");
+var sections = document.getElementsByTagName("h1");
 
 function calcHeights() {
   var height;
   for (i = 0; i < sections.length; i++) {
     // prendi il contenitore del titolo di ogni sezione (per capire quando comincia la sezione)
-    height = sections[i].parentElement.offsetTop;
+    height = sections[i].parentElement.parentElement.parentElement.offsetTop;
     sectionHeights.splice(i, 1, height);
   }
   // console.log(sectionHeights);
 }
-
 
 function updateIndicator(currLi) {
   var indicator = document.getElementById("current-line");
@@ -196,13 +197,14 @@ function updateIndicator(currLi) {
   indicator.style.top = currLiHeight;
 }
 
-
 function updateSection() {
-  
   var doc = document.documentElement;
-  var top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0) + (window.innerHeight / 2);
+  var top =
+    (window.pageYOffset || doc.scrollTop) -
+    (doc.clientTop || 0) +
+    window.innerHeight / 2;
   // var top = (window.pageYOffset / window.innerHeight) / 2;
-  
+
   calcHeights();
   // console.log('Current height: ' + top);
 
@@ -217,9 +219,9 @@ function updateSection() {
     // var currSection = sections[i];
     // var nextSection = sections[i + 1];
 
-    var oldLi = document.querySelectorAll(".toc > ul > li")[i - 1];
     var currLi = document.querySelectorAll(".toc > ul > li")[i];
-    var nextLi = document.querySelectorAll(".toc > ul > li")[i + 1];
+    // console.log(currLi);
+    var oldLi = document.querySelectorAll(".toc > ul > li")[i - 1];
     if (
       (top >= currSectionHeight && top < nextSectionHeight) ||
       (top >= currSectionHeight && top < document.body.scrollHeight)
@@ -233,24 +235,21 @@ function updateSection() {
       } else {
         oldLi.classList.remove("current");
       }
+
       currLi.classList.add("current");
-      // console.log(currLi);
+
     } else if (top <= currSectionHeight && top > oldSectionHeight) {
       oldLi.classList.add("current");
       currLi.classList.remove("current");
-      oldLi = currLi;
+      // oldLi = currLi;
     }
   }
   updateIndicator(currLi);
 }
 
-
-
-
 // ////////////////// START ////////////////// //
 // //////// SCROLLMAGIC + GSAP SCENES //////// //
 // /////////////////////////////////////////// //
-
 
 var waveformController = new ScrollMagic.Controller();
 var mapScene = new ScrollMagic.Scene({
@@ -262,19 +261,20 @@ var mapScene = new ScrollMagic.Scene({
   .addTo(waveformController); // assign the scene to the controller
 
 mapScene.on("enter", function(event) {
-  document.getElementById("section-1").parentElement.parentElement.classList.add("bg", "dark");
+  document
+    .getElementById("section-1").parentElement.parentElement.classList.add("bg", "dark");
   document.getElementById("main-question-paragraph").classList.add("dark");
   document.getElementById("wave").classList.add("focus");
   numAnim.update(100);
 });
 mapScene.on("leave", function(event) {
-  document.getElementById("section-1").parentElement.parentElement.classList.remove("bg", "dark");
+  document
+    .getElementById("section-1").parentElement.parentElement.classList.remove("bg", "dark");
   document.getElementById("main-question-paragraph").classList.remove("dark");
   document.getElementById("main-question-paragraph").style.marginBottom = "0";
   document.getElementById("wave").classList.remove("focus");
   numAnim.update(0);
 });
-
 
 var timelineController = new ScrollMagic.Controller();
 // define movement of panels
@@ -297,16 +297,13 @@ var timelineScene = new ScrollMagic.Scene({
 
 timelineScene.on("enter", function(event) {
   // console.log("entered");
-  document.getElementById("section-3-pin").style.marginTop = "calc(var(--spacing) * 1)";
+  document.getElementById("section-3-pin").style.marginTop =
+    "calc(var(--spacing) * 1)";
 });
-
-
 
 // /////////////////////////////////////////// //
 // //////// SCROLLMAGIC + GSAP SCENES //////// //
 // /////////////////// END /////////////////// //
-
-
 
 // /////////////////////////////////////////// //
 // ///////// GESTIONE EVENTI PAGINA ////////// //
@@ -317,6 +314,6 @@ window.onload = (e) => {
   tocTitles();
   updateSection();
 };
-document.addEventListener("scroll", e => {
+document.addEventListener("scroll", (e) => {
   updateSection();
 });

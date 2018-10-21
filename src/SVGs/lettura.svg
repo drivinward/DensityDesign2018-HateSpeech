@@ -45,6 +45,13 @@
 	.lettura-st-50{fill:none;stroke:#0033FF;stroke-width:4;stroke-miterlimit:10;}
 	.lettura-st-51{fill:#FFFFFF;stroke:#0033FF;stroke-width:0.9936;stroke-miterlimit:10;}
 	.lettura-st-52{opacity:0.85;}
+
+	<!-- #T0, #T1, #T2, #T3, #T4, #T5, #T6, #T7 {
+		opacity: 0;
+	}
+	.lettura-show {
+		opacity: 1;
+	} -->
 </style>
 <pattern  x="-1840.4" y="-879.3" width="72" height="72" patternUnits="userSpaceOnUse" id="Linee_diagonali" viewBox="79.6 -148.6 72 72" style="overflow:visible;">
 	<g>
