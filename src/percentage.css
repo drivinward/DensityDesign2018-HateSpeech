@@ -3,7 +3,11 @@
     --coefficent: 1.5;
 }
 
-#fb-text, #tw-text, #yt-text, #fb-box, #tw-box, #yt-box {
+#fb-text, #tw-text, #yt-text{
+    fill: white;
+}
+
+#fb-box, #tw-box, #yt-box {
     fill: none;
     transition: fill, stroke calc(var(--timing))/var(--coefficent) cubic-bezier(.65, 0, .15, 1);
 }
@@ -29,13 +33,20 @@
     transition: opacity calc(var(--timing)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1);
 }
 
-/* .columns {
-    transition: opacity calc(var(--timing)/var(--coefficent)) cubic-bezier(.65, 0, .15, 1);
-} */
+/* ------ COLONNE DI SNAP.SVG ------ */
+
+.white-column {
+
+}
+
+.red-column {
+    
+}
 
 /* ------ SVG ------ */
 
 .labels{fill:none;stroke:#FFFFFF;stroke-miterlimit:10;}
+.social-label {fill: #FFFFFF;}
 .white-el{fill:#FFFFFF;}
 .percentages-font{font-family:'IBM Plex Mono'; font-size:20px;}
 .red-column{opacity:0.7;fill:#CE3B19;}
