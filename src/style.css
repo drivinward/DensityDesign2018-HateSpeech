@@ -387,6 +387,7 @@ object {
   font-size: .8rem;
   text-decoration-color: var(--c-2);
   text-decoration-line: underline;
+  cursor: alias;
 }
 .source-text.dark a {
   color: var(--c-1);
