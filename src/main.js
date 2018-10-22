@@ -150,7 +150,8 @@ function tocTitles() {
     // link da inserire dentro ogni 'li'
     a = document.createElement("a");
     // setta il collegamento di ogni 'a'
-    where.push(liTxt[i].id);
+    where.push(liTxt[i].parentElement.id);
+    // console.log(liTxt[i].parentElement.id);
     a.href = "#" + where[i];
 
     // prende il primo elemento figlio di 'section-title', cioè i titoli delle sezioni
@@ -161,7 +162,7 @@ function tocTitles() {
 
     // inserisce il 'li' in 'ul'
     ul.appendChild(li);
-    
+
     // inserisce il collegamento 'a' in 'li'
     li.appendChild(a);
     lis.push(li);
@@ -237,7 +238,6 @@ function updateSection() {
       }
 
       currLi.classList.add("current");
-
     } else if (top <= currSectionHeight && top > oldSectionHeight) {
       oldLi.classList.add("current");
       currLi.classList.remove("current");
@@ -246,6 +246,55 @@ function updateSection() {
   }
   updateIndicator(currLi);
 }
+
+
+var infoTooltip;
+infoTooltip = document.getElementById("info-tooltip");
+//------TOOLTIP SU LINK ESTERNI
+var moreInfo = document.getElementsByClassName("more-info");
+var definition;
+document.addEventListener("mouseover", showLinkInfo);
+function showLinkInfo() {
+  for (i = 0; i < moreInfo.length; i++) {
+    if (moreInfo[i].matches('.more-info:hover')) {
+      infoTooltip.innerHTML = moreInfo[i].getAttribute('data-definition');
+      console.log(definition);
+      infoTooltip.classList.add("summon");
+    }
+  }
+}
+document.addEventListener("mouseout", hideLinkInfo);
+function hideLinkInfo() {
+  infoTooltip.classList.remove("summon");
+}
+
+//------PER IL TOOLTIP
+function showInfoTooltip(event) {
+  var tooltip = document.getElementById("info-tooltip");
+  var x = window.innerWidth;
+  var y = window.innerHeight;
+  tooltip.style.left = event.x + "px";
+  tooltip.style.top = event.y + "px";
+}
+document.addEventListener("mousemove", showInfoTooltip);
+//------TOOLTIP SU SVG
+var tmMoreInfo = document.getElementsByClassName("timeline-more-info");
+var info;
+document.addEventListener("mouseover", showTimelineInfo);
+function showTimelineInfo() {
+  for (i = 0; i < tmMoreInfo.length; i++) {
+    if (tmMoreInfo[i].matches('.timeline-more-info:hover')) {
+      infoTooltip.innerHTML = tmMoreInfo[i].getAttribute('data-info');
+      infoTooltip.classList.add("summon");
+    }
+  }
+}
+document.addEventListener("mouseout", hideTimelineInfo);
+function hideTimelineInfo() {
+  infoTooltip.classList.remove("summon");
+}
+
+
 
 // ////////////////// START ////////////////// //
 // //////// SCROLLMAGIC + GSAP SCENES //////// //
@@ -262,14 +311,16 @@ var mapScene = new ScrollMagic.Scene({
 
 mapScene.on("enter", function(event) {
   document
-    .getElementById("section-1").parentElement.parentElement.classList.add("bg", "dark");
+    .getElementById("section-1")
+    .parentElement.parentElement.classList.add("bg", "dark");
   document.getElementById("main-question-paragraph").classList.add("dark");
   document.getElementById("wave").classList.add("focus");
   numAnim.update(100);
 });
 mapScene.on("leave", function(event) {
   document
-    .getElementById("section-1").parentElement.parentElement.classList.remove("bg", "dark");
+    .getElementById("section-1")
+    .parentElement.parentElement.classList.remove("bg", "dark");
   document.getElementById("main-question-paragraph").classList.remove("dark");
   document.getElementById("main-question-paragraph").style.marginBottom = "0";
   document.getElementById("wave").classList.remove("focus");
@@ -309,11 +360,11 @@ timelineScene.on("enter", function(event) {
 // ///////// GESTIONE EVENTI PAGINA ////////// //
 // /////////////////////////////////////////// //
 
-window.onload = (e) => {
+window.onload = e => {
   generateDots();
   tocTitles();
   updateSection();
 };
-document.addEventListener("scroll", (e) => {
+document.addEventListener("scroll", e => {
   updateSection();
 });

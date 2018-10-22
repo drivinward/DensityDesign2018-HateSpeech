@@ -1,7 +1,3 @@
-* {
-  cursor: url('assets/arrow-32-hd.png');
-}
-
 :root {
   --c-1: #fff;
   --c-2: #0033ff;
@@ -31,17 +27,17 @@
 
 ::-moz-selection { /* Code for Firefox */
   color: var(--focus);
-  background: yellow;
+  background: var(--c-3);
 }
 
 ::-webkit-selection { /* Code for Safari */
   color: var(--focus);
-  background: yellow;
+  background: var(--c-3);
 }
 
 ::selection {
   color: var(--focus); 
-  background: yellow;
+  background: var(--c-3);
 }
 
 
@@ -51,6 +47,7 @@ body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  cursor: url('assets/arrow-32-hd.png'), auto;
 }
 
 
@@ -144,7 +141,6 @@ p {
 a {
   text-decoration: none;
   color: var(--c-1);
-  cursor: url('assets/dot-32-hd-small.png');
 }
 a:hover {
   color: var(--c-1);
@@ -167,6 +163,10 @@ svg {
   max-height: 90vh;
 }
 
+object {
+  cursor: url('assets/arrow-32-hd.png'), auto;
+}
+
 .hero {
   height: 100vh;
   color: var(--c-1);
@@ -174,9 +174,15 @@ svg {
 }
 .hero-caption {
   position: absolute;
-  top: 50%;
-  left: 35%;
-  transform: translate(-50%, -50%);
+  padding: calc(var(--spacing) / 1);
+}
+.hero-caption > h2 {
+  font-family: 'IBM Plex';
+  font-size: 2rem;
+  margin-top: calc(var(--spacing) / 1);
+}
+.herp-caption > h2 > span {
+  padding: calc(var(--spacing) / 2);
 }
 
 .narrative-section {
