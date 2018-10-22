@@ -10,7 +10,7 @@ var line = document.getElementById("current-line");
 var mouseX = 0;
 var mouseY = 0;
 
-var delay = 500;
+var delay = 200;
 // var updateInterval = 25;
 
 var mp3 = document.getElementById("mp3");
@@ -21,10 +21,29 @@ function mapper(num, in_min, in_max, out_min, out_max) {
 }
 
 // get mouse coordinates
-document.addEventListener("mousemove", e => {
-  mouseX = mapper(e.clientX / window.innerWidth, 0, 1, 0, 1.5);
-  mouseY = mapper(e.clientY / window.innerHeight, 0, 1, 0, 0.35);
+document.addEventListener("mousemove", function(e) {
+  mouseX = mapper(e.clientX / window.innerWidth, 0, 1, 0, 1);
+  mouseY = mapper(e.clientY / window.innerHeight, 0, 1, 0, 1);
 });
+
+// apertura/chiusura indice dei contenuti
+var line = document.getElementById("current-line");
+document.addEventListener("mousemove", function(e) {
+  // mouseX = e.clientX / window.innerWidth;
+  // mouseY = e.clientY / window.innerHeight;
+  // console.log(mouseX);
+  if (mouseX > 0.75) {
+    toc.classList.add("summon");
+    line.classList.add("active");
+  } else if (mouseX < 0.75) {
+    toc.classList.remove("summon");
+    line.classList.remove("active");
+  }
+});
+// document.addEventListener("mouseleave", function(e) {
+//   toc.classList.remove("summon");
+//   line.classList.remove("active");
+// });
 
 var points = 100;
 // generate wave dots
@@ -43,8 +62,34 @@ function generateDots() {
     // console.log(points[i]);
   }
 }
+generateDots();
 
-// animating percentage values and waveform volume
+// animate the wave dots
+var norm = 0;
+setTimeout(function() {
+  var el = document.getElementsByClassName("hide")[0];
+  el.classList.remove("hide");
+  el.classList.add("show");
+  function anim() {
+    document.querySelectorAll("svg line.wave-line").forEach((c, i) => {
+      var amp = 1 - i / points;
+      var freq = 1 / 50;
+      var osc_freq = 0.15;
+      var phase = osc_freq * i;
+      var t = performance.now();
+      // norm = 1;
+
+      var maths = 50 + amp * 2 * norm * i * Math.sin(freq * t + phase);
+
+      c.setAttribute("y1", maths);
+      c.setAttribute("y2", maths);
+    });
+    requestAnimationFrame(anim);
+  }
+  requestAnimationFrame(anim);
+}, delay);
+
+// CountUp anima percentage values e waveform volume
 var options_numAnim = {
   suffix: "%"
 };
@@ -82,81 +127,44 @@ for (i = 0; i < els.length; i++) {
   };
 }
 
-// animate the wave dots
-var norm = 1;
-setTimeout(function() {
-  var el = document.getElementsByClassName("hide")[0];
-  el.classList.remove("hide");
-  el.classList.add("show");
-  function anim() {
-    document.querySelectorAll("svg line.wave-line").forEach((c, i) => {
-      var amp = 1 - i / points;
-      var freq = 1 / 50;
-      var osc_freq = 0.15;
-      var phase = osc_freq * i;
-      var t = performance.now();
-      // norm = 1;
-
-      var maths = 50 + amp * 2 * norm * i * Math.sin(freq * t + phase);
-
-      c.setAttribute("y1", maths);
-      c.setAttribute("y2", maths);
-    });
-    requestAnimationFrame(anim);
-  }
-  requestAnimationFrame(anim);
-}, delay);
-
-// function jump(h) {
-//     location.href = '';
-//     var url = location.href;                     // Save down the URL without hash.
-//     location.href = "#" + h;                     // Go to the target element.
-//     // history.replaceState(null, null, url);    // Don't like hashes. Changing it back.
-// }
-
-// function scrollTo(element, to, duration) {
-//   if (duration <= 0) return;
-//   var difference = to - element.scrollTop;
-//   var perTick = (difference / duration) * 10;
-
-//   setTimeout(function() {
-//     element.scrollTop = element.scrollTop + perTick;
-//     if (element.scrollTop === to) return;
-//     scrollTo(element, to, duration - 10);
-//   }, 10);
-// }
-
 // prende tutti i titoli delle sezioni h1 e h2 con classe 'section-title'
 // e li inserisce come tag <li> nell'indice dei contenuti
 var where = [];
 function tocTitles() {
   var ul = document.createElement("UL");
   toc.appendChild(ul);
+
+  // l'HTMLCollection non è un array - ma vaffanculo.
   // HTMLCollection dei titoli nel documento HTML
-  liTxt = document.getElementsByClassName("section-title");
+  // var liTxt = document.getElementsByTagName("section-title");
+
+  // HTMLCollection dei titoli h1 nel documento HTML
+  var liTxt = document.getElementsByTagName("h1");
 
   var li;
   // insieme di tutte le sezioni con testo
-  var anchor = document.getElementsByClassName("text-section");
+  // var anchor = document.getElementsByClassName("narrative-section");
 
   for (i = 0; i < liTxt.length; i++) {
     li = document.createElement("li");
-    // elemento link da inserire dentro ogni 'li'
-    h = document.createElement("a");
+    // link da inserire dentro ogni 'li'
+    a = document.createElement("a");
     // setta il collegamento di ogni 'a'
-    where.push(anchor[i].id);
-    h.href = "#" + where[i];
+    where.push(liTxt[i].parentElement.id);
+    // console.log(liTxt[i].parentElement.id);
+    a.href = "#" + where[i];
+
     // prende il primo elemento figlio di 'section-title', cioè i titoli delle sezioni
-    h.innerHTML = liTxt[i].childNodes[1].innerHTML;
+    // a.innerHTML = liTxt[i].childNodes[1].innerHTML;
+
+    // questo prende tutti i titoli h1
+    a.innerHTML = liTxt[i].innerHTML;
+
     // inserisce il 'li' in 'ul'
     ul.appendChild(li);
+
     // inserisce il collegamento 'a' in 'li'
-    li.appendChild(h);
-    // scrivere funzione per ascoltare il click sui 'li' ed animare scroll verso sezione relativa
-    // li.addEventListener("click", function () {
-    //     scrollTo(document.body, sectionHeights[i], 600);
-    //     console.log(where[i]);
-    // });
+    li.appendChild(a);
     lis.push(li);
     // valore dato all'inizio
     if (liTxt[i] == liTxt[0]) {
@@ -166,38 +174,44 @@ function tocTitles() {
   }
   // console.log(lis);
 }
+window.onload = tocTitles();
 
 var sectionHeights = [];
-var sections = document.getElementsByClassName("text-section");
+// questo è l'elemento che viene considerato come sezione.
+var sections = document.getElementsByTagName("h1");
 
 function calcHeights() {
-for (i = 0; i < sections.length; i++) {
-  var height = sections[i].offsetTop;
-    sectionHeights.push(height);
-    // console.log(height);
+  var height;
+  for (i = 0; i < sections.length; i++) {
+    // prendi il contenitore del titolo di ogni sezione (per capire quando comincia la sezione)
+    height = sections[i].parentElement.parentElement.parentElement.offsetTop;
+    sectionHeights.splice(i, 1, height);
   }
-  // console.log(sections);
   // console.log(sectionHeights);
 }
 
-function updateIndicator() {
+function updateIndicator(currLi) {
   var indicator = document.getElementById("current-line");
-  var currentLi = document.getElementsByClassName("current")[0];
-  var currentLiHeight = currentLi.getBoundingClientRect().top;
+  var currLi = document.getElementsByClassName("current")[0];
+  var currLiHeight = currLi.getBoundingClientRect().top;
   // console.log(currentLiHeight.top);
-  indicator.style.top = currentLiHeight;
+  indicator.style.top = currLiHeight;
 }
 
-function updateSection(e) {
+function updateSection() {
   var doc = document.documentElement;
-  var top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0) + (window.innerHeight / 2);
-  // var top = (window.pageYOFfset / window.innerHeight) / 2;
-  // console.log(window.innerHeight);
+  var top =
+    (window.pageYOffset || doc.scrollTop) -
+    (doc.clientTop || 0) +
+    window.innerHeight / 2;
+  // var top = (window.pageYOffset / window.innerHeight) / 2;
 
   calcHeights();
+  // console.log('Current height: ' + top);
 
   for (i = 0; i < sections.length; i++) {
     var currSectionHeight = sectionHeights[i];
+    // console.log(sections[i].innerHTML + ' — ' + currSectionHeight);
     var nextSectionHeight = sectionHeights[i + 1];
     var oldSectionHeight = sectionHeights[i - 1] || sectionHeights[0];
     // console.log(oldSectionHeight);
@@ -206,15 +220,15 @@ function updateSection(e) {
     // var currSection = sections[i];
     // var nextSection = sections[i + 1];
 
-    var oldLi = document.querySelectorAll(".toc > ul > li")[i - 1];
     var currLi = document.querySelectorAll(".toc > ul > li")[i];
-    var nextLi = document.querySelectorAll(".toc > ul > li")[i + 1];
+    // console.log(currLi);
+    var oldLi = document.querySelectorAll(".toc > ul > li")[i - 1];
     if (
       (top >= currSectionHeight && top < nextSectionHeight) ||
       (top >= currSectionHeight && top < document.body.scrollHeight)
     ) {
       // ora sai in quale sezione sei nel documento
-      //   console.log('current section: ' + currSection.getAttribute('id') + '— next section: ' + nextSection.getAttribute('id'));
+      // console.log('current section: ' + currLi.innerHTML);
 
       // ora bisogna selezionare il 'li' corrispondente e mettergli la classe 'current'
       if (typeof oldLi === "undefined") {
@@ -222,16 +236,65 @@ function updateSection(e) {
       } else {
         oldLi.classList.remove("current");
       }
+
       currLi.classList.add("current");
-      // console.log(currLi);
     } else if (top <= currSectionHeight && top > oldSectionHeight) {
       oldLi.classList.add("current");
       currLi.classList.remove("current");
-      oldLi = currLi;
+      // oldLi = currLi;
     }
   }
-  updateIndicator();
+  updateIndicator(currLi);
 }
+
+
+var infoTooltip;
+infoTooltip = document.getElementById("info-tooltip");
+//------TOOLTIP SU LINK ESTERNI
+var moreInfo = document.getElementsByClassName("more-info");
+var definition;
+document.addEventListener("mouseover", showLinkInfo);
+function showLinkInfo() {
+  for (i = 0; i < moreInfo.length; i++) {
+    if (moreInfo[i].matches('.more-info:hover')) {
+      infoTooltip.innerHTML = moreInfo[i].getAttribute('data-definition');
+      console.log(definition);
+      infoTooltip.classList.add("summon");
+    }
+  }
+}
+document.addEventListener("mouseout", hideLinkInfo);
+function hideLinkInfo() {
+  infoTooltip.classList.remove("summon");
+}
+
+//------PER IL TOOLTIP
+function showInfoTooltip(event) {
+  var tooltip = document.getElementById("info-tooltip");
+  var x = window.innerWidth;
+  var y = window.innerHeight;
+  tooltip.style.left = event.x + "px";
+  tooltip.style.top = event.y + "px";
+}
+document.addEventListener("mousemove", showInfoTooltip);
+//------TOOLTIP SU SVG
+var tmMoreInfo = document.getElementsByClassName("timeline-more-info");
+var info;
+document.addEventListener("mouseover", showTimelineInfo);
+function showTimelineInfo() {
+  for (i = 0; i < tmMoreInfo.length; i++) {
+    if (tmMoreInfo[i].matches('.timeline-more-info:hover')) {
+      infoTooltip.innerHTML = tmMoreInfo[i].getAttribute('data-info');
+      infoTooltip.classList.add("summon");
+    }
+  }
+}
+document.addEventListener("mouseout", hideTimelineInfo);
+function hideTimelineInfo() {
+  infoTooltip.classList.remove("summon");
+}
+
+
 
 // ////////////////// START ////////////////// //
 // //////// SCROLLMAGIC + GSAP SCENES //////// //
@@ -240,83 +303,68 @@ function updateSection(e) {
 var waveformController = new ScrollMagic.Controller();
 var mapScene = new ScrollMagic.Scene({
   triggerElement: "#map-percentage",
-  triggerHook: 0.35,
+  triggerHook: 0.235,
   duration: "200%"
 })
   .setPin("#main-question") // pins the element for the the scene's duration
   .addTo(waveformController); // assign the scene to the controller
 
 mapScene.on("enter", function(event) {
-  // console.log("Scene started.");
-  document.getElementById("section-1").classList.add("bg", "dark");
+  document
+    .getElementById("section-1")
+    .parentElement.parentElement.classList.add("bg", "dark");
   document.getElementById("main-question-paragraph").classList.add("dark");
   document.getElementById("wave").classList.add("focus");
   numAnim.update(100);
 });
 mapScene.on("leave", function(event) {
-  // console.log("Scene left.");
-  document.getElementById("section-1").classList.remove("bg", "dark");
-  document.getElementById('main-question-paragraph').classList.remove("dark");
+  document
+    .getElementById("section-1")
+    .parentElement.parentElement.classList.remove("bg", "dark");
+  document.getElementById("main-question-paragraph").classList.remove("dark");
   document.getElementById("main-question-paragraph").style.marginBottom = "0";
   document.getElementById("wave").classList.remove("focus");
   numAnim.update(0);
 });
 
 var timelineController = new ScrollMagic.Controller();
-
 // define movement of panels
 var wipeAnimation = new TimelineMax().fromTo(
   "#timeline",
   1,
-  { x: "0%" },
-  { x: "-100%", ease: Linear.easeNone }
+  { x: "20%" },
+  { x: "-80%", ease: Linear.easeNone }
 ); // in from left
 
-// console.log(document.getElementById('graph-scroller'));
-
 var timelineScene = new ScrollMagic.Scene({
-  triggerElement: "#section-3",
+  triggerElement: "#section-2-2",
   triggerHook: 0,
   duration: "200%"
 })
-  .setPin("#section-3")
+  .setPin("#section-3-pin")
   .setTween(wipeAnimation)
-  //   .addIndicators()
+  // .addIndicators()
   .addTo(timelineController);
 
 timelineScene.on("enter", function(event) {
   // console.log("entered");
+  document.getElementById("section-3-pin").style.marginTop =
+    "calc(var(--spacing) * 1)";
 });
 
 // /////////////////////////////////////////// //
 // //////// SCROLLMAGIC + GSAP SCENES //////// //
 // /////////////////// END /////////////////// //
 
-// apertura/chiusura indice dei contenuti
-var line = document.getElementById("current-line");
-document.addEventListener("mousemove", e => {
-  mouseX = e.clientX / window.innerWidth;
-  // mouseY = e.clientY / window.innerHeight;
-  // console.log(mouseX);
-  if (mouseX > 0.85) {
-    toc.classList.add("summon");
-    line.classList.add("active");
-  }
-});
-toc.addEventListener("mouseleave", e => {
-  toc.classList.remove("summon");
-  line.classList.remove("active");
-});
-
 // /////////////////////////////////////////// //
 // ///////// GESTIONE EVENTI PAGINA ////////// //
 // /////////////////////////////////////////// //
 
-window.onload = function(e) {
+window.onload = e => {
   generateDots();
   tocTitles();
-  updateSection(e);
+  updateSection();
 };
 document.addEventListener("scroll", e => {
-  updateSection(e);
+  updateSection();
 });
