@@ -32,7 +32,7 @@ document.addEventListener("mousemove", function(e) {
   // mouseX = e.clientX / window.innerWidth;
   // mouseY = e.clientY / window.innerHeight;
   // console.log(mouseX);
-  if (mouseX > 0.75) {
+  if (mouseX > 0.9) {
     toc.classList.add("summon");
     line.classList.add("active");
   } else if (mouseX < 0.75) {
